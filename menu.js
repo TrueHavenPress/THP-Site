@@ -79,12 +79,21 @@
   var nav = document.getElementById('btl-page-nav-mount');
   if (!nav) return;
 
+  var current = nav.getAttribute('data-current'); // 'home' | 'insights' | 'bookstore' | null
+  var LINKS = [
+    { id: 'home',      href: '/index.html',    text: 'Back to Home' },
+    { id: 'insights',  href: '/insights.html', text: 'Browse Insights' },
+    { id: 'bookstore', href: '/books.html',    text: 'Browse the Bookstore' }
+  ];
+  var linksHTML = LINKS
+    .filter(function (l) { return l.id !== current; })
+    .map(function (l) { return '    <a href="' + l.href + '" class="btn">' + l.text + '</a>'; })
+    .join('\n');
+
   var NAV_HTML = [
     '<section class="btl-page-nav" aria-label="Between the Lines navigation">',
     '  <div class="btl-page-nav-buttons">',
-    '    <a href="index.html" class="btn">Back to Home</a>',
-    '    <a href="insights.html" class="btn">Browse Insights</a>',
-    '    <a href="books.html" class="btn">Browse the Bookstore</a>',
+    linksHTML,
     '  </div>',
     '</section>'
   ].join('\n');
@@ -132,9 +141,9 @@
     '        <p><a href="tel:18005853690">1&#8209;800&#8209;585&#8209;3690</a></p>',
     '        <p><a href="mailto:managingeditor@truehavenpress.com">managingeditor@truehavenpress.com</a></p>',
     '        <ul class="full-footer-links">',
-    '          <li><a href="about.html">About</a></li>',
-    '          <li><a href="privacy-policy.html">Privacy Policy</a></li>',
-    '          <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>',
+    '          <li><a href="/about.html">About</a></li>',
+    '          <li><a href="/privacy-policy.html">Privacy Policy</a></li>',
+    '          <li><a href="/terms-and-conditions.html">Terms &amp; Conditions</a></li>',
     '        </ul>',
     '      </div>',
     '    </div>',
