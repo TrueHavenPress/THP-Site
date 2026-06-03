@@ -80,13 +80,21 @@
   if (!nav) return;
 
   var current = nav.getAttribute('data-current'); // 'home' | 'insights' | 'bookstore' | null
+  // Auto-hide "Browse Insights" on the Insights landing AND on any individual article
+  // (article pages live under /insights/<slug>.html).
+  var path = window.location.pathname;
+  var inInsightsSection = path === '/insights.html' || /^\/insights\//.test(path);
+  var skip = {};
+  if (current) skip[current] = true;
+  if (inInsightsSection) skip['insights'] = true;
+
   var LINKS = [
     { id: 'home',      href: '/index.html',    text: 'Back to Home' },
     { id: 'insights',  href: '/insights.html', text: 'Browse Insights' },
     { id: 'bookstore', href: '/books.html',    text: 'Browse the Bookstore' }
   ];
   var linksHTML = LINKS
-    .filter(function (l) { return l.id !== current; })
+    .filter(function (l) { return !skip[l.id]; })
     .map(function (l) { return '    <a href="' + l.href + '" class="btn">' + l.text + '</a>'; })
     .join('\n');
 
