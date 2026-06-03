@@ -2226,3 +2226,11 @@ body.submit-page {
   font-style: italic;
 }
 
+/* Callout paragraph used for "How we help:" sections in some articles */
+.article-prose p.how-we-help {
+  background: var(--color-bg-alt);
+  border-left: 3px solid var(--color-primary);
+  padding: 1.1rem 1.35rem;
+  border-radius: 0 6px 6px 0;
+}
+
