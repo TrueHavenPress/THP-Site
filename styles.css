@@ -1969,17 +1969,21 @@ body.submit-page {
    INSIGHTS — landing page (article grid) and topic pill
    ============================================================ */
 
-/* Topic pill — used on article cards AND on each article page hero */
+/* Topic label - used on article cards AND on each article page hero.
+   Editorial / typographic treatment: uppercase letter-spaced text in
+   the brown brand color. Stays clearly distinct from any clickable button. */
 .topic-pill {
   display: inline-block;
-  background: var(--color-primary);
-  color: #fff;
-  font-size: 0.65rem;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 0.32rem 0.75rem;
-  border-radius: 999px;
+  line-height: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
 }
 
 .insights-page-hero {
