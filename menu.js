@@ -79,34 +79,20 @@
   var nav = document.getElementById('btl-page-nav-mount');
   if (!nav) return;
 
-  var current = nav.getAttribute('data-current'); // 'home' | 'insights' | 'bookstore' | null
-  // Auto-hide "Browse Insights" on the Insights landing AND on any individual article
-  // (article pages live under /insights/<slug>.html).
-  var path = window.location.pathname;
-  var inInsightsSection = path === '/insights.html' || /^\/insights\//.test(path);
-  var skip = {};
-  if (current) skip[current] = true;
-  if (inInsightsSection) skip['insights'] = true;
-
-  var LINKS = [
-    { id: 'home',      href: '/index.html',    text: 'Back to Home' },
-    { id: 'insights',  href: '/insights.html', text: 'Browse Insights' },
-    { id: 'bookstore', href: '/books.html',    text: 'Browse the Bookstore' }
-  ];
-  var linksHTML = LINKS
-    .filter(function (l) { return !skip[l.id]; })
-    .map(function (l) { return '    <a href="' + l.href + '" class="btn">' + l.text + '</a>'; })
-    .join('\n');
-
-  var NAV_HTML = [
-    '<section class="btl-page-nav" aria-label="Between the Lines navigation">',
-    '  <div class="btl-page-nav-buttons">',
-    linksHTML,
+  // Tan CTA panel with Book a Consultation + Submit Your Manuscript,
+  // matching the home page panel. Used on every page that includes the
+  // mount: every Insights article AND the BETWEEN THE LINES landing
+  // pages (Insights, Before You Sign, Business Owners).
+  var PANEL_HTML = [
+    '<section class="article-cta-panel" aria-label="Take the next step with True Haven Press">',
+    '  <div class="container">',
+    '    <a href="https://tidycal.com/truehavenpress/free-publishing-consultation" class="btn" target="_blank" rel="noopener noreferrer">Book a consultation</a>',
+    '    <a href="/submit-manuscript.html" class="btn">Submit your manuscript</a>',
     '  </div>',
     '</section>'
   ].join('\n');
 
-  nav.outerHTML = NAV_HTML;
+  nav.outerHTML = PANEL_HTML;
 })();
 
 /* ============================================================
