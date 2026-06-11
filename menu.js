@@ -1,5 +1,5 @@
 /* ============================================================
-   Dropdown menu behavior for .main-navigation .has-dropdown items.
+   Dropdown menu behavior for .has-dropdown items.
    Supports both hover (desktop, handled by CSS) and click-to-open.
    ============================================================ */
 (function () {
@@ -14,7 +14,7 @@
     if (t) t.setAttribute('aria-expanded', 'true');
   }
 
-  document.querySelectorAll('.main-navigation .has-dropdown').forEach(function (item) {
+  document.querySelectorAll('.has-dropdown').forEach(function (item) {
     var toggle = item.querySelector('.dropdown-toggle');
     if (!toggle) return;
     toggle.addEventListener('click', function (e) {
@@ -25,14 +25,14 @@
   });
 
   document.addEventListener('click', function (e) {
-    document.querySelectorAll('.main-navigation .has-dropdown.is-open').forEach(function (item) {
+    document.querySelectorAll('.has-dropdown.is-open').forEach(function (item) {
       if (!item.contains(e.target)) close(item);
     });
   });
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
-      document.querySelectorAll('.main-navigation .has-dropdown.is-open').forEach(close);
+      document.querySelectorAll('.has-dropdown.is-open').forEach(close);
     }
   });
 })();
