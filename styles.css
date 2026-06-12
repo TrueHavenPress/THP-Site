@@ -2181,10 +2181,10 @@ body.submit-page {
   margin: 0;
 }
 
-/* "More Coming Soon" placeholder tile - sits inside the insights grid
-   to fill the remaining row when articles don't completely fill it. */
+/* "More Coming Soon" placeholder tile - sits on its own new row at
+   the bottom of the insights grid, spanning the full row width. */
 .insights-coming-soon {
-  grid-column: span 2;
+  grid-column: 1 / -1;
   background: var(--color-bg-alt);
   border: 2px dashed var(--color-border);
   border-radius: 8px;
@@ -2193,7 +2193,7 @@ body.submit-page {
   justify-content: center;
   text-align: center;
   padding: 2rem 1.5rem;
-  min-height: 220px;
+  min-height: 160px;
 }
 .insights-coming-soon span {
   font-family: var(--font-serif);
@@ -2203,7 +2203,6 @@ body.submit-page {
   color: var(--color-text-light);
   text-transform: uppercase;
 }
-@media (max-width: 1100px) { .insights-coming-soon { grid-column: span 1; } }
 @media (max-width: 520px)  { .insights-coming-soon { min-height: 140px; } }
 
 /* qikfilter brand-styling for the Insights section
