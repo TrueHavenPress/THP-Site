@@ -39,15 +39,23 @@
 
 /* ============================================================
    Lead-capture form on funnel landing pages.
-   Placeholder: intercepts submit and redirects to the page's
-   data-thank-you URL so the flow is demoable before Mailchimp.
+   Posts to the form's Mailchimp action URL (when set) and
+   redirects to the page's data-thank-you URL on completion.
+   Falls back to a straight redirect if no action is set.
    ============================================================ */
 (function () {
   document.querySelectorAll('form.lead-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      var action = form.getAttribute('action');
       var dest = form.getAttribute('data-thank-you');
-      if (dest) window.location.href = dest;
+      var go = function () { if (dest) window.location.href = dest; };
+      if (action) {
+        fetch(action, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+          .then(go, go);
+      } else {
+        go();
+      }
     });
   });
 })();
