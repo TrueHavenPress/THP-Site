@@ -22,6 +22,9 @@
       if (item.classList.contains('is-open')) close(item);
       else open(item);
     });
+    item.querySelectorAll('.dropdown-menu a').forEach(function (link) {
+      link.addEventListener('click', function () { close(item); });
+    });
   });
 
   document.addEventListener('click', function (e) {
