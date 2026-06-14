@@ -1807,8 +1807,7 @@ body.submit-page {
   line-height: 1;
   transition: transform 0.2s;
 }
-.has-dropdown.is-open .dropdown-caret,
-.has-dropdown:hover .dropdown-caret { transform: rotate(180deg); }
+.has-dropdown.is-open .dropdown-caret { transform: rotate(180deg); }
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -1825,7 +1824,6 @@ body.submit-page {
   display: none;
   z-index: 200;
 }
-.has-dropdown:hover > .dropdown-menu,
 .has-dropdown.is-open > .dropdown-menu { display: block; }
 .dropdown-menu li { display: block; }
 .dropdown-menu a {
@@ -1853,8 +1851,6 @@ body.submit-page {
     min-width: 0;
     padding: 0.25rem 0 0.5rem 1rem;
   }
-  /* On mobile, hover doesn't apply; only click toggles */
-  .has-dropdown:hover > .dropdown-menu { display: none; }
   .has-dropdown.is-open > .dropdown-menu { display: block; }
 }
 
