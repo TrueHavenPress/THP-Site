@@ -158,3 +158,24 @@
 
   mount.outerHTML = FOOTER_HTML;
 })();
+
+/* ============================================================
+   LinkedIn Insight Tag (partner id 9528684) — site-wide
+   conversion tracking and retargeting. Loaded here so a single
+   edit covers every page.
+   ============================================================ */
+(function () {
+  window._linkedin_partner_id = "9528684";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+  if (!window.lintrk) {
+    window.lintrk = function (a, b) { window.lintrk.q.push([a, b]); };
+    window.lintrk.q = [];
+  }
+  var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";
+  b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);
+})();
