@@ -38,6 +38,9 @@
       document.querySelectorAll('.has-dropdown.is-open').forEach(close);
     }
   });
+
+  // Defensive: ensure no dropdown is left open after page load.
+  document.querySelectorAll('.has-dropdown.is-open').forEach(close);
 })();
 
 /* ============================================================
@@ -107,38 +110,38 @@
 })();
 
 /* ============================================================
-   Site-wide full footer. Drops the footer into any page that
-   contains <div id="site-footer-mount"></div>, so the footer
-   markup lives in one file.
+   Site-wide unified footer. Replaces any of these markers with a
+   single canonical footer, so every page renders the same one:
+     <div id="site-footer-mount"></div>     (clean static pages)
+     <footer class="wp-block-template-part">  (WP-style pages)
+     <footer class="site-footer">             (legacy simple pages)
+   The markup lives in one place — this file.
    ============================================================ */
 (function () {
-  var mount = document.getElementById('site-footer-mount');
-  if (!mount) return;
+  var existing =
+    document.getElementById('site-footer-mount') ||
+    document.querySelector('footer.wp-block-template-part') ||
+    document.querySelector('footer.site-footer');
+  if (!existing) return;
 
-  var minimal = mount.hasAttribute('data-minimal');
-  var FOOTER_TOP = minimal ? '' : [
+  var FOOTER_HTML = [
+    '<footer class="full-footer">',
     '  <div class="full-footer-top">',
     '    <div class="container">',
     '      <p>Selected submissions will receive a manuscript assessment, marketability report, and publishing proposal.</p>',
     '      <p>Submissions we must decline will receive a detailed, honest explanation designed to support revisions that could make a future submission more successful.</p>',
     '    </div>',
-    '  </div>'
-  ].join('\n');
-
-  var FOOTER_HTML = [
-    '<footer class="full-footer">',
-    FOOTER_TOP,
+    '  </div>',
     '  <div class="full-footer-main">',
     '    <div class="container full-footer-grid">',
     '      <div class="full-footer-brand">',
     '        <h3>True Haven Press</h3>',
     '        <p>A true partner in book publishing, home of The Pro Book Editor and award-winning designers and marketing professionals.</p>',
-    '        <p>Many of our team members are also published authors, so we know what it feels like to walk in your shoes.</p>',
+    '        <p>Founder Debra L Hartmann brings 30 years of experience that began in traditional publishing and includes working as an Editor, Managing Editor, and Chief Publishing Officer. In the self-publishing space for the last 15 years, her mission is to provide authors with direct access to high quality book production services unparalleled in today’s internet-based sea of misinformation and predatory practices.</p>',
     '        <ul class="full-footer-socials" aria-label="True Haven Press on social media">',
-    '          <li><a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.23,5.92c-.74.33-1.53.55-2.36.65a4.12,4.12,0,0,0,1.8-2.27,8.24,8.24,0,0,1-2.6,1,4.1,4.1,0,0,0-7,3.74A11.65,11.65,0,0,1,3.62,4.75a4.1,4.1,0,0,0,1.27,5.48,4.07,4.07,0,0,1-1.86-.51v.05a4.1,4.1,0,0,0,3.29,4,4.16,4.16,0,0,1-1.85.07,4.11,4.11,0,0,0,3.83,2.85A8.24,8.24,0,0,1,2.07,18.41,11.62,11.62,0,0,0,8.36,20.25c7.55,0,11.68-6.25,11.68-11.67,0-.18,0-.36,0-.53A8.31,8.31,0,0,0,22.23,5.92Z"/></svg></a></li>',
-    '          <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,4.62c2.4,0,2.69,0,3.64.05.88,0,1.35.19,1.67.31a2.79,2.79,0,0,1,1,.67,2.78,2.78,0,0,1,.67,1c.12.32.27.79.31,1.67,0,.95.05,1.23.05,3.64s0,2.69-.05,3.64a4.61,4.61,0,0,1-.31,1.67,2.78,2.78,0,0,1-.67,1,2.79,2.79,0,0,1-1,.67c-.32.12-.79.27-1.67.31-.95,0-1.23,0-3.64,0s-2.69,0-3.64,0a4.61,4.61,0,0,1-1.67-.31,2.79,2.79,0,0,1-1-.67,2.78,2.78,0,0,1-.67-1,4.61,4.61,0,0,1-.31-1.67c0-.95-.05-1.23-.05-3.64s.05-2.69.05-3.64A4.61,4.61,0,0,1,5,7.32,2.78,2.78,0,0,1,5.65,6.3a2.79,2.79,0,0,1,1-.67c.32-.12.79-.27,1.67-.31C9.31,4.63,9.6,4.62,12,4.62M12,3C9.56,3,9.25,3,8.29,3.05A6.16,6.16,0,0,0,6.11,3.47a4.4,4.4,0,0,0-1.59,1,4.4,4.4,0,0,0-1,1.59A6.16,6.16,0,0,0,3.05,8.29C3,9.25,3,9.56,3,12s0,2.75,0,3.71a6.16,6.16,0,0,0,.42,2.19,4.4,4.4,0,0,0,1,1.59,4.4,4.4,0,0,0,1.59,1,6.16,6.16,0,0,0,2.19.42c1,0,1.27.05,3.71.05s2.75,0,3.71-.05a6.16,6.16,0,0,0,2.19-.42,4.4,4.4,0,0,0,1.59-1,4.4,4.4,0,0,0,1-1.59,6.16,6.16,0,0,0,.42-2.19c0-1,.05-1.27.05-3.71s0-2.75-.05-3.71a6.16,6.16,0,0,0-.42-2.19,4.4,4.4,0,0,0-1-1.59,4.4,4.4,0,0,0-1.59-1A6.16,6.16,0,0,0,15.71,3C14.75,3,14.44,3,12,3Zm0,4.38A4.62,4.62,0,1,0,16.62,12,4.62,4.62,0,0,0,12,7.38ZM12,15a3,3,0,1,1,3-3A3,3,0,0,1,12,15Zm4.8-8.88a1.08,1.08,0,1,0,1.08,1.08A1.08,1.08,0,0,0,16.8,6.12Z"/></svg></a></li>',
-    '          <li><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.7,3H4.3A1.3,1.3,0,0,0,3,4.3V19.7A1.3,1.3,0,0,0,4.3,21H19.7A1.3,1.3,0,0,0,21,19.7V4.3A1.3,1.3,0,0,0,19.7,3ZM8.34,18.34H5.67V9.75H8.34ZM7,8.57A1.55,1.55,0,1,1,8.55,7,1.55,1.55,0,0,1,7,8.57ZM18.34,18.34h-2.67V14.16c0-1-0-2.28-1.39-2.28s-1.6,1.09-1.6,2.21v4.25H10V9.75H12.6v1.17h0a2.81,2.81,0,0,1,2.53-1.39c2.7,0,3.2,1.78,3.2,4.1Z"/></svg></a></li>',
-    '          <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,2A10,10,0,0,0,10.4,21.9V15H7.9V12h2.5V9.8a3.5,3.5,0,0,1,3.8-3.9,15.07,15.07,0,0,1,2.2.2v2.5H15.1c-1.2,0-1.6.8-1.6,1.6V12h2.8l-.4,2.9H13.5v6.9A10,10,0,0,0,12,2Z"/></svg></a></li>',
+    '          <li><a href="https://www.facebook.com/TrueHavenPress/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,2A10,10,0,0,0,10.4,21.9V15H7.9V12h2.5V9.8a3.5,3.5,0,0,1,3.8-3.9,15.07,15.07,0,0,1,2.2.2v2.5H15.1c-1.2,0-1.6.8-1.6,1.6V12h2.8l-.4,2.9H13.5v6.9A10,10,0,0,0,12,2Z"/></svg></a></li>',
+    '          <li><a href="https://www.instagram.com/truehavenpress/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,4.62c2.4,0,2.69,0,3.64.05.88,0,1.35.19,1.67.31a2.79,2.79,0,0,1,1,.67,2.78,2.78,0,0,1,.67,1c.12.32.27.79.31,1.67,0,.95.05,1.23.05,3.64s0,2.69-.05,3.64a4.61,4.61,0,0,1-.31,1.67,2.78,2.78,0,0,1-.67,1,2.79,2.79,0,0,1-1,.67c-.32.12-.79.27-1.67.31-.95,0-1.23,0-3.64,0s-2.69,0-3.64,0a4.61,4.61,0,0,1-1.67-.31,2.79,2.79,0,0,1-1-.67,2.78,2.78,0,0,1-.67-1,4.61,4.61,0,0,1-.31-1.67c0-.95-.05-1.23-.05-3.64s.05-2.69.05-3.64A4.61,4.61,0,0,1,5,7.32,2.78,2.78,0,0,1,5.65,6.3a2.79,2.79,0,0,1,1-.67c.32-.12.79-.27,1.67-.31C9.31,4.63,9.6,4.62,12,4.62M12,3C9.56,3,9.25,3,8.29,3.05A6.16,6.16,0,0,0,6.11,3.47a4.4,4.4,0,0,0-1.59,1,4.4,4.4,0,0,0-1,1.59A6.16,6.16,0,0,0,3.05,8.29C3,9.25,3,9.56,3,12s0,2.75,0,3.71a6.16,6.16,0,0,0,.42,2.19,4.4,4.4,0,0,0,1,1.59,4.4,4.4,0,0,0,1.59,1,6.16,6.16,0,0,0,2.19.42c1,0,1.27.05,3.71.05s2.75,0,3.71-.05a6.16,6.16,0,0,0,2.19-.42,4.4,4.4,0,0,0,1.59-1,4.4,4.4,0,0,0,1-1.59,6.16,6.16,0,0,0,.42-2.19c0-1,.05-1.27.05-3.71s0-2.75-.05-3.71a6.16,6.16,0,0,0-.42-2.19,4.4,4.4,0,0,0-1-1.59,4.4,4.4,0,0,0-1.59-1A6.16,6.16,0,0,0,15.71,3C14.75,3,14.44,3,12,3Zm0,4.38A4.62,4.62,0,1,0,16.62,12,4.62,4.62,0,0,0,12,7.38ZM12,15a3,3,0,1,1,3-3A3,3,0,0,1,12,15Zm4.8-8.88a1.08,1.08,0,1,0,1.08,1.08A1.08,1.08,0,0,0,16.8,6.12Z"/></svg></a></li>',
+    '          <li><a href="https://www.linkedin.com/in/theprobookeditor/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.7,3H4.3A1.3,1.3,0,0,0,3,4.3V19.7A1.3,1.3,0,0,0,4.3,21H19.7A1.3,1.3,0,0,0,21,19.7V4.3A1.3,1.3,0,0,0,19.7,3ZM8.34,18.34H5.67V9.75H8.34ZM7,8.57A1.55,1.55,0,1,1,8.55,7,1.55,1.55,0,0,1,7,8.57ZM18.34,18.34h-2.67V14.16c0-1-0-2.28-1.39-2.28s-1.6,1.09-1.6,2.21v4.25H10V9.75H12.6v1.17h0a2.81,2.81,0,0,1,2.53-1.39c2.7,0,3.2,1.78,3.2,4.1Z"/></svg></a></li>',
     '        </ul>',
     '      </div>',
     '      <div class="full-footer-contact">',
@@ -156,7 +159,7 @@
     '</footer>'
   ].join('\n');
 
-  mount.outerHTML = FOOTER_HTML;
+  existing.outerHTML = FOOTER_HTML;
 })();
 
 /* ============================================================

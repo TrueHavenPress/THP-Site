@@ -195,7 +195,7 @@ a:hover {
   display: block;
 }
 
-.main-navigation ul {
+.main-navigation > ul {
   list-style: none;
   display: flex;
   gap: 2rem;
@@ -981,7 +981,7 @@ a:hover {
     text-align: center;
   }
 
-  .main-navigation ul {
+  .main-navigation > ul {
     justify-content: center;
     gap: 1.25rem;
   }
@@ -1040,11 +1040,85 @@ a:hover {
    BOOKS PAGE — body wrapper sits inside WP block frame
    ============================================================ */
 
-body.books-page {
+body.books-page,
+body.home,
+body.about-page {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
   line-height: 1.5;
+}
+
+/* Apply brand serif font (Poppins) to all WP block headings on Home and About
+   so they match the bookstore page's typography. */
+body.home h1, body.home h2, body.home h3, body.home h4,
+body.about-page h1, body.about-page h2, body.about-page h3, body.about-page h4 {
+  font-family: var(--font-serif);
+}
+
+/* Home/About body paragraphs: a touch larger and more breathable. */
+body.home .wp-block-paragraph,
+body.about-page .wp-block-paragraph {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Legal pages (privacy policy, terms): consistent rhythm.
+   - All h2 headings share the same top break (matches the space above
+     "Who We Share With"); the first heading has none.
+   - Bold sub-heading paragraphs (e.g. "Website Analytics:") flow as normal
+     paragraphs — no extra space above.
+   - Paragraphs and bullet lists all share the same in-between gap. */
+.legal-content h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+.legal-content p {
+  margin: 1em 0;
+}
+.legal-content ul {
+  padding-left: 2rem;
+  margin: 1em 0;
+  list-style: disc;
+}
+.legal-content ul li {
+  margin: 0.25em 0;
+}
+
+/* Match the top breathing room between page hero and content with equivalent
+   bottom space before the footer band. */
+.legal-section {
+  padding-bottom: 3.5rem;
+}
+
+/* Home page side-by-side columns: make the image fill its column exactly
+   to the height of the text column (no overflow underneath, no white space).
+   Trick: figure becomes absolutely-positioned inside a relative column, so it
+   no longer contributes to the row's natural height — that's now dictated by
+   the text column, and the figure stretches to match via inset: 0. */
+body.home .wp-block-columns {
+  align-items: stretch;
+}
+body.home .wp-block-columns > .wp-block-column {
+  position: relative;
+}
+body.home .wp-block-columns > .wp-block-column > figure.wp-block-image {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+body.home .wp-block-columns > .wp-block-column > figure.wp-block-image > img {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 8px;
+  aspect-ratio: auto !important;
 }
 
 body.books-page .books-main-wrapper {
@@ -1988,7 +2062,7 @@ body.submit-page {
   color: rgba(255,255,255,0.5);
   font-size: 1.5rem;
   font-family: var(--font-serif);
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 1rem;
 }
 .full-footer-brand p {
