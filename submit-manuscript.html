@@ -192,7 +192,6 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
 
       <p class="submit-intro">
         Required fields are marked with <span class="req-mark" aria-hidden="true">*</span>.
-        Plan on a few minutes; you can attach your manuscript and proposal at the bottom.
       </p>
 
       <fieldset class="form-section">
@@ -206,6 +205,11 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
         <div class="field">
           <label for="f-email">Email Address <span class="req-mark" aria-hidden="true">*</span></label>
           <input id="f-email" name="email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="f-website">Your Website URL</label>
+          <input id="f-website" name="websiteUrl" type="url" placeholder="https://" autocomplete="url">
         </div>
 
         <div class="field">
@@ -249,7 +253,7 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
             <option value="Word doc">Word doc</option>
             <option value="PDF">PDF</option>
           </select>
-          <small class="field-hint">Word is preferred. PDFs require additional document preparation.</small>
+          <small class="field-hint">Word is preferred.</small>
         </div>
       </fieldset>
 
@@ -258,10 +262,16 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
           <span class="label-as-block editing-question">What kind of editing do you need?</span>
           <div class="checkbox-group">
             <label class="checkbox-row">
-              <input type="checkbox" name="editingTypes" value="Developmental Editing"> Developmental Editing
+              <input type="checkbox" name="editingTypes" value="Developmental Editing w/ Critique Report"> Developmental Editing w/ Critique Report
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" name="editingTypes" value="Substantive/Structural Editing"> Substantive/Structural Editing
             </label>
             <label class="checkbox-row">
               <input type="checkbox" name="editingTypes" value="Line Editing"> Line Editing
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" name="editingTypes" value="Copy Editing"> Copy Editing
             </label>
             <label class="checkbox-row">
               <input type="checkbox" name="editingTypes" value="Proofreading"> Proofreading
@@ -323,11 +333,11 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
       </fieldset>
 
       <fieldset class="form-section">
-        <legend>Anything Else?</legend>
+        <legend>Anything else you&rsquo;d like the Managing Editor to know?</legend>
 
         <div class="field">
           <label for="f-notes">Notes</label>
-          <textarea id="f-notes" name="notes" rows="5" placeholder="Anything you'd like us to know."></textarea>
+          <textarea id="f-notes" name="notes" rows="5"></textarea>
         </div>
       </fieldset>
 
