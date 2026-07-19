@@ -129,7 +129,7 @@
     '  <div class="full-footer-top">',
     '    <div class="container">',
     '      <p>Selected submissions will receive a manuscript assessment, marketability report, and publishing proposal.</p>',
-    '      <p>Even when we have to say no, you won&rsquo;t be left guessing. If we decline your manuscript, you&rsquo;ll receive a manuscript assessment and marketability report&mdash;a clear look at why we passed and what to focus on to make it stronger. And there&rsquo;s no limit on how many times you can revise and resubmit.</p>',
+    '      <p>Even when we have to say no, you won&rsquo;t be left guessing. If we decline your submission, you&rsquo;ll receive a manuscript assessment and marketability report&mdash;a clear look at why we passed and what to focus on to make it stronger. And there&rsquo;s no limit on how many times you can revise and resubmit.</p>',
     '    </div>',
     '  </div>',
     '  <div class="full-footer-main">',
