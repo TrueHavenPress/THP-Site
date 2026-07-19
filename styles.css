@@ -1305,6 +1305,10 @@ body.submit-page {
   margin-bottom: 0.35rem;
 }
 
+.label-as-block.editing-question {
+  margin-bottom: 1rem;
+}
+
 .req-mark {
   color: var(--color-accent);
   font-weight: 700;

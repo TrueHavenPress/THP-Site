@@ -223,18 +223,17 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
         </div>
 
         <div class="field">
-          <label for="f-pen">Pen Name <span class="req-mark" aria-hidden="true">*</span></label>
-          <input id="f-pen" name="penName" type="text" required>
-          <small class="field-hint">If you publish under your real name, enter it here too.</small>
+          <label for="f-pen">Pen Name</label>
+          <input id="f-pen" name="penName" type="text">
         </div>
 
         <div class="field">
-          <label for="f-fiction">Fiction or Nonfiction?</label>
+          <label for="f-fiction">Which best describes you?</label>
           <select id="f-fiction" name="fictionOrNonfiction">
             <option value="">— Select —</option>
-            <option value="Fiction">Fiction</option>
-            <option value="Nonfiction">Nonfiction</option>
-            <option value="Business Lead Magnet">Business Lead Magnet</option>
+            <option value="Fiction Author">Fiction Author</option>
+            <option value="Nonfiction Author">Nonfiction Author</option>
+            <option value="Business Owner Writing Lead Magnet">Business Owner Writing Lead Magnet</option>
           </select>
         </div>
 
@@ -256,7 +255,7 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
 
       <fieldset class="form-section">
         <div class="field">
-          <span class="label-as-block">Editing Types Needed?</span>
+          <span class="label-as-block editing-question">What kind of editing do you need?</span>
           <div class="checkbox-group">
             <label class="checkbox-row">
               <input type="checkbox" name="editingTypes" value="Developmental Editing"> Developmental Editing
@@ -273,10 +272,6 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
           </div>
         </div>
 
-        <div class="field">
-          <label for="f-ai">If you used AI, which one and to what extent?</label>
-          <textarea id="f-ai" name="aiUsage" rows="3" placeholder="e.g. ChatGPT for outline brainstorming only; manuscript itself is hand-written."></textarea>
-        </div>
       </fieldset>
 
       <fieldset class="form-section">
@@ -301,7 +296,7 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
             </label>
             <button type="button" class="file-clear" data-file-clear hidden aria-label="Remove selected file">Remove</button>
           </div>
-          <small class="field-hint">.doc, .docx, or .pdf — Word format strongly preferred.</small>
+          <small class="field-hint">.doc, .docx, or .pdf — Word format preferred.</small>
         </div>
 
         <div class="field">
