@@ -84,29 +84,14 @@
 })();
 
 /* ============================================================
-   BETWEEN THE LINES page-nav row. Drops a small row of buttons
-   (Back to Home / Browse Insights / Browse the Bookstore) into
-   any page that contains <div id="btl-page-nav-mount"></div>.
-   Reused on every page in the BETWEEN THE LINES section.
+   BETWEEN THE LINES page-nav row is retired. The two CTA buttons
+   now live inside the blue footer image band instead. Any leftover
+   #btl-page-nav-mount div is simply removed from the page so nothing
+   stale renders in its place.
    ============================================================ */
 (function () {
   var nav = document.getElementById('btl-page-nav-mount');
-  if (!nav) return;
-
-  // Tan CTA panel with Book a Consultation + Submit Your Manuscript,
-  // matching the home page panel. Used on every page that includes the
-  // mount: every Insights article AND the BETWEEN THE LINES landing
-  // pages (Insights, Before You Sign, Business Owners).
-  var PANEL_HTML = [
-    '<section class="article-cta-panel" aria-label="Take the next step with True Haven Press">',
-    '  <div class="container">',
-    '    <a href="https://tidycal.com/truehavenpress/free-publishing-consultation" class="btn" target="_blank" rel="noopener noreferrer">Book a consultation</a>',
-    '    <a href="/submit-manuscript.html" class="btn">Submit your manuscript</a>',
-    '  </div>',
-    '</section>'
-  ].join('\n');
-
-  nav.outerHTML = PANEL_HTML;
+  if (nav && nav.parentNode) nav.parentNode.removeChild(nav);
 })();
 
 /* ============================================================
@@ -130,6 +115,10 @@
     '    <div class="container">',
     '      <p>Selected submissions will receive a manuscript assessment, marketability report, and publishing proposal.</p>',
     '      <p>Even when we have to say no, you won&rsquo;t be left guessing. If we decline your submission, you&rsquo;ll receive a manuscript assessment and marketability report&mdash;a clear look at why we passed and what to focus on to make it stronger. And there&rsquo;s no limit on how many times you can revise and resubmit.</p>',
+    '      <div class="footer-cta-buttons">',
+    '        <a href="https://tidycal.com/truehavenpress/free-publishing-consultation" class="btn" target="_blank" rel="noopener noreferrer">Book a consultation</a>',
+    '        <a href="/submit-manuscript.html" class="btn">Submit your manuscript</a>',
+    '      </div>',
     '    </div>',
     '  </div>',
     '  <div class="full-footer-main">',
