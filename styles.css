@@ -2050,6 +2050,39 @@ body.submit-page {
 }
 .full-footer-top p:last-child { margin-bottom: 0; }
 
+/* CTA button row sitting inside the blue footer image band. */
+.footer-cta-buttons {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.footer-cta-buttons .btn {
+  background: #fff;
+  color: #9B4535;
+  border: 0;
+  border-radius: 52px;
+  padding: 1.2rem 2.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.footer-cta-buttons .btn:hover {
+  background: #f6f3ee;
+  color: #9B4535;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+@media (max-width: 760px) {
+  .footer-cta-buttons { flex-direction: column; gap: 1rem; }
+  .footer-cta-buttons .btn { width: 100%; max-width: 320px; margin: 0 auto; }
+}
+
 /* Main footer band: brand + contact in 2 columns */
 .full-footer-main {
   background: var(--color-contrast);
