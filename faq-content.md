@@ -140,11 +140,21 @@ Ask any publisher you are considering, including us:
 
 > So test us on what that question is actually reaching for, which is whether we have a reason to care that your book is good. Our reason to care is the track record every client and every book carrying our imprint contributes to. Our name goes on the spine, our catalog is public, and we decline ~60% of what we are sent to keep it worth something. We also encourage our clients to write reviews and heavily rely on those truths about their experience working with us for future business.
 
-## Section 3 — Process and production
+## Section 3 — Process, distribution, and marketing
 
 ### What kind of editing will my book get?
 
-**Every book receives a full editorial pass from The Pro Book Editor, our in-house team—developmental editing, line editing, copy editing, and proofreading, in whatever combination your manuscript needs. The plan comes out of your assessment rather than a package tier, and you review and approve at every stage before anything moves forward.**
+**We offer the full gamut of editing and proofreading services:**
+
+- Developmental Editing w/ Critique Report (whole manuscript or partial)
+- Substantive/Structural Editing
+- Line Editing
+- Copy Editing
+- Proofreading
+
+Plus, we offer ghostwriting.
+
+What your manuscript needs will be determined by assessment and sampling completed by a tenured managing editor and presented to you for collaboration on finalizing a plan that achieves your goals.
 
 We do not cap revision rounds. You get as many passes as the book needs within the agreed scope, because a number written into a contract has a way of becoming a ceiling at the exact moment a book needs one more look.
 
