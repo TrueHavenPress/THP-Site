@@ -2063,7 +2063,8 @@ body.submit-page {
    the footer band — the page already has a prominent "Book a consultation"
    button in the body. Only "Submit your manuscript" remains, centered by the
    flex container's justify-content: center. */
-body.authority-asset-thank-you .footer-cta-buttons a[href*="tidycal"] {
+body.authority-asset-thank-you .footer-cta-buttons a[href*="tidycal"],
+body.guide-on-the-way .footer-cta-buttons a[href*="tidycal"] {
   display: none;
 }
 .footer-cta-buttons .btn {
