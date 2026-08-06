@@ -220,7 +220,7 @@ That is the honest shape of it: the gate is at the end rather than the front. We
 
 Precisely who uses what:
 
--   Editors. No AI. Developmental, line, and copy editing are done by people start to finish.
+-   Editors. No AI. Developmental, Sub/Stru, Line and Copy Editing are done by human expertise start to finish.
 
 -   Proofreaders. A full human read-through, plus PerfectIt as a quality-assurance pass. PerfectIt is a consistency checker that flags inconsistent hyphenation, capitalization, abbreviation, and departures from your style sheet across an entire manuscript. It does not generate text and does not rewrite sentences. It catches what a human eye reliably misses across 90,000 words, which is why it runs alongside a proofreader rather than in place of one. They review what it shows them and then make decisions to enter suggestions or not based on the Chicago Manual of Style, Merriam-Webster dictionary, and any style notes you’ve provided.
 
