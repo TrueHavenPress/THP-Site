@@ -57,8 +57,19 @@
           <label for="bo-email">Email address</label>
           <input id="bo-email" name="EMAIL" type="email" autocomplete="email" required>
 
+          <label for="bo-writing">What are you writing?</label>
+          <select id="bo-writing" name="MMERGE3" required>
+            <option value="" disabled selected>Choose one&hellip;</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Nonfiction">Nonfiction</option>
+            <option value="Business Lead Magnet">Business Lead Magnet</option>
+          </select>
+
           <label for="bo-website">Your business website</label>
           <input id="bo-website" name="MMERGE2" type="url" placeholder="https://yourcompany.com" autocomplete="url">
+
+          <!-- Mailchimp tag for this form's subscribers -->
+          <input type="hidden" name="tags" value="12689952">
 
           <!-- Mailchimp anti-spam honeypot; leave blank -->
           <div aria-hidden="true" style="position:absolute;left:-5000px"><input type="text" name="b_35c0793307d3dff8f6837d7a2_44657b758c" tabindex="-1" value=""></div>
