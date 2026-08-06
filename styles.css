@@ -2058,6 +2058,14 @@ body.submit-page {
   flex-wrap: wrap;
   margin-bottom: 2rem;
 }
+
+/* On the Authority Asset thank-you page, hide the second consultation CTA in
+   the footer band — the page already has a prominent "Book a consultation"
+   button in the body. Only "Submit your manuscript" remains, centered by the
+   flex container's justify-content: center. */
+body.authority-asset-thank-you .footer-cta-buttons a[href*="tidycal"] {
+  display: none;
+}
 .footer-cta-buttons .btn {
   background: #fff;
   color: #9B4535;
