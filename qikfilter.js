@@ -147,10 +147,19 @@
 
     // ── "See More from This Author" buttons ──────────────────────────
     // Injected now; click handlers close over state & render defined below.
+    // Only shown when the author has more than one item in the grid — with
+    // a single item, the button just re-filters to that same card.
+
+    var authorCounts = {};
+    itemData.forEach(function (item) {
+      var a = item.data[authorField];
+      if (a) authorCounts[a] = (authorCounts[a] || 0) + 1;
+    });
 
     itemData.forEach(function (item) {
       var author = item.data[authorField];
       if (!author) return;
+      if (authorCounts[author] < 2) return;
       var content = item.el.querySelector('.portfolio-content');
       if (!content) return;
       var btn = document.createElement('button');

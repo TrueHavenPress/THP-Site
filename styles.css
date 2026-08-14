@@ -516,11 +516,17 @@ a:hover {
 }
 
 .portfolio-content {
-  padding: 0.85rem 0.95rem 1rem;
+  /* Extra bottom space is reserved for the (optional) "See more from"
+     link so the Buy on Amazon button sits at the same vertical position
+     across every card, whether that link is present or not. The reserve
+     is sized to fit up to two lines, since long author names wrap on
+     narrower cards. */
+  padding: 0.85rem 0.95rem 3.8rem;
   display: flex;
   flex-direction: column;
   flex: 1;
   gap: 0.15rem;
+  position: relative;
 }
 
 .portfolio-content h3 {
@@ -1219,8 +1225,20 @@ body.books-page .page-hero {
   font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
+  background: transparent;
+  border: 0;
   border-bottom: 1px solid currentColor;
-  padding: 0.4rem 0 0;
+  padding: 0;
+  cursor: pointer;
+  /* Anchored to the bottom of the card so it lives in the space
+     reserved by .portfolio-content padding, keeping Buy on Amazon
+     aligned across cards with or without this link. */
+  position: absolute;
+  left: 0.95rem;
+  right: 0.95rem;
+  bottom: 1rem;
+  text-align: left;
+  line-height: 1.25;
 }
 
 .books-section .qikfilter-see-more-author:hover {
