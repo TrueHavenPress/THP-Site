@@ -130,6 +130,16 @@ If nothing is cloned at all yet — a brand-new collaborator's first day on a br
 machine — that's a bigger one-time setup than this section covers: point them to
 `SETUP.md` for the full walkthrough (installing tools, cloning, first sign-in).
 
+**Wherever you clone to, avoid cloud-sync folders.** Never put the working copy inside
+OneDrive, Dropbox, Google Drive, iCloud Drive, or similar — check the resolved path
+for those names before running `git clone`/`gh repo clone`, and steer clear of
+Desktop/Documents too if they turn out to be synced into one of those. These services
+can rewrite files mid-edit, which collides with git and causes changes to silently
+vanish or get overwritten — exactly the kind of "weird" bug that's hard to diagnose
+after the fact. A plain folder directly under the user's home directory is a safe
+default. This isn't a data-loss risk either way — GitHub is always the real copy;
+local is just a disposable working spot.
+
 ## When something goes wrong
 
 Your default is to **fix it together with whoever you're talking to**, calmly and in
