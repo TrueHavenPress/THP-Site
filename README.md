@@ -2,6 +2,10 @@
 
 This is your website. To make changes, just talk to Claude.
 
+*(Anyone else Aaron has added to help edit the site — for example London — follows
+this exact same guide. If this is your first time on this computer, start with
+[SETUP.md](SETUP.md) instead; come back here once that's done.)*
+
 ## How it works
 
 You don't need to open this folder, click around the website's files, or know what any of these names mean. Aaron set up a tool that handles all of that for you. Your part is just the conversation.
