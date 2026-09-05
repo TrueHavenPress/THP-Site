@@ -117,7 +117,7 @@
     '        <a href="https://tidycal.com/truehavenpress/free-publishing-consultation" class="btn" target="_blank" rel="noopener noreferrer">Book a consultation</a>',
     '        <a href="/submit-manuscript.html" class="btn">Submit your manuscript</a>',
     '      </div>',
-    '      <p>Selected submissions will receive a manuscript assessment, marketability report, and publishing proposal.</p>',
+    '      <p>Selected submissions will receive a free sample edit and manuscript critique assessment, plus a marketability report and publishing proposal.</p>',
     '      <p>Even when we have to say no, you won&rsquo;t be left guessing. If we decline your submission, you&rsquo;ll receive a manuscript assessment and marketability report&mdash;a clear look at why we passed and what to focus on to make it stronger. And there&rsquo;s no limit on how many times you can revise and resubmit.</p>',
     '    </div>',
     '  </div>',
