@@ -2689,3 +2689,33 @@ body.faq-page .faq-answer a {
 body.faq-page .faq-answer a:hover {
   color: var(--color-secondary);
 }
+
+/* ============================================================
+   ABOUT PAGE: founder paragraph with photo to its right
+   ============================================================ */
+.about-founder-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.about-founder-row p {
+  flex: 1 1 auto;
+  margin: 0;
+}
+.about-founder-photo {
+  flex: 0 0 220px;
+  width: 220px;
+  height: auto;
+  display: block;
+}
+@media (max-width: 640px) {
+  .about-founder-row {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .about-founder-photo {
+    flex-basis: auto;
+    width: 180px;
+  }
+}
