@@ -2115,12 +2115,13 @@ body.guide-on-the-way .footer-cta-buttons a[href*="tidycal"] {
 .full-footer-main {
   background: var(--color-contrast);
   color: #fff;
-  padding: 4.5rem 1.5rem;
+  padding: 3rem 1.5rem 4.5rem;
 }
 .full-footer-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  column-gap: 3rem;
+  row-gap: 2rem;
   align-items: start;
 }
 .full-footer-brand h3 {
@@ -2134,14 +2135,16 @@ body.guide-on-the-way .footer-cta-buttons a[href*="tidycal"] {
    a transparent background, so it sits on a white plate to stay legible on the
    dark footer. */
 .full-footer-wordmark {
+  grid-column: 1 / -1;
+  justify-self: center;
   display: block;
   width: 100%;
   max-width: 420px;
   height: auto;
-  background: #fff;
+  background: rgba(255,255,255,0.8);
   padding: 0.85rem;
   border-radius: 6px;
-  margin-bottom: 1.25rem;
+  margin: 0 auto 0.35rem;
 }
 .full-footer-brand p {
   color: rgba(255,255,255,0.85);
@@ -2196,14 +2199,15 @@ body.guide-on-the-way .footer-cta-buttons a[href*="tidycal"] {
 .full-footer-brand p a:hover { color: var(--color-tertiary); text-decoration: underline; }
 .full-footer-links {
   list-style: none;
-  margin: 1.5rem 0 0;
+  margin: 0;
   padding: 0;
 }
 .full-footer-links li {
-  border-top: 1px solid rgba(255,255,255,0.18);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
   padding: 0.9rem 0;
+  line-height: 1.65;
 }
-.full-footer-links li:last-child { padding-bottom: 0; }
+.full-footer-links li:first-child { padding-top: 0; }
 .full-footer-links a {
   color: #fff;
   font-weight: 700;
