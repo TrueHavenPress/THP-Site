@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap');
 /* ============================================================
    True Haven Press — Stylesheet
    Brand palette aligned with index/about:
@@ -2735,4 +2736,35 @@ body.faq-page .faq-answer a:hover {
     flex-basis: auto;
     width: 180px;
   }
+}
+
+/* Hero banner: TRUE value-stack image in place of the four-word heading stack. */
+.hero-value-stack {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+}
+@media (max-width: 600px) {
+  .hero-value-stack { max-width: 260px; margin: 0 auto; }
+}
+
+/* Header wordmark beside the logo, in Cardo to match the logo lettering. */
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+}
+.logo-wordmark {
+  font-family: 'Cardo', Georgia, 'Times New Roman', serif;
+  font-size: 1.85rem;
+  line-height: 1;
+  color: #4b5236;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.logo-wordmark strong { font-weight: 700; }
+@media (max-width: 600px) {
+  .logo-wordmark { font-size: 1.25rem; }
 }
