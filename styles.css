@@ -201,6 +201,7 @@ a:hover {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  justify-content: flex-end;   /* rows pack to the right, so any overflow hugs the right edge */
 }
 
 .main-navigation a {
