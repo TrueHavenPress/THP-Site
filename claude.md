@@ -181,3 +181,12 @@ Two rules that never bend:
 
 `launch.json` is a legacy preview config (python http.server on :8765). Harmless — you
 can use it or just run your own preview server as above.
+
+## Stylesheet and script caching (Cloudflare)
+
+truehavenpress.com is served through Cloudflare, which caches `styles.css`, `menu.js`,
+and `qikfilter.js` for about 4 hours regardless of GitHub's shorter setting. Every page
+therefore links them with a version tag, e.g. `styles.css?v=20260907`. **Whenever you
+change any of those three files, bump the tag on every page** (same date-style value in
+all `*.html` and `insights/*.html`) in the same change set, or the edit will not reach
+visitors until Cloudflare's cache expires. HTML pages are not cached by Cloudflare.
