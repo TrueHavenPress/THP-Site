@@ -2129,6 +2129,19 @@ body.guide-on-the-way .footer-cta-buttons a[href*="tidycal"] {
   font-weight: 400;
   margin-bottom: 1rem;
 }
+/* TRUE wordmark in place of the footer heading. The artwork is dark lettering on
+   a transparent background, so it sits on a white plate to stay legible on the
+   dark footer. */
+.full-footer-wordmark {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  background: #fff;
+  padding: 0.85rem;
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+}
 .full-footer-brand p {
   color: rgba(255,255,255,0.85);
   font-size: 0.95rem;
@@ -2169,13 +2182,17 @@ body.guide-on-the-way .footer-cta-buttons a[href*="tidycal"] {
   line-height: 1.65;
   margin-bottom: 0.45rem;
 }
-.full-footer-contact p.contact-heading {
+.full-footer-contact p.contact-heading,
+.full-footer-brand p.contact-heading {
   color: #fff;
   font-weight: 700;
   margin-bottom: 0.75rem;
 }
+.full-footer-brand p.contact-heading { margin-top: 1.25rem; }
+.full-footer-brand p a { color: #fff; text-decoration: none; }
 .full-footer-contact a { color: #fff; text-decoration: none; }
-.full-footer-contact a:hover { color: var(--color-tertiary); text-decoration: underline; }
+.full-footer-contact a:hover,
+.full-footer-brand p a:hover { color: var(--color-tertiary); text-decoration: underline; }
 .full-footer-links {
   list-style: none;
   margin: 1.5rem 0 0;
