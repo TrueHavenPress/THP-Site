@@ -2848,6 +2848,11 @@ body.faq-page .faq-answer a:hover {
   line-height: 1.6;
 }
 .services-list li { break-inside: avoid; padding: 0.15rem 0; }
+.services-list-label {
+  margin: 0 0 0.5rem 1rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
 .services-note {
   text-align: center;
   margin: var(--card-gap) 0 0;
