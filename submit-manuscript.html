@@ -137,7 +137,7 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link rel="icon" type="image/jpeg" href="media/true-haven-press-logo2-500-x-500-px-1.jpg">
 <link rel="apple-touch-icon" href="media/true-haven-press-logo2-500-x-500-px-1.jpg">
-<link rel="stylesheet" href="styles.css?v=20260909a">
+<link rel="stylesheet" href="styles.css?v=20260922a">
 </head>
 
 <body class="submit-page is-block-theme">
@@ -249,6 +249,12 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
         </div>
 
         <div class="field">
+          <label for="f-about">What is your book about?</label>
+          <textarea id="f-about" name="bookAbout" rows="5" maxlength="750"></textarea>
+          <small class="field-hint"><span data-char-count-for="f-about">750</span> characters remaining.</small>
+        </div>
+
+        <div class="field">
           <label for="f-doctype">Document type you'll be submitting?</label>
           <select id="f-doctype" name="documentType">
             <option value="">— Select —</option>
@@ -280,6 +286,9 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
             </label>
             <label class="checkbox-row">
               <input type="checkbox" name="editingTypes" value="Uncertain"> Uncertain
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" name="editingTypes" value="Editing Already Completed"> Editing Already Completed
             </label>
           </div>
         </div>
@@ -335,6 +344,24 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
       </fieldset>
 
       <fieldset class="form-section">
+        <div class="field">
+          <label for="f-start-date">Your target start date?</label>
+          <input id="f-start-date" name="targetStartDate" type="date"
+                 data-min-days-out="0"
+                 data-min-message="Choose today or a later date, or leave blank.">
+          <small class="field-hint">Choose the date you&rsquo;ll be done writing and self-editing and ready to begin the work ahead.</small>
+        </div>
+
+        <div class="field">
+          <label for="f-release-date">Your target book release date?</label>
+          <input id="f-release-date" name="targetReleaseDate" type="date"
+                 data-min-days-out="31"
+                 data-min-message="Choose a date at least 31 days from today, or leave blank.">
+          <small class="field-hint">Choose a date at least 31 days from today, or leave blank.</small>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
         <legend>Anything else you&rsquo;d like the Managing Editor to know?</legend>
 
         <div class="field">
@@ -354,6 +381,39 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
 
 <script>
 (function () {
+  // ── Date fields: earliest selectable date, computed on page load ──
+  // Each field declares how many days out its floor sits (0 = today), so the
+  // window stays correct every day rather than going stale like a fixed date.
+  document.querySelectorAll('input[type="date"][data-min-days-out]').forEach(function (input) {
+    const daysOut = parseInt(input.getAttribute('data-min-days-out'), 10) || 0;
+    const d = new Date();
+    d.setDate(d.getDate() + daysOut);
+    const pad = function (n) { return String(n).padStart(2, '0'); };
+    const minDate = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    input.min = minDate;
+    const message = input.getAttribute('data-min-message');
+    if (message) {
+      input.addEventListener('input', function () {
+        input.setCustomValidity(input.value && input.value < minDate ? message : '');
+      });
+    }
+  });
+
+  // ── Character counters for length-capped textareas ──
+  document.querySelectorAll('[data-char-count-for]').forEach(function (counter) {
+    const field = document.getElementById(counter.getAttribute('data-char-count-for'));
+    if (!field) return;
+    const max = parseInt(field.getAttribute('maxlength'), 10);
+    if (!max) return;
+    const refresh = function () {
+      const left = max - field.value.length;
+      counter.textContent = left;
+      counter.parentNode.classList.toggle('is-near-limit', left <= 50);
+    };
+    field.addEventListener('input', refresh);
+    refresh();
+  });
+
   // ── File drop zones: drag-and-drop, filename display, clear button ──
   function fmtSize(bytes) {
     if (bytes < 1024) return bytes + ' B';
@@ -610,6 +670,6 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
 </div>
 </footer></div>
 </div>
-<script src="menu.js?v=20260909a"></script>
+<script src="menu.js?v=20260922a"></script>
 </body>
 </html>

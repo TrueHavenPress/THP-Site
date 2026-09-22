@@ -1340,6 +1340,8 @@ body.submit-page {
 .field input[type="text"],
 .field input[type="email"],
 .field input[type="tel"],
+.field input[type="url"],
+.field input[type="date"],
 .field select,
 .field textarea {
   width: 100%;
@@ -2902,3 +2904,6 @@ body.faq-page .faq-answer a:hover {
   .services-card--img-both .services-card-img--after { order: 1; }
   .services-list { columns: 1; margin-left: 0; }
 }
+
+/* Character-counter hint turns amber as the writer nears the cap. */
+.field-hint.is-near-limit { color: var(--color-accent); font-weight: 600; }
