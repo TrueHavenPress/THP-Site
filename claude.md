@@ -190,3 +190,15 @@ therefore links them with a version tag, e.g. `styles.css?v=20260907`. **Wheneve
 change any of those three files, bump the tag on every page** (same date-style value in
 all `*.html` and `insights/*.html`) in the same change set, or the edit will not reach
 visitors until Cloudflare's cache expires. HTML pages are not cached by Cloudflare.
+
+## The 404 page suggests near-miss pages
+
+`404.html` carries its own small script with a `PAGES` list (real page → friendly
+name) and an `ALIASES` map (names people guess, e.g. `bookstore` → `books.html`).
+When someone lands on a near miss — a stray trailing slash, wrong capitalisation,
+a missing `.html`, or a typo — it offers the right page instead of a dead end.
+
+**When adding, renaming, or removing a page, update that list in the same change
+set.** A missing entry only costs a suggestion (nothing breaks), but a *stale*
+entry points visitors at a page that no longer exists. Add an alias whenever a
+menu label differs from the file name.
