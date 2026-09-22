@@ -7,7 +7,10 @@
   <meta name="description" content="The page you were looking for couldn't be found.">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/jpeg" href="/media/true-haven-press-logo2-500-x-500-px-1.jpg">
-  <link rel="stylesheet" href="styles.css?v=20260922a">
+  <!-- Absolute path: the 404 page can be served at ANY address, including deep
+       ones like /insights/mistyped.html, where a relative path would look for
+       the stylesheet in a folder that doesn't exist and render the page bare. -->
+  <link rel="stylesheet" href="/styles.css?v=20260922b">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet">
@@ -102,7 +105,14 @@
       <div>
         <h1>404</h1>
         <h2>Page not found</h2>
-        <p>We couldn't find the page you were looking for. It may have moved, been renamed, or never existed.</p>
+        <p id="nf-lede">We couldn't find the page you were looking for. It may have moved, been renamed, or never existed.</p>
+
+        <!-- Filled in by the script below when the attempted address is a near miss. -->
+        <div id="nf-suggestion" class="notfound-suggestion" hidden>
+          <p class="notfound-suggestion-label">Were you looking for this?</p>
+          <a id="nf-suggestion-link" class="notfound-suggestion-link" href="/"></a>
+        </div>
+
         <div class="notfound-actions">
           <a href="/" class="notfound-btn notfound-btn-primary">Back to Home</a>
           <a href="/books.html" class="notfound-btn notfound-btn-outline">Browse the Bookstore</a>
@@ -128,7 +138,128 @@
     </div>
   </footer>
 
-  <script src="/menu.js?v=20260922a"></script>
+  <script>
+  /* Near-miss recovery: if the address the visitor tried is a small variation on
+     a real page (a stray trailing slash, wrong capitalisation, a missing .html,
+     or a simple typo), offer that page instead of leaving them at a dead end.
+     If nothing matches confidently, the page behaves exactly as it did before.
+
+     PAGES is a hand-maintained list. A page missing from it only means no
+     suggestion is offered for it — nothing breaks. */
+  (function () {
+    var PAGES = [
+      ['/index.html', 'Home'],
+      ['/services.html', 'Publishing Services'],
+      ['/submit-manuscript.html', 'Submit Your Manuscript'],
+      ['/books.html', 'Bookstore'],
+      ['/about.html', 'About'],
+      ['/faq.html', 'Frequently Asked Questions'],
+      ['/insights.html', 'Insights'],
+      ['/before-you-sign.html', 'Before You Sign'],
+      ['/business-owners.html', 'For Business Owners'],
+      ['/privacy-policy.html', 'Privacy Policy'],
+      ['/terms-and-conditions.html', 'Terms & Conditions'],
+      ['/insights/book-cover-design-for-authors.html', 'Book Cover Design That Stops the Scroll'],
+      ['/insights/book-editing-stages-explained.html', 'Book Editing Stages Explained'],
+      ['/insights/book-metadata-discoverability.html', 'Do You Speak Metadata?'],
+      ['/insights/book-rights-and-royalties.html', 'What "You Keep Your Rights and Royalties" Actually Means'],
+      ['/insights/bookstore-placement-for-authors.html', 'How To Get Your Self-Published Book Into Bookstores'],
+      ['/insights/hybrid-traditional-self-publishing.html', 'Hybrid, Traditional, or Self-Publishing?'],
+      ['/insights/what-a-book-editor-really-does.html', 'What a Good Editor Really Does for Your Book'],
+      ['/insights/what-writers-block-is-telling-you.html', "What Writer's Block Is Trying to Tell You"]
+    ];
+
+    /* Known alternate names people reasonably guess, where the menu label and
+       the file name differ (e.g. the menu says "Bookstore", the file is
+       books.html). Typo-matching alone is too blunt for these. */
+    var ALIASES = {
+      'bookstore': '/books.html',
+      'book-store': '/books.html',
+      'publishing-services': '/services.html',
+      'submit': '/submit-manuscript.html',
+      'submit-your-manuscript': '/submit-manuscript.html',
+      'manuscript': '/submit-manuscript.html',
+      'terms': '/terms-and-conditions.html',
+      'terms-conditions': '/terms-and-conditions.html',
+      'privacy': '/privacy-policy.html',
+      'authority-asset': '/business-owners.html',
+      'the-authority-asset': '/business-owners.html',
+      'blog': '/insights.html',
+      'articles': '/insights.html',
+      'between-the-lines': '/insights.html'
+    };
+
+    // Reduce an address to its comparable core: lowercase, no slashes, no .html.
+    function norm(p) {
+      try { p = decodeURIComponent(p); } catch (e) { /* malformed escape - use as-is */ }
+      // Strip surrounding slashes first, so a trailing slash after .html
+      // doesn't hide the extension from the next step.
+      return p.toLowerCase().replace(/^\/+|\/+$/g, '').replace(/\.html?$/, '');
+    }
+
+    function editDistance(a, b) {
+      if (a === b) return 0;
+      if (!a.length || !b.length) return Math.max(a.length, b.length);
+      var prev = [], i, j;
+      for (j = 0; j <= b.length; j++) prev[j] = j;
+      for (i = 1; i <= a.length; i++) {
+        var cur = [i];
+        for (j = 1; j <= b.length; j++) {
+          cur[j] = Math.min(
+            prev[j] + 1,
+            cur[j - 1] + 1,
+            prev[j - 1] + (a.charAt(i - 1) === b.charAt(j - 1) ? 0 : 1)
+          );
+        }
+        prev = cur;
+      }
+      return prev[b.length];
+    }
+
+    var tried = norm(window.location.pathname);
+    if (!tried) return;
+
+    var best = null, bestScore = Infinity;
+
+    // An alias is an exact, intentional mapping - trust it over typo-matching.
+    var aliased = ALIASES[tried] || ALIASES[tried.split('/').pop()];
+    if (aliased) {
+      for (var a = 0; a < PAGES.length; a++) {
+        if (PAGES[a][0] === aliased) { best = PAGES[a]; bestScore = 0; }
+      }
+    }
+
+    // Only fall back to typo-matching when no alias already answered.
+    if (!best) for (var k = 0; k < PAGES.length; k++) {
+      var target = norm(PAGES[k][0]);
+      if (target === tried) { best = PAGES[k]; bestScore = 0; break; }
+      // Compare final segments too, so /insights/foo matches /foo and vice versa.
+      var d = Math.min(
+        editDistance(tried, target),
+        editDistance(tried.split('/').pop(), target.split('/').pop())
+      );
+      if (d < bestScore) { bestScore = d; best = PAGES[k]; }
+    }
+
+    // Accept an exact normalised match, or a typo within ~25% of the name's length.
+    var tolerance = Math.max(2, Math.floor(tried.replace(/.*\//, '').length * 0.25));
+    if (!best || bestScore > tolerance) return;
+    if (norm(best[0]) === tried && best[0] === window.location.pathname) return; // already here
+
+    var box = document.getElementById('nf-suggestion');
+    var link = document.getElementById('nf-suggestion-link');
+    var lede = document.getElementById('nf-lede');
+    if (!box || !link) return;
+    link.setAttribute('href', best[0]);
+    link.textContent = best[1];
+    box.hidden = false;
+    if (lede && bestScore === 0) {
+      lede.textContent = 'That address was very slightly off — the page you want is right here.';
+    }
+  })();
+  </script>
+
+  <script src="/menu.js?v=20260922b"></script>
 
 </body>
 </html>
