@@ -2136,21 +2136,21 @@ body.guide-on-the-way .footer-cta-buttons a[href*="tidycal"] {
   font-weight: 400;
   margin-bottom: 1rem;
 }
-/* TRUE wordmark in place of the footer heading. The artwork is dark lettering on
-   a transparent background, so it sits on a white plate to stay legible on the
-   dark footer. */
+/* "Transparent, Reliable, Unwavering, Excellence" banner, sitting over the right-hand column.
+   The lettering is white (gold underline kept) so it reads directly on the dark footer. */
 .full-footer-wordmark {
-  grid-column: 1 / -1;
-  justify-self: center;
   display: block;
   width: 100%;
-  max-width: 420px;
+  max-width: 480px;
   height: auto;
-  background: rgba(255,255,255,0.8);
-  padding: 0.85rem;
-  border-radius: 6px;
-  margin: 0 auto 0.35rem;
+  margin: 0 0 1.5rem;
 }
+/* Business name, in white, sitting over the left-hand column. */
+.full-footer-brand p.full-footer-name {
+  margin: 0 0 1.25rem;
+  line-height: 1;
+}
+.full-footer-name .logo-wordmark { color: #fff; }
 .full-footer-brand p {
   color: rgba(255,255,255,0.85);
   font-size: 0.95rem;

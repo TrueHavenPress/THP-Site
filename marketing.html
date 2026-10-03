@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Services</title>
+  <meta name="description" content="Amazon bestseller campaigns, press releases, marketing images, social media, Amazon optimization, and ads for any author, whether or not True Haven Press published the book.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Marketing Services">
+  <meta property="og:description" content="Amazon bestseller campaigns, press releases, marketing images, social media, Amazon optimization, and ads for any author.">
+  <meta property="og:url" content="https://truehavenpress.com/marketing.html">
+  <meta property="og:site_name" content="True Haven Press">
+  <meta property="og:image" content="https://truehavenpress.com/media/true-haven-press-logo2-500-x-500-px-1.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="/media/true-haven-press-logo2-500-x-500-px-1.jpg">
+  <link rel="apple-touch-icon" href="/media/true-haven-press-logo2-500-x-500-px-1.jpg">
+  <link rel="stylesheet" href="/styles.css?v=20261003a">
+  <style id="marketing-page-styles">
+    .mkt-hero { background: var(--color-secondary); text-align: center; padding: 2.1rem 1.5rem; }
+    .mkt-hero h1 { color: #fff; font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.2rem); line-height: 1.2; margin: 0; }
+    .mkt-intro { max-width: 760px; margin: 0 auto; padding: 1.75rem 1.5rem 0.25rem; }
+    .mkt-intro p { margin: 0; text-align: justify; font-weight: 600; color: var(--color-text); }
+    .mkt-jump { position: sticky; top: var(--mkt-header, 76px); z-index: 50; background: var(--color-bg-alt); border-block: 1px solid var(--color-border); margin-top: 1.5rem; padding: 0.7rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; justify-content: center; font-size: 0.8rem; }
+    .mkt-jump a { color: var(--color-secondary); font-weight: 600; white-space: nowrap; text-decoration: none; }
+    .mkt-jump a:hover { text-decoration: underline; }
+    .mkt-block { padding: 3rem 1.5rem; scroll-margin-top: calc(var(--mkt-header, 76px) + 3.5rem); }
+    .mkt-blocks > .mkt-block:nth-of-type(even) { background: var(--color-bg-alt); }
+    .mkt-copy { max-width: var(--max-width); margin: 0 auto; display: block; color: var(--color-text); }
+    .mkt-copy > * { margin: 0; }
+    .mkt-copy > * + * { margin-top: 14px; }
+    .mkt-copy > .mkt-art + * { margin-top: 0; }
+    .mkt-copy h3 { color: var(--color-secondary); font-size: 1.45rem; line-height: 1.2; margin: 0; text-wrap: balance; }
+    .mkt-copy p { text-align: justify; }
+    .mkt-copy p.mkt-lead { font-size: 1.05rem; font-weight: 600; }
+    .mkt-copy ul { padding-left: 1.15em; display: flex; flex-direction: column; gap: 6px; }
+    .mkt-copy li { text-align: justify; margin: 0; }
+    .mkt-copy li::marker { color: var(--color-primary); }
+    .mkt-copy li > ul { margin: 6px 0 0; }
+    .mkt-copy a:not(.mkt-btn) { color: var(--color-secondary); font-weight: 700; text-decoration: underline; }
+    .mkt-callout { background: #efe6d8; border-left: 4px solid var(--color-primary); padding: 14px 16px; font-size: 0.95rem; }
+    .mkt-callout b { font-family: var(--font-serif); display: block; margin-bottom: 4px; color: var(--color-primary-dark); }
+    .mkt-split .mkt-art { float: right; width: clamp(150px, 24%, 220px); margin: 0 0 18px 32px; }
+    .mkt-split.mkt-flip .mkt-art { float: left; margin: 0 32px 18px 0; }
+    .mkt-ph { aspect-ratio: 1877 / 3000; border-radius: 4px; overflow: hidden; background: var(--color-bg-alt); }
+    .mkt-ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .mkt-buyrow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 12px 20px; }
+    .mkt-price { font-family: var(--font-serif); font-weight: 600; font-size: 1.15rem; color: var(--color-primary); justify-self: start; }
+    .mkt-btn { grid-column: 2; justify-self: center; display: inline-block; font-family: var(--font-serif); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.06em; padding: 12px 24px; border-radius: 3px; text-decoration: none; cursor: pointer; border: 2px solid transparent; transition: background 0.2s, color 0.2s; }
+    .mkt-buy { background: var(--color-primary); color: #fff; }
+    .mkt-buy:hover { background: var(--color-primary-dark); color: #fff; text-decoration: none; }
+    .mkt-consult { background: #fff; color: var(--color-secondary); border-color: var(--color-secondary); }
+    .mkt-consult:hover { background: var(--color-secondary); color: #fff; text-decoration: none; }
+    .mkt-btn:focus-visible, .mkt-jump a:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 2px; }
+    .mkt-tablewrap { overflow-x: auto; }
+    .mkt-bundle { border-collapse: collapse; width: 100%; min-width: 680px; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+    .mkt-bundle th, .mkt-bundle td { border: 1px solid var(--color-border); padding: 10px 12px; vertical-align: top; text-align: center; color: var(--color-text); }
+    .mkt-bundle th { background: #e6dfd1; font-family: var(--font-serif); font-size: 0.82rem; }
+    .mkt-bundle td.mkt-inc, .mkt-bundle th:nth-child(2) { text-align: left; }
+    .mkt-bundle td.mkt-tier { font-weight: 700; }
+    .mkt-bundle td.mkt-down { position: relative; }
+    .mkt-bundle td.mkt-down::after { content: "↓"; position: absolute; left: 50%; bottom: -0.8rem; transform: translateX(-50%); width: 1.6rem; height: 1.6rem; line-height: 1.5rem; text-align: center; border-radius: 50%; background: #fff; border: 1px solid var(--color-border); color: var(--color-primary); font-weight: 700; z-index: 2; }
+    .mkt-bundle th.mkt-orafter { position: relative; }
+    .mkt-bundle th.mkt-orafter::after { content: "OR"; position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); width: 2rem; height: 2rem; line-height: 1.9rem; text-align: center; border-radius: 50%; background: #fff; border: 1px solid var(--color-border); color: var(--color-primary); font-family: var(--font-serif); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; z-index: 2; }
+    .mkt-bundle tr.mkt-alc td:not(.mkt-tier):not(.mkt-inc) { background: var(--color-bg-alt); }
+    .mkt-bundle td.mkt-inc .mkt-li { padding-left: 2ch; text-indent: -2ch; }
+    .mkt-band { background: var(--color-secondary); color: #fff; text-align: center; padding: 3rem 1.5rem; display: flex; flex-direction: column; gap: 14px; align-items: center; }
+    .mkt-band h3 { color: #fff; font-size: 1.5rem; margin: 0; }
+    .mkt-band .mkt-btn { background: #fff; color: var(--color-secondary); grid-column: auto; }
+    .mkt-band .mkt-btn:hover { background: var(--color-bg-alt); color: var(--color-secondary); }
+    @media (max-width: 760px) {
+      .mkt-block { padding: 2.25rem 1.1rem; }
+      .mkt-split .mkt-art, .mkt-split.mkt-flip .mkt-art { float: none; width: min(100%, 220px); margin: 0 auto 18px; }
+      .mkt-buyrow { grid-template-columns: minmax(0, 1fr); }
+      .mkt-buyrow .mkt-btn { grid-column: 1; justify-self: start; }
+      .mkt-jump { padding: 0.6rem 1rem; }
+    }
+    @media (max-width: 820px) {
+      .mkt-jump { position: static; }
+      .mkt-block { scroll-margin-top: 1rem; }
+    }
+    /* This page has its own consultation band, so the footer's submissions band is hidden here. */
+    .marketing-page .full-footer-top { display: none; }
+
+  </style>
+</head>
+<body class="marketing-page">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/index.html" class="logo-link">
+        <img src="/media/logo.png" alt="True Haven Press"><span class="logo-wordmark"><strong>TRUE</strong> Haven Press</span>
+      </a>
+      <nav class="main-navigation" aria-label="Primary">
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li class="has-dropdown">
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Publishing Services <span class="dropdown-caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="dropdown-menu">
+              <li><a href="/services.html">Overview</a></li>
+              <li><a href="/marketing.html">Marketing Services</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Between the Lines <span class="dropdown-caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="dropdown-menu">
+              <li><a href="/insights.html">Insights</a></li>
+              <li><a href="/before-you-sign.html">Before You Sign</a></li>
+              <li><a href="/business-owners.html">Business Owners</a></li>
+            </ul>
+          </li>
+          <li><a href="/books.html">Bookstore</a></li>
+          <li><a href="/about.html">About</a></li>
+              <li><a href="/faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="mkt-hero">
+      <h1>Marketing Services</h1>
+    </section>
+
+    <div class="mkt-intro">
+      <p class="mkt-alacarte">These services are available to any author, whether or not we published the book. Some services have eligibility requirements imposed by KDP.</p>
+    </div>
+
+    <nav class="mkt-jump" aria-label="Jump to a service">
+      <a href="#free-bestseller-campaign">#1 Bestseller (Free)</a>
+      <a href="#paid-bestseller-campaign">Bestseller (Paid)</a>
+      <a href="#press-release">Press Release</a>
+      <a href="#marketing-images">Marketing Images</a>
+      <a href="#social-media-starter">Social Media Starter</a>
+      <a href="#amazon-optimization">Amazon Optimization</a>
+      <a href="#email-marketing">Email Marketing</a>
+      <a href="#amazon-ads">Amazon Ads</a>
+      <a href="#bundle-packages">Bundle Packages</a>
+    </nav>
+
+    <div class="mkt-blocks">
+
+<section class="mkt-block mkt-split" id="free-bestseller-campaign">
+      <div class="mkt-copy">
+        <div class="mkt-art"><div class="mkt-ph mkt-fill"><img alt="The #1 Amazon Bestseller Campaign for your eBook" width="600" height="959" src="/media/marketing-bestseller-campaign-free.jpg"></div></div>
+        <h3>THE #1 AMAZON BESTSELLER CAMPAIGN (FREE EBOOK)</h3>
+        <p class="mkt-lead">Become a #1 bestselling author guaranteed.</p>
+        <p>There is a moment that changes how the world sees your book and how you see yourself as an author. It is the moment your title appears at the top of an Amazon bestseller list. Our Amazon Bestseller Campaign is built to create exactly that moment. This is a fully managed, done-for-you promotion. Over a 72-hour window, our team executes a coordinated promotion designed to drive a concentrated surge of downloads that propels your title up the Amazon rankings.</p>
+        <p><b>Strategic Setup</b></p>
+        <ul>
+          <li>We review and, if necessary, optimize your book’s categories and keywords inside your KDP account so your title is positioned in the right places to be discovered and ranked. (If we published your title, this was already done during production. If we published more than 3 months ago, we’ll check for updates that might be needed.)</li>
+          <li>We temporarily reduce the price of your eBook to $0 for three days.</li>
+          <li>Your book will be positioned to reach bestseller status in up to 10 categories and bestseller lists.</li>
+        </ul>
+        <p><b>Promotion &amp; Live Monitoring</b></p>
+        <ul>
+          <li>We actively monitor your campaign across the full 72 hours, making sure it performs the way it should and capturing screenshots from your listing and the appropriate bestseller lists.</li>
+          <li>Leveraging our proprietary promotional methods and third-party partnerships, we put your Kindle eBook in front of more than 500,000 active readers—a reach that typically yields 1,000 to 3,000 downloads.</li>
+        </ul>
+        <p><b>Transparent Reporting</b></p>
+        <ul>
+          <li>All download data lives right inside your KDP account. There are no reports to wait on and no middleman to ask. Just check your numbers whenever you want, as often as you want.</li>
+        </ul>
+        <p><b>Proof of Your Success</b></p>
+        <ul>
+          <li>You receive a provenance kit of ranking screenshots for each category and bestseller list within 1-2 business days after the campaign completes.</li>
+          <li>We’ll have our designer apply the badge to your KDP book covers and update those covers on Amazon for you.</li>
+          <li>We’ll provide 4-6 marketing images you can put to work showing off your badge of honor across your website, social media, and promotional materials.</li>
+        </ul>
+        <p><b>What You Walk Away With</b></p>
+        <p>Beyond the ranking itself, you gain something lasting—documented proof of your achievement, a bestseller badge of honor that elevates every piece of marketing you create, and the credibility that comes with being able to call yourself a bestselling author for the rest of your career.</p>
+        <div class="mkt-callout"><b>Our Guarantee</b>We stand behind this campaign completely. If your eBook does not reach #1 in at least one category, we will automatically re-run the promotion at no additional cost to you. Your bestseller status is a commitment we take very seriously.</div>
+        <p><b>Eligibility Requirement</b></p>
+        <p>Your title must be accessible in your KDP.amazon.com account, in KDP Select status (or eligible to be enrolled in Select status), and have at least 3 free days remaining. If you’re not sure, we can help you check—just book a consultation call when you can spare 5-10 minutes. <a href="https://tidycal.com/truehavenpress/30-minute-meeting" target="_blank" rel="noopener noreferrer">CLICK HERE TO SCHEDULE A QUICK CHAT</a></p>
+        <p><b>What it Does Not Do</b></p>
+        <p>This campaign does not make a huge difference in immediate or long-term sales as a standalone marketing effort.</p>
+        <ul>
+          <li>It’s a free event over three days for your eBook, so there will be no royalties earned during that period.</li>
+          <li>Making a profit on book sales takes generating buyer traffic consistently day after day, no different than with any other business that sells products or services.</li>
+        </ul>
+        <p><b>Strategy Note</b></p>
+        <p>We recommend pairing this campaign with a 30-Day Repeatable Social Media Content Calendar that adds showing off images of your cover with its new badge of honor and a review blurb or a quote from inside the pages, a Press Release, and Amazon Ads.</p>
+        <div class="mkt-buyrow">
+          <div class="mkt-price">COST: $999</div>
+          <a class="mkt-btn mkt-buy" href="https://www.paypal.com/ncp/payment/Y6MF77LM7WS4E" target="_blank" rel="noopener noreferrer">BUY NOW</a>
+        </div>
+      </div>
+    </section>
+
+<section class="mkt-block mkt-split mkt-flip" id="paid-bestseller-campaign">
+      <div class="mkt-copy">
+        <div class="mkt-art"><div class="mkt-ph mkt-fill"><img alt="The Amazon Bestseller Campaign for your paid eBook" width="600" height="959" src="/media/marketing-bestseller-campaign-paid.jpg"></div></div>
+        <h3>THE AMAZON BESTSELLER CAMPAIGN (PAID EBOOK)</h3>
+        <p class="mkt-lead">Reach thousands of readers fast while earning royalties, reader reviews, and improved ranking!</p>
+        <p>Over a 72-hour window we run a coordinated promotion that places your eBook in front of thousands of readers. We guarantee your eBook will achieve improved ranking position and earn royalties during the event, plus accumulate at least 10 reviews within 30 days.</p>
+        <p><b>Strategic Setup</b></p>
+        <ul>
+          <li>We review and, if necessary, optimize your book’s categories and keywords inside your KDP account so your title is positioned in the right places to be discovered and ranked. (If we published your title, this was already done during production. If we published more than 3 months ago, we’ll check for updates that might be needed.)</li>
+          <li>We set your eBook’s price at a promotional sale price between $0.99 and $5—the exact figure depends on your eBook’s file size—so your title stays affordable enough to spark a wave of purchases while remaining a paid book throughout the campaign.</li>
+          <li>You earn royalties on these sales!</li>
+        </ul>
+        <p><b>Promotion &amp; Live Monitoring</b></p>
+        <ul>
+          <li>We actively monitor your campaign across the full 72 hours, making sure it performs the way it should and capturing screenshots from your listing and the appropriate bestseller lists.</li>
+          <li>Leveraging our proprietary promotional methods and third-party partnerships, we put your Kindle eBook in front of tens of thousands of readers, powering your climb up the rankings while driving sales that earn royalties and reviews that accumulate over the first month after the campaign ends.</li>
+        </ul>
+        <p><b>Transparent Reporting on Your Terms</b></p>
+        <p>All download and sales data lives right inside your own KDP account. There are no reports to wait on and no one to ask. You can check your numbers whenever you want, as often as you want, in real time. (Note: KDP reports real-time estimates while final numbers can take a few days to accurately report.)</p>
+        <p><b>Proof of Your Success</b></p>
+        <ul>
+          <li>You receive a provenance kit of ranking screenshots for each category and bestseller list within 1-2 business days after the campaign completes.</li>
+          <li>We’ll have our designer apply the badge to your KDP book covers and update those covers on Amazon for you. (#1 Bestseller or Bestselling Author)</li>
+          <li>We’ll provide 4-6 marketing images you can put to work showing off your badge of honor across your website, social media, and promotional materials.</li>
+          <li>Your title will accumulate at least 10 reader reviews within 30 days of the promotion event, verifiable on your Amazon sales page.</li>
+        </ul>
+        <p><b>What You Walk Away With</b></p>
+        <p>This campaign puts your title into many hands in a remarkably short window, building momentum and visibility that a slow, organic launch simply can’t match. You earn royalties on each sale, your badge of honor provides a boost for future marketing efforts, and your review count increases!</p>
+        <div class="mkt-callout"><b>Our Guarantee</b>We guarantee you will earn royalties, improved rankings, and at least 10 reader reviews.<br><br>We can’t guarantee a specific ranking success number because Amazon often moves the goal around without warning or announcement. We research regularly to make adjustments so we can get the most out of every campaign.</div>
+        <p><b>Eligibility Requirement</b></p>
+        <p>Your title must be accessible in your KDP.amazon.com account, in KDP Select status (or eligible to be enrolled in Select status), and have at least 3 discount days remaining. If you’re not sure, we can help you check—just book a consultation call when you can spare 5-10 minutes. <a href="https://tidycal.com/truehavenpress/30-minute-meeting" target="_blank" rel="noopener noreferrer">CLICK HERE TO SCHEDULE A QUICK CHAT</a></p>
+        <p><b>What it Does Not Do</b></p>
+        <p>Sale events, better ranking, and reader reviews do not guarantee a positive return, though we see it often. Lasting sales results take consistent buyer traffic over time.</p>
+        <ul>
+          <li>It’s a discount day event over three days for your eBook, so royalties earned will be for a higher volume of units but at a lower rate during that period. Ranking improvements do not mean guaranteed positive ROI, though we do see it happen with some frequency.</li>
+          <li>Making a profit on book sales takes generating buyer traffic consistently day after day, no different than with any other business that sells products or services.</li>
+        </ul>
+        <p><b>Strategy Note</b></p>
+        <p>We recommend pairing this campaign or the free eBook version with a 30-Day Repeatable Social Media Content Calendar that adds showing off images of your cover with its new badge of honor and a review blurb or a quote from inside the pages, Amazon Ads, and a Press Release.</p>
+        <div class="mkt-buyrow">
+          <div class="mkt-price">COST: $699</div>
+          <a class="mkt-btn mkt-buy" href="https://www.paypal.com/ncp/payment/XEHSQGUSPLULN" target="_blank" rel="noopener noreferrer">BUY NOW</a>
+        </div>
+      </div>
+    </section>
+
+<section class="mkt-block mkt-split" id="press-release">
+      <div class="mkt-copy">
+        <h3>PRESS RELEASE</h3>
+        <p>A book launch or achieving bestseller status is a moment, but a press release makes it <i>news</i>. Our Press Release service amplifies your launch or event or accomplishment through a professionally written announcement distributed across major news networks, putting your book in front of thousands of journalists, media outlets, and in turn, millions of potential readers. Your announcement reaches established media sources, building your credibility as a published author and maximizing your visibility. The result: your release, event, or accomplishment is treated as a legitimate, newsworthy event.</p>
+        <p><b>What You Receive</b></p>
+        <ul>
+          <li>Professional press release writing, custom-crafted for your specific book launch, event, or achievement.</li>
+          <li>Distribution through thousands of media outlets.</li>
+          <li>Complete distribution metrics in a Press Release Report so you can see exactly how far your release traveled.</li>
+          <li>A permanent online presence that continues enhancing your book’s discoverability long term. You’ll have article links you can share and promote over and over again.</li>
+        </ul>
+        <p><b>Where Your Release Goes</b></p>
+        <p>We work with the world’s leader in press release distribution because its reach is both wide and deep—millions of readers, plus the journalists, businesses, and industry professionals who shape coverage. Here is what that network does for your announcement:</p>
+        <ul>
+          <li>Pickup by the outlets readers already trust. Your story is syndicated to names like the Associated Press, who reaches more than half the planet; Nexstar, the largest local-TV company in the country, who reaches roughly two-thirds of US households; and the USA TODAY Network, who has a digital audience of 181 million. Add Google News, Affinity Group Publications, and a steadily expanding roster of search-friendly publisher sites—many tied to your specific genre or region—and your release keeps resurfacing well beyond initial publication.</li>
+          <li>A foothold on broadcast affiliate sites. Your announcement will also be reprinted across local ABC, NBC, FOX, CBS, and CW web properties and dozens of radio station sites—an audience that adds up to north of 150 million unique visitors every month.</li>
+          <li>Genuine newswire placement. The leading international newswire service, pulling and sorting news from every state and country. That means your release isn’t just posted somewhere—it enters a global distribution stream that editorial rooms and readers actually monitor.</li>
+          <li>Beyond being a recognized Google News source, this distribution method pipes releases into the platforms that working journalists and analysts rely on every day—Bloomberg Terminals, MuckRack, Moody’s NewsEdge, Naviga, and MenaFN among them.</li>
+          <li>Dedicated news apps surface timely stories—yours included—straight to mobile screens, meeting audiences wherever they happen to be reading.</li>
+        </ul>
+                <p><b>How It Works</b></p>
+        <p><b>You Share the Details</b></p>
+        <p>We’ll send you a simple form to capture the essentials: your book and author information, along with the specific points you want to spotlight—awards, reviews, milestones, upcoming events, or anything else that makes your story stand out.</p>
+        <p><b>We Craft the Story</b></p>
+        <p>We write an SEO-friendly headline that announces your primary achievement and earns attention in both newsrooms and search results. From there, the body develops your book’s significance through carefully structured content, which may include a compelling description of the book and quotes pulled from your form answers.</p>
+        <p><b>We Give Journalists Everything They Need</b></p>
+        <p>Your release closes with availability information and author contact details, so journalists will have everything they need if they want to develop further coverage. This professional framing positions your book as a genuine news story rather than mere promotion, significantly increasing your chances of additional media exposure and reader discovery.</p>
+        <p><b>We Send You a Results Report</b></p>
+        <p>Upon completion of this service, you’ll receive a detailed Press Release Report with clickable links to your press release on media outlet sites that you can use over and over again in social media and on your website.</p>
+        <p><b>Good to Know</b></p>
+        <p>Credibility is currency for an author. A press release distributed across trusted news networks signals that your book is worth paying attention to, and that perception follows you into every future pitch, interview, and reader conversation.</p>
+        <p>If you will be including a bestseller campaign in your marketing plan, a press release is recommended after you achieve that success so it can include “bestseller” and “bestselling” language and a cover image that includes your badge of honor.</p>
+        <div class="mkt-buyrow">
+          <div class="mkt-price">COST: $449</div>
+          <a class="mkt-btn mkt-buy" href="https://www.paypal.com/ncp/payment/7YBKKNTPSR57J" target="_blank" rel="noopener noreferrer">BUY NOW</a>
+        </div>
+      </div>
+    </section>
+
+<section class="mkt-block mkt-split" id="marketing-images">
+      <div class="mkt-copy">
+        <h3>MARKETING IMAGES PACKAGE</h3>
+        <p>Most authors own exactly one picture of their book: the flat cover file sitting in their KDP dashboard. It is a perfectly good image, but every post, every banner, and every announcement for the next two years leaning on the same rectangle won’t grow followers or sell books. Readers stop seeing it by the fourth time it scrolls past.</p>
+        <p>The Marketing Images Package puts your book into the world and creates variety that makes scrolling your social posts less repetitive. We build twenty scene-based marketing images of your eBook, your print book, or both—some held and read by people, some standing on their own against styled backgrounds and reader engagement scenes. The result is a library of images you own outright that look like moments rather than product listings, and they can be reused and repurposed.</p>
+        <p><b>What You Receive</b></p>
+        <ul>
+          <li>Twenty professional scene-based marketing images featuring your eBook and/or your print edition, with and without people holding or reading it, across a range of settings, moods, and themed backgrounds. We take care to make these scenes match your genre and contrast with your book cover’s color palette for optimum appeal.</li>
+          <li>Optional: We apply the official “Available at Amazon” badge to Amazon’s published specifications so the images you receive keep you inside the rules. Or, we can deliver the badge separately so you can decide when to use it and when not to.</li>
+          <li>A bonus set of 3 to 5 images of your eBook and print book on transparent backgrounds. Transparent backgrounds drop cleanly into any image you might want to create in the future, like more social media images or a banner for your website, or to make images that combine multiple titles in one scene.</li>
+          <li>Unlimited commercial usage rights for web and social media. The images are yours to use, repeat, and build on without a licensing clock running against you.</li>
+          <li>Delivery your way: finished image files are shared directly to you by download link, into your canva.com account, or both, your choice. Once the deck is in Canva, you can drop new text over the same scenes indefinitely—pull quotes, teaser taglines, review blurbs, sale announcements—so one purchase keeps producing fresh posts for years.</li>
+        </ul>
+                <p><b>How It Works</b></p>
+        <p>1. <b>You Send Your Cover File. </b>If True Haven Press published your book, you send nothing at all—we already have everything we need. If your book was published elsewhere, we need the print cover publishing file from your KDP or IngramSpark account. That single file is the whole lift on your end.</p>
+        <p>2. <b>We Build the Scenes. </b>Every image is composited from your finished cover, so nothing is being designed to taste and nothing is left to interpretation. Your book appears accurately, at the right proportions, in twenty settings chosen to work across platforms. That is why the package carries no revision cycle: what we build is your book in scenes rendered correctly, not a design concept awaiting your reaction.</p>
+        <p>3. <b>You Receive the Deck. </b>Within 3 to 5 business days from the date we have your cover file, your full library is delivered in the format you chose.</p>
+        <p><b>What You Walk Away With</b></p>
+        <p>An asset library that outlasts your launch. The same twenty scenes carry a cover reveal in January, a review quote in March, a price promotion in July, and an award announcement the year after that. Authors who run out of things to post usually have not run out of things to say—they have run out of images to say them with.</p>
+        <p><b>Strategy Note</b></p>
+        <p>Pair this with a bestseller campaign and press release, where a strong visual library turns a single achievement into weeks of promotable material. If you also need the posting schedule and the written copy to put the images to work, the Social Media Starter includes this package.</p>
+        <div class="mkt-buyrow">
+          <div class="mkt-price">COST: $149</div>
+          <a class="mkt-btn mkt-buy" href="https://www.paypal.com/ncp/payment/DPCW2D69UDGR4" target="_blank" rel="noopener noreferrer">BUY NOW</a>
+        </div>
+        <p><b>Optional Add-Ons</b></p>
+        <ul>
+          <li><b>Double the Deck with Text Overlays—$49 per title. </b>Send us the pull quotes, teaser taglines, review blurbs, or sale announcements you want to lead with, and we produce a second full set carrying that copy. Forty images instead of twenty.</li>
+          <li><b>Rush Delivery—$49 per title. </b>1 to 2 business days, subject to availability.</li>
+        </ul>
+      </div>
+    </section>
+
+<section class="mkt-block mkt-split" id="social-media-starter">
+      <div class="mkt-copy">
+        <h3>SOCIAL MEDIA STARTER (OR REDESIGN)</h3>
+        <p>Every author is told to get on social media. Almost no one is told what to post, how often, in what order, or how to keep it going once the launch adrenaline wears off. So, it goes one of two ways: the accounts sit empty, or there is a burst of enthusiastic activity that runs dry somewhere in week three and leaves behind a profile that looks abandoned. Neither one grows an online presence or sells books.</p>
+        <p>The Social Media Starter service replaces guesswork with a working system that is repeatable. We set your profiles up properly, hand you a full month of planned and written content with the images to run it, and show you how to repeat the cycle yourself—deliberately, on a schedule, without it sacrificing your writing time.</p>
+        <p><b>What You Receive</b></p>
+        <ul>
+          <li><b>Profile setup or redesign for up to two platforms</b>, chosen from Facebook page, Instagram, X, and LinkedIn. If you are starting from nothing, we build the profiles from scratch. If you already have accounts, we assess what is there, recommend improvements, and show you how to implement the revisions. Setup and redesign recommendations come from researching your book and its categories and keywords against comps and trends.</li>
+          <li><b>3 to 4 social media banner graphic options</b> designed for your book and your platforms, so you can choose the 1 or 2 that fit you best. We start by asking about your preferences, sharing recommendation notes, and providing one round of revisions on the 1 or 2 you select. We can help make your author photo display well for that field if needed too.</li>
+          <li><b>A 30-day repeatable content calendar</b> built on a structured topic strategy, with a posting schedule and written post copy. Not a list of ideas. Actual copy, ready to post. You can provide a list of interests you believe will appeal to your readers, and we’ll include that in our research. You get final approval of the topic strategy before content is created.</li>
+          <li><b>A deck of 25 to 30 topic-specific background images</b>, with multiple images per topic, so the same subject never runs on the same picture twice.</li>
+          <li><b>Includes the Marketing Images Package</b>, a $149 service on its own, which powers your first content topic: the Book Direct Pitch.</li>
+          <li><b>A written how-to guide</b> covering the strategy and the structure behind it, the tools we already use and trust for scheduling and automation, how to set that automation up so your calendar posts itself, and guidance for choosing different tools that better fit how you personally work.</li>
+          <li><b>Optional Canva sharing.</b> You do not need a canva.com account to use anything in this package. If you choose to open one, we’ll share the image decks directly to your account so you can edit them, expand them, and keep building your asset library long after the first thirty days are behind you.</li>
+        </ul>
+        <p><b>How It Works</b></p>
+        <p>There are two ways in, depending on whether you are starting from nothing or fixing what you already have:</p>
+        <p><b>Path 1: We Build and Launch New Profiles/Pages. </b>You tell us which two platforms matter most for your book and your readers. We work with you to set up new profiles or pages, then we design and produce header banners, build a topic strategy around your book and target market, write the post copy, and design and produce the image decks. (We will recommend platforms upon request.)</p>
+        <p><b>Path 2: Profiles/Pages Assessment &amp; Redesign. </b>You give us URL links to existing accounts, and we assess what is working, what is not working, and what is missing. We provide a detailed report and the how-to info you’ll need to implement suggested revisions. With social profiles that allow delegating an editor or admin, we’ll implement the revisions for you.</p>
+        <p><b>With both paths, we hand you the system. </b>Within 1 to 2 weeks from kickoff, you receive the header banner options, 30-day content calendar with targeted topic strategy, the written copy, the image decks, and the how-to guide. From there the accounts are yours, and the guide walks you through setting up your automation one time for the whole month so the calendar posts on schedule.</p>
+        <p>Depending on which scheduling tool you choose, you may be able to grant us access to post on your behalf. Ask, and we’ll tell you whether your tool supports it and what that arrangement would look like.</p>
+        <p><b>What You Walk Away With</b></p>
+        <p>Thirty days of content is the visible part. The durable part is the structure underneath it—a topic framework, a posting rhythm, and an image library that can be used month after month once you know how the cycle works. Authors who stay consistent on social media are rarely the ones with the most to say. They are the ones who stopped starting from a blank screen every morning and managing this growth strategy on the fly, manually.</p>
+        <p><b>Strategy Note</b></p>
+        <p>A posting system is worth the most when there is something to post about. Pair this with a bestseller campaign, where a live calendar turns your badged cover images into weeks of visible momentum instead of a single announcement, and with a press release, which gives you an outside source to circulate rather than one more post about yourself. If you have written more than one book, an additional Marketing Images Package brings each title into the rotation with its own scenes.</p>
+        <div class="mkt-buyrow">
+          <div class="mkt-price">COST: $599</div>
+          <a class="mkt-btn mkt-buy" href="https://www.paypal.com/ncp/payment/XBPRYXZN64RKU" target="_blank" rel="noopener noreferrer">BUY NOW</a>
+        </div>
+        <p><b>Optional Add-Ons</b></p>
+        <ul>
+          <li><b>Additional, or standalone, 30-Day Repeatable Social Media Content Calendar—$399. </b>Another full month, built new rather than recycled: same topic strategy with fresh content, written post copy, and a new image deck to run it on. Buy one when you want the next month planned before the current one runs out, or buy several to map a launch quarter in advance.<ul><li>Ask about bulk and repeat purchase discounts.</li><li>Works well as a standalone service if your profiles are already in good shape and content is the only thing you are short on.</li></ul></li>
+          <li><b>Additional Marketing Images Package—$149 per title.</b> A second package adds another title with its own twenty scenes. Ordered alongside the Starter, the scenes are built to match the calendar they will run on rather than retrofitted to it later. Ask about pricing on more than one.</li>
+          <li><b>Additional Marketing Images Package: Double the Deck with Text Overlays—$49 per title. </b>Forty images instead of twenty per title. Send us the pull quotes, teaser taglines, review blurbs, or sale announcements you want to lead with, and we’ll produce a second full set carrying that copy.<ul><li>The variable is the book image, so one Marketing Images Package (MIP) covers one title—which is already included—and needing images for a second title will require a second package. Adding a topic for the same title in the already included MIP, like Gift Idea, On Sale Now, or New Release, is the $49 Double the Deck with Text Overlays option.</li></ul></li>
+        </ul>
+      </div>
+    </section>
+
+<section class="mkt-block mkt-split" id="amazon-optimization">
+      <div class="mkt-copy">
+        <h3>AMAZON OPTIMIZATION</h3>
+        <p>If we published your book within the last three months, this is already done. Your categories, keywords, and metadata were optimized during production, and you do not need this service. This page is for authors we did not publish, and for authors we did publish more than three months ago whose listings are due for a refresh.</p>
+        <p>Online book listings age quietly, but not gracefully. Amazon reorganizes its ranking categories, some of them disappear, and the search terms readers type shift as buying behavior shifts. A book that was well positioned two years ago can now be competing in categories that no longer carry traffic, against keywords no one is searching. Nothing on the listing looks broken, which is exactly why it goes unnoticed.</p>
+        <p>The clearest example is still working its way through Amazon’s catalog. Until 2023, authors chose BISAC codes and could email KDP support to request up to ten additional category placements. That system is gone. Today you select up to three store categories per format, directly, and support will not add more. Books published before the change often still carry their old placements, and here is the trap: editing categories on one of those listings clears every existing placement, and Amazon warns that the action cannot be undone. An author who logs in to make a quick improvement can permanently lose seven category placements in under a minute.</p>
+        <p><b>What You Receive</b></p>
+        <ul>
+          <li><b>Category and keyword research, current as of today.</b> We re-research your BISAC subject codes, Amazon browse and ranking categories, and backend keywords against current traffic and current competition, not against what worked when the book launched. Categories are chosen for winnability, not for size, and we go as deep into the subcategory tree as your book can honestly claim.</li>
+          <li><b>A rewritten book description.</b> Most descriptions are written once, during a launch week, by an exhausted author who has stopped being able to see the book from the outside. They summarize the plot instead of giving a reader a reason to buy. We rewrite yours as sales copy, with the hook in the opening lines where it still shows above the fold, and formatted so it reads cleanly rather than as a wall of text.</li>
+          <li><b>An Author Central refresh.</b> Author Central is a second storefront most authors set up once and never return to. It carries your bio, your photo, and your full catalog, and it appears next to every book you publish. We rewrite the bio to position you rather than merely list you, confirm every title is claimed and correctly linked to your author name, and make sure the page presents consistently with your listing.</li>
+          <li><b>Metadata updates across formats.</b> Each format of your book gets its own category slots. eBook, paperback, and hardcover are handled as the separate listings Amazon treats them as, rather than optimized once and assumed to carry.</li>
+          <li><b>What we review:</b> BISAC subject codes, Amazon browse and ranking categories, backend keywords, book description and metadata, Author Central setup, and category placement against current competition.</li>
+          <li><b>Includes: </b>Up to 3 book versions—eBook, paperback, hardback—for one title. Deeply discounted bulk pricing available for multiple standalone or serial titles.</li>
+        </ul>
+        <p><b>How It Works</b></p>
+        <ul>
+          <li><b>We Record Before We Touch. </b>The first thing we do is document every category placement your book currently holds, because on older listings those placements cannot be recovered once an edit clears them. Nothing changes until we know what is there.</li>
+          <li><b>We Research and Rewrite.</b> Categories, keywords, description, and bio are researched and drafted against current data. You see the recommendations before anything goes live.</li>
+          <li><b>You Review for Final Approval, Then the Listing Is Updated.</b> We coordinate a time with you to log into your KDP and IngramSpark accounts to implement the updates.</li>
+        </ul>
+        <p><b>What It Does Not Do</b></p>
+        <p>This service improves where your book can be found. It does not guarantee rank, sales, or placement. Amazon reserves the right to reassign a book it judges miscategorized, and no one selling optimization can promise otherwise. It also does not change your cover, your interior, or your price, and it cannot add categories beyond the three per format Amazon currently allows.</p>
+        <p><b>Strategy Note</b></p>
+        <p>Order matters here. A bestseller campaign drives rank into whichever categories your book currently occupies, so optimizing first means the campaign pushes your book up a shelf readers actually browse rather than one that no longer carries traffic. The same logic applies to Amazon Ads and to any social or press push: traffic arriving at a stale listing converts worse than traffic arriving at a current one. Worth repeating annually for the same reason it was worth doing the first time. The ground moves whether or not the book does.</p>
+        <div class="mkt-buyrow">
+          <div class="mkt-price">COST: $249</div>
+          <a class="mkt-btn mkt-buy" href="https://www.paypal.com/ncp/payment/F3VN8KUV9PD6N" target="_blank" rel="noopener noreferrer">BUY NOW</a>
+        </div>
+      </div>
+    </section>
+
+<section class="mkt-block mkt-split" id="email-marketing">
+      <div class="mkt-copy">
+        <h3>EMAIL MARKETING</h3>
+        <p>Set up and admin for this has to be customized per client, both in the details and the pricing for the work we do. Schedule a consultation meeting to discuss.</p>
+        <div class="mkt-buyrow">
+          <a class="mkt-btn mkt-consult" href="https://tidycal.com/truehavenpress/free-publishing-consultation" target="_blank" rel="noopener noreferrer">BOOK A CONSULTATION</a>
+        </div>
+      </div>
+    </section>
+
+<section class="mkt-block mkt-split" id="amazon-ads">
+      <div class="mkt-copy">
+        <h3>AMAZON ADS SERVICES</h3>
+        <p>We offer a range of pricing options for the work of researching and setting up ads that will sell your eBook and/or paperback, and then you pay the ad spend directly in your KDP account. During setup, you tell us what your ad spend budget is and we’ll set the campaigns up to not exceed that budget. This is all done in your KDP account, so you would have the ability to view results daily.</p>
+        <div class="mkt-buyrow">
+          <a class="mkt-btn mkt-consult" href="https://tidycal.com/truehavenpress/free-publishing-consultation" target="_blank" rel="noopener noreferrer">BOOK A CONSULTATION</a>
+        </div>
+      </div>
+    </section>
+
+<section class="mkt-block mkt-split" id="bundle-packages">
+      <div class="mkt-copy">
+        <h3>MARKETING SERVICES BUNDLE PACKAGES</h3>
+        <p>Every service in this guide does one job well. A bestseller campaign creates a surge, a press release creates news, and a content calendar creates a month of visibility. But as each campaign description notes, making a profit on book sales takes generating buyer traffic consistently day after day—and no single campaign does that on its own.</p>
+        <p>Our bundle packages combine services built to work together, in an order that keeps readers arriving at your Amazon listing week after week. A one-time spike lifts your ranking; steady traffic is what gives it a chance to take hold. Each bundle gives you a coordinated plan and a lower price than buying the same services separately.</p>
+        <p><b>Bundle Pricing</b></p>
+        <div class="mkt-tablewrap"><table class="mkt-bundle">
+          <thead><tr><th>Tier</th><th>Included</th><th></th><th class="mkt-orafter">With Free eBook Bestseller Campaign</th><th>With Paid eBook Bestseller Campaign</th><th>Without Bestseller Campaign</th></tr></thead>
+          <tbody>
+            <tr class="mkt-alc"><td rowspan="2" class="mkt-tier"><b>1</b></td><td rowspan="2" class="mkt-inc"><div class="mkt-li">eBook Bestseller Campaign, free or paid (with category and keyword optimization)</div><div class="mkt-li">Press Release</div><div class="mkt-li">Social Media Starter (or Redesign) (includes Marketing Images Package)</div></td><td>À la carte</td><td class="mkt-down">$2,047</td><td class="mkt-down">$1,747</td><td></td></tr>
+            <tr class="mkt-bp"><td>Bundle price</td><td>$1,899</td><td>$1,599</td><td></td></tr>
+            <tr class="mkt-alc"><td rowspan="2" class="mkt-tier"><b>2</b></td><td rowspan="2" class="mkt-inc"><div class="mkt-li">eBook Bestseller Campaign, free or paid (with category and keyword optimization)</div><div class="mkt-li">Press Release</div><div class="mkt-li">Social Media Starter (or Redesign) (includes Marketing Images Package)</div><div class="mkt-li">Amazon Ads Services (plus Amazon Ad spend, paid to KDP and set to your budget specifications)</div></td><td>À la carte</td><td class="mkt-down">$2,397</td><td class="mkt-down">$2,097</td><td></td></tr>
+            <tr class="mkt-bp"><td>Bundle price</td><td>$2,199</td><td>$1,899</td><td></td></tr>
+            <tr class="mkt-alc"><td rowspan="2" class="mkt-tier"><b>3</b></td><td rowspan="2" class="mkt-inc"><div class="mkt-li">Amazon Optimization</div><div class="mkt-li">Social Media Starter (or Redesign) (includes Marketing Images Package)</div><div class="mkt-li">Amazon Ads Services (plus Amazon Ad spend, paid to KDP and set to your budget specifications)</div></td><td>À la carte</td><td></td><td></td><td class="mkt-down">$1,198</td></tr>
+            <tr class="mkt-bp"><td>Bundle price</td><td></td><td></td><td>$999</td></tr>
+          </tbody>
+        </table></div>
+        <p><b>Good to Know</b></p>
+        <p><b>Eligibility. </b>Bundles that include a bestseller campaign carry the same KDP Select eligibility requirement as the campaign itself.</p>
+        <p><b>Guarantees. </b>Each service in a bundle keeps the guarantee described in its own section.</p>
+        <p><b>Ad spend. </b>Amazon Ad spend is additional, paid to KDP and set to your budget specifications.</p>
+        <p><b>These are not the only options.</b> Book a consultation to discuss how best to market your unique book or catalog of books.</p>
+        <p><b>More than one title? </b>Ask about multi-title bundle pricing.</p>
+      </div>
+    </section>
+
+    </div>
+
+    <div class="mkt-band">
+      <h3>Not sure which service comes first?</h3>
+      <h3>Want to map out a custom marketing plan for your unique author career?</h3>
+      <a class="mkt-btn" href="https://tidycal.com/truehavenpress/free-publishing-consultation" target="_blank" rel="noopener noreferrer">BOOK A CONSULTATION</a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER (injected by menu.js) -->
+  <div id="site-footer-mount"></div>
+
+  <script src="/menu.js?v=20261003a"></script>
+  <script>
+    (function () {
+      var h = document.querySelector('.site-header');
+      function s() { if (h) document.documentElement.style.setProperty('--mkt-header', h.offsetHeight + 'px'); }
+      s(); window.addEventListener('resize', s); window.addEventListener('load', s);
+    })();
+  </script>
+
+</body>
+</html>
