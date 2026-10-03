@@ -2937,3 +2937,24 @@ body.faq-page .faq-answer a:hover {
   padding-bottom: 2px;
 }
 .notfound-suggestion-link:hover { color: var(--color-accent); text-decoration: none; }
+
+/* Services page: list items that link into a child page. */
+.services-list a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(117, 70, 51, 0.35);
+}
+.services-list a:hover,
+.services-list a:focus {
+  color: var(--color-accent-dark);
+  border-bottom-color: currentColor;
+  text-decoration: none;
+}
+/* The "click any item" line: same size and colour as the card's body copy,
+   set bold and italic so it reads as an instruction rather than a footnote. */
+.services-note--prominent {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  font-weight: 700;
+  font-style: italic;
+}
