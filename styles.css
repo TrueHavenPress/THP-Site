@@ -2958,3 +2958,93 @@ body.faq-page .faq-answer a:hover {
   font-weight: 700;
   font-style: italic;
 }
+
+/* ============================================================
+   SERVICES CHILD PAGES (editing, book design, marketing)
+   Shared skeleton: hero bar, intro, sticky jump menu, alternating
+   content blocks, and the closing consultation band.
+   ============================================================ */
+.svc-hero { background: var(--color-secondary); text-align: center; padding: 2.1rem 1.5rem; }
+.svc-hero .svc-eyebrow {
+  color: rgba(255,255,255,0.72);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 0.45rem;
+}
+.svc-hero h1 { color: #fff; font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.2rem); line-height: 1.2; margin: 0; }
+.svc-intro { max-width: 760px; margin: 0 auto; padding: 1.75rem 1.5rem 0.25rem; }
+.svc-intro p { margin: 0; text-align: justify; font-weight: 600; color: var(--color-text); }
+.svc-jump {
+  position: sticky; top: var(--svc-header, 76px); z-index: 50;
+  background: var(--color-bg-alt); border-block: 1px solid var(--color-border);
+  margin-top: 1.5rem; padding: 0.7rem 1.5rem;
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; justify-content: center; font-size: 0.8rem;
+}
+.svc-jump a { color: var(--color-secondary); font-weight: 600; white-space: nowrap; text-decoration: none; }
+.svc-jump a:hover { text-decoration: underline; }
+.svc-block { padding: 3rem 1.5rem; scroll-margin-top: calc(var(--svc-header, 76px) + 3.5rem); }
+.svc-blocks > .svc-block:nth-of-type(even) { background: var(--color-bg-alt); }
+.svc-copy { max-width: var(--max-width); margin: 0 auto; display: block; color: var(--color-text); }
+.svc-copy > * { margin: 0; }
+.svc-copy > * + * { margin-top: 14px; }
+/* Only when the image opens a block does the text beside it start flush;
+   an image further down keeps the normal rhythm under its heading. */
+.svc-copy > .svc-art:first-child + * { margin-top: 0; }
+/* Open up the space above a heading that follows body copy or a list, so each
+   heading reads as the start of something rather than a continuation. */
+.svc-copy > :is(p, ul, ol) + h2 { margin-top: 40px; }
+.svc-copy > :is(p, ul, ol) + h3 { margin-top: 34px; }
+.svc-copy > :is(p, ul, ol) + h4 { margin-top: 28px; }
+.svc-copy h2 { color: var(--color-secondary); font-size: 1.6rem; line-height: 1.2; margin: 0; text-wrap: balance; }
+.svc-copy h3 { color: var(--color-secondary); font-size: 1.3rem; line-height: 1.25; margin: 0; text-wrap: balance; }
+.svc-copy h4 {
+  color: var(--color-primary-dark); font-family: var(--font-serif);
+  font-size: 1rem; line-height: 1.3; margin: 0;
+  letter-spacing: 0; text-transform: none;
+}
+.svc-copy p { text-align: justify; }
+.svc-copy p.svc-lead { font-size: 1.05rem; font-weight: 600; }
+.svc-copy ul, .svc-copy ol { padding-left: 1.15em; display: flex; flex-direction: column; gap: 6px; }
+.svc-copy ol { padding-left: 1.35em; }
+.svc-copy li { text-align: justify; margin: 0; }
+.svc-copy li::marker { color: var(--color-primary); }
+.svc-copy a:not(.svc-btn) { color: var(--color-secondary); font-weight: 700; text-decoration: underline; }
+.svc-need {
+  background: #efe6d8; border-left: 4px solid var(--color-primary);
+  padding: 12px 16px; font-size: 0.95rem;
+}
+.svc-need b { font-family: var(--font-serif); color: var(--color-primary-dark); }
+/* Images float beside the copy. Direction is set per image, so one section can
+   carry a left-aligned and a right-aligned image without fighting each other. */
+.svc-art { width: clamp(150px, 28%, 280px); }
+.svc-art--right { float: right; margin: 0 0 18px 32px; }
+.svc-art--left  { float: left;  margin: 0 32px 18px 0; }
+.svc-split .svc-art { float: right; margin: 0 0 18px 32px; }
+.svc-split.svc-flip .svc-art { float: left; margin: 0 32px 18px 0; }
+/* A heading always starts below any image floating above it. */
+.svc-copy > h2, .svc-copy > h3 { clear: both; }
+.svc-ph { border-radius: 4px; overflow: hidden; background: var(--color-bg-alt); }
+.svc-ph img { width: 100%; height: auto; display: block; }
+.svc-btn {
+  display: inline-block; font-family: var(--font-serif); font-weight: 600;
+  font-size: 0.85rem; letter-spacing: 0.06em; padding: 12px 24px; border-radius: 3px;
+  text-decoration: none; cursor: pointer; border: 2px solid transparent;
+  transition: background 0.2s, color 0.2s;
+}
+.svc-band {
+  background: var(--color-secondary); color: #fff; text-align: center;
+  padding: 3rem 1.5rem; display: flex; flex-direction: column; gap: 14px; align-items: center;
+}
+.svc-band h3 { color: #fff; font-size: 1.5rem; margin: 0; }
+.svc-band p { margin: 0; max-width: 640px; color: rgba(255,255,255,0.9); }
+.svc-band .svc-btn { background: #fff; color: var(--color-secondary); }
+.svc-band .svc-btn:hover { background: var(--color-bg-alt); color: var(--color-secondary); }
+.svc-btn:focus-visible, .svc-jump a:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 2px; }
+@media (max-width: 760px) {
+  .svc-block { padding: 2.25rem 1.1rem; }
+  .svc-art, .svc-art--left, .svc-art--right,
+  .svc-split .svc-art, .svc-split.svc-flip .svc-art { float: none; width: min(100%, 280px); margin: 0 auto 18px; }
+  .svc-jump { padding: 0.6rem 1rem; }
+}
