@@ -3048,3 +3048,17 @@ body.faq-page .faq-answer a:hover {
   .svc-split .svc-art, .svc-split.svc-flip .svc-art { float: none; width: min(100%, 280px); margin: 0 auto 18px; }
   .svc-jump { padding: 0.6rem 1rem; }
 }
+
+/* A services card that is itself a link to its details page. The heading carries
+   the real link (so its name is what a screen reader announces) and stretches an
+   invisible layer across the whole card to make the full surface clickable. */
+.services-card--clickable { position: relative; transition: box-shadow 0.2s, transform 0.15s; }
+.services-card--clickable:hover,
+.services-card--clickable:focus-within {
+  box-shadow: 0 8px 22px rgba(24, 36, 112, 0.12);
+  transform: translateY(-2px);
+}
+.services-card-stretch { color: inherit; text-decoration: none; }
+.services-card-stretch::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.services-card-stretch:hover { color: var(--color-accent); text-decoration: none; }
+.services-card-stretch:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 3px; }
