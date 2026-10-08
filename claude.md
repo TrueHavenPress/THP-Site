@@ -202,3 +202,17 @@ a missing `.html`, or a typo — it offers the right page instead of a dead end.
 set.** A missing entry only costs a suggestion (nothing breaks), but a *stale*
 entry points visitors at a page that no longer exists. Add an alias whenever a
 menu label differs from the file name.
+
+## Forms post to one shared n8n webhook
+
+New forms post `multipart/form-data` to `https://doxdev.app.n8n.cloud/webhook/thp-form`
+(n8n workflow "THP - Website Forms (generic)"). Copy the pattern in
+`social-media-starter-intake.html`: a hidden `formName` input naming the form, the
+`website_url` honeypot, and the submit script that skips empty file inputs (n8n
+rejects zero-byte file parts). Each submission lands in Google Drive under
+"THP Forms - <formName>" as `answers.txt` plus any uploads, and the folder is shared
+with Debra and London, which emails them the link. Field names become the headings in
+`answers.txt` (`successIn60Days` → "Success In 60 Days"), so use readable camelCase
+names. No n8n change is needed for a new form; a different recipient list per form is
+set in the workflow's "Prepare Submission" step. The manuscript form
+(`submit-manuscript.html`) still uses its own older webhook.
