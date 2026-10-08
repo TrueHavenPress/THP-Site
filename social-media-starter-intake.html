@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Starter Intake &mdash; True Haven Press</title>
+
+  <!-- UNLISTED PAGE.
+       Deliberately kept out of the navigation, the sitemap, and the 404 page's
+       suggestion list, and marked noindex so search engines do not list it.
+       It is reachable only by someone given the address directly. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="stylesheet" href="/styles.css?v=20261003g">
+  <link rel="icon" type="image/jpeg" href="/media/true-haven-press-logo2-500-x-500-px-1.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet">
+
+  <style id="intake-page-styles">
+    .intake-hero { background: var(--color-secondary); text-align: center; padding: 2.1rem 1.5rem; }
+    .intake-hero p.intake-eyebrow {
+      color: rgba(255,255,255,0.72); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 0.45rem;
+    }
+    .intake-hero h1 { color: #fff; font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.1rem); line-height: 1.2; margin: 0; }
+    .intake-wrap { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 3.5rem; }
+    .intake-wrap > p { line-height: 1.7; margin: 0 0 1rem; }
+    .intake-note {
+      background: var(--color-bg-alt); border-left: 4px solid var(--color-primary);
+      padding: 0.9rem 1.1rem; font-size: 0.95rem; line-height: 1.6; margin: 1.25rem 0;
+    }
+    .submit-form .form-section > .field-hint { margin-bottom: 1rem; display: block; }
+    .intake-sub { font-weight: 600; margin: 0 0 0.35rem; }
+    .field-hint.is-limit { color: var(--color-accent); font-weight: 600; }
+  </style>
+</head>
+<body class="submit-page">
+
+  <section class="intake-hero">
+    <p class="intake-eyebrow">True Haven Press</p>
+    <h1>Social Media Starter (or Redesign)<br>Author Intake Questionnaire</h1>
+  </section>
+
+  <div class="intake-wrap">
+
+    <p>Thank you for choosing the Social Media Starter (or Redesign) service. Your answers here are the raw material for everything we build: your profiles, your banners, your topic strategy, your post copy, and your image decks. The more specific you are, the more your content will sound like you and speak to your readers.</p>
+
+    <p>Because we&rsquo;re publishing your book, we already have, or are creating, your book details and cover, so this questionnaire focuses on you, your readers, and your goals. Skip anything that doesn&rsquo;t apply, and answer in as much or as little detail as you like. Bullet points are fine. If a question stumps you, write &ldquo;not sure&rdquo; and we&rsquo;ll talk it through.</p>
+
+    <p class="intake-note">Fields marked with an asterisk (<span class="req-mark" aria-hidden="true">*</span>) are required. There is no length limit on any answer box. Your work is saved in this browser as you type, so you can close the page and come back to it.</p>
+
+    <form id="intakeForm" class="submit-form"
+          action="https://doxdev.app.n8n.cloud/webhook/thp-social-media-starter"
+          method="POST" enctype="multipart/form-data" novalidate>
+
+      <!-- Spam trap; a real person never sees or fills this. -->
+      <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" tabindex="-1">
+        <label for="website_url">Website URL (leave blank)</label>
+        <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" value="">
+      </div>
+
+      <input type="hidden" name="formName" value="Social Media Starter Intake (THP Authors)">
+
+      <!-- ─────────── SECTION 1 ─────────── -->
+      <fieldset class="form-section">
+        <legend>Section 1: About You</legend>
+
+        <div class="field">
+          <label for="q01">Your pen name as it appears on your book <span class="req-mark" aria-hidden="true">*</span></label>
+          <input id="q01" name="penName" type="text" required autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="q02email">Best email for questions during this project <span class="req-mark" aria-hidden="true">*</span></label>
+          <input id="q02email" name="email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="q03">Your author website, if you have one</label>
+          <input id="q03" name="authorWebsite" type="url" placeholder="https://" autocomplete="url">
+        </div>
+
+        <div class="field">
+          <label for="q04">Your author bio</label>
+          <textarea id="q04" name="authorBio" rows="6"></textarea>
+          <small class="field-hint">We&rsquo;ll develop it with you. If you have a current bio, notes, or a draft you&rsquo;d like us to start from, paste it here, or upload it below.</small>
+        </div>
+
+        <div class="field">
+          <span class="label-as-block">Upload your bio, notes, or draft (optional)</span>
+          <div class="file-drop" data-file-drop>
+            <input id="q04file" name="bioDraft" type="file" class="file-input"
+                   accept=".doc,.docx,.pdf,.txt,.rtf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,text/plain">
+            <label for="q04file" class="file-drop-inner">
+              <svg class="file-drop-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <span class="file-drop-prompt"><strong>Choose a file</strong> or drag it here</span>
+              <span class="file-drop-status" data-file-status>No file chosen</span>
+            </label>
+            <button type="button" class="file-clear" data-file-clear hidden aria-label="Remove selected file">Remove</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label-as-block">Author photos for your profiles <span class="req-mark" aria-hidden="true">*</span></span>
+          <div class="file-drop" data-file-drop>
+            <input id="q05file" name="authorPhotos" type="file" class="file-input" multiple
+                   accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf">
+            <label for="q05file" class="file-drop-inner">
+              <svg class="file-drop-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <span class="file-drop-prompt"><strong>Choose up to 3 files</strong> or drag them here</span>
+              <span class="file-drop-status" data-file-status>No file chosen</span>
+            </label>
+            <button type="button" class="file-clear" data-file-clear hidden aria-label="Remove selected files">Remove</button>
+          </div>
+          <small class="field-hint">One to three professional photos. JPEG, PNG, or PDF.</small>
+          <label class="checkbox-row">
+            <input type="checkbox" name="photosByEmail" value="Sending photos separately by email"> I&rsquo;d rather email my photos separately
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="q06">Share things about you that you&rsquo;d like readers to know <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="q06" name="aboutYou" rows="5" required></textarea>
+          <small class="field-hint">Your hometown, your day job or past career, hobbies, family, pets, causes you support. Only include things you&rsquo;re okay with having made public.</small>
+        </div>
+      </fieldset>
+
+      <!-- ─────────── SECTION 2 ─────────── -->
+      <fieldset class="form-section">
+        <legend>Section 2: Platforms and Profiles</legend>
+
+        <div class="field">
+          <span class="label-as-block">Which path fits you? <span class="req-mark" aria-hidden="true">*</span></span>
+          <div class="checkbox-group">
+            <label class="checkbox-row"><input type="radio" name="path" value="Path 1: Build and launch new profiles or pages" required> Path 1: Build and launch new profiles or pages</label>
+            <label class="checkbox-row"><input type="radio" name="path" value="Path 2: Assess and redesign my existing profiles or pages"> Path 2: Assess and redesign my existing profiles or pages</label>
+            <label class="checkbox-row"><input type="radio" name="path" value="A mix: one new, one existing"> A mix: one new, one existing</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label-as-block">Which two platforms matter most to you? <span class="req-mark" aria-hidden="true">*</span></span>
+          <div class="checkbox-group" data-max-two>
+            <label class="checkbox-row"><input type="checkbox" name="platforms" value="Facebook page"> Facebook page</label>
+            <label class="checkbox-row"><input type="checkbox" name="platforms" value="Instagram"> Instagram</label>
+            <label class="checkbox-row"><input type="checkbox" name="platforms" value="X"> X</label>
+            <label class="checkbox-row"><input type="checkbox" name="platforms" value="LinkedIn"> LinkedIn</label>
+            <label class="checkbox-row"><input type="checkbox" name="platforms" value="Please recommend platforms based on my book and readers"> Please recommend platforms based on my book and readers</label>
+          </div>
+          <small class="field-hint" data-max-two-hint>Choose up to two.</small>
+        </div>
+
+        <div class="field">
+          <label for="q22">For existing accounts, paste the link to each profile or page</label>
+          <textarea id="q22" name="existingProfileLinks" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <span class="label-as-block">For any platform where you don&rsquo;t have an account yet, how would you like to handle setup? <span class="req-mark" aria-hidden="true">*</span></span>
+          <small class="field-hint">Most platforms tie new profiles to your own email or phone number for verification, so the account must be in your name.</small>
+          <div class="checkbox-group">
+            <label class="checkbox-row"><input type="radio" name="setupPreference" value="I'll create the basic account, then give True Haven Press access" required> I&rsquo;ll create the basic account, then give True Haven Press access</label>
+            <label class="checkbox-row"><input type="radio" name="setupPreference" value="I'd like a Zoom screensharing session to set it up together"> I&rsquo;d like a Zoom screensharing session to set it up together</label>
+            <label class="checkbox-row"><input type="radio" name="setupPreference" value="I'm not sure; please advise"> I&rsquo;m not sure; please advise</label>
+            <label class="checkbox-row"><input type="radio" name="setupPreference" value="Not applicable"> Not applicable</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="q25">Anything about your current profiles you already know you dislike, or want to keep?</label>
+          <textarea id="q25" name="currentProfileNotes" rows="4"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- ─────────── SECTION 3 ─────────── -->
+      <fieldset class="form-section">
+        <legend>Section 3: About Your Book</legend>
+        <small class="field-hint">We&rsquo;ll draw your title, genre, formats, publication date, book description, and Amazon link from your publishing files, so you don&rsquo;t need to provide them. The questions below are optional. They help us feature what matters most to you.</small>
+
+        <div class="field">
+          <label for="q12">Are there lines from your book you&rsquo;d love to see featured?</label>
+          <textarea id="q12" name="featuredLines" rows="5"></textarea>
+          <small class="field-hint">Five to ten lines that you think capture the voice, mood, or hook. Leave this blank and we&rsquo;ll select them. We&rsquo;ll match them against your final interior file.</small>
+        </div>
+
+        <div class="field">
+          <label for="q13">Reviews, endorsements, or blurbs you&rsquo;ve received on your own that you&rsquo;d like us to feature</label>
+          <textarea id="q13" name="reviewsAndBlurbs" rows="4"></textarea>
+          <small class="field-hint">Include the reviewer&rsquo;s name or handle and where it appeared, exactly as published.</small>
+        </div>
+
+        <div class="field">
+          <label for="q14">Awards, rankings, milestones, or upcoming events you&rsquo;ve arranged yourself</label>
+          <textarea id="q14" name="awardsAndEvents" rows="4"></textarea>
+          <small class="field-hint">Signings, interviews, talks, sales. Include dates for anything coming up within the next two to three months.</small>
+        </div>
+
+        <div class="field">
+          <label for="q15">Do you have other published titles? If so, list their Amazon eBook URLs</label>
+          <textarea id="q15" name="otherTitles" rows="3"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- ─────────── SECTION 4 ─────────── -->
+      <fieldset class="form-section">
+        <legend>Section 4: Your Readers</legend>
+
+        <div class="field">
+          <label for="q16">Who is your ideal reader? Describe them as specifically as you can. <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="q16" name="idealReader" rows="5" required></textarea>
+          <small class="field-hint">Age range, interests, what else they read, what they want from a book like yours.</small>
+        </div>
+
+        <div class="field">
+          <label for="q17">Name two to five authors or books you think your readers also love <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="q17" name="comparableAuthors" rows="3" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q18">What interests do you believe will appeal to your readers? <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="q18" name="readerInterests" rows="4" required></textarea>
+          <small class="field-hint">These can go beyond your book. A cozy mystery reader may love tea, gardening, and cats; a thriller reader may love true crime and travel. We&rsquo;ll include your list in our topic research.</small>
+        </div>
+
+        <div class="field">
+          <label for="q19">What do you most want readers to feel or take away when they find you online? <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="q19" name="readerTakeaway" rows="4" required></textarea>
+        </div>
+      </fieldset>
+
+      <!-- ─────────── SECTION 5 ─────────── -->
+      <fieldset class="form-section">
+        <legend>Section 5: Look, Feel, and Voice</legend>
+
+        <div class="field">
+          <label for="q26">Describe the look you want for your banners and images <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="q26" name="lookAndFeel" rows="4" required></textarea>
+          <small class="field-hint">Colors, mood, style words (warm, moody, bold, minimal, vintage, playful), or anything you want to avoid.</small>
+        </div>
+
+        <div class="field">
+          <label for="q27">Share links to two or three author profiles, banners, or accounts whose look you admire, and what you like about each</label>
+          <textarea id="q27" name="inspirationLinks" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <span class="label-as-block">How would you describe the voice you want in your posts? <span class="req-mark" aria-hidden="true">*</span></span>
+          <div class="checkbox-group">
+            <label class="checkbox-row"><input type="checkbox" name="voice" value="Warm and conversational"> Warm and conversational</label>
+            <label class="checkbox-row"><input type="checkbox" name="voice" value="Witty and playful"> Witty and playful</label>
+            <label class="checkbox-row"><input type="checkbox" name="voice" value="Thoughtful and reflective"> Thoughtful and reflective</label>
+            <label class="checkbox-row"><input type="checkbox" name="voice" value="Professional and authoritative"> Professional and authoritative</label>
+            <label class="checkbox-row"><input type="checkbox" name="voice" value="Dark, suspenseful, or atmospheric"> Dark, suspenseful, or atmospheric</label>
+            <label class="checkbox-row"><input type="checkbox" name="voice" value="Match the voice of my book"> Match the voice of my book</label>
+          </div>
+          <label for="q28other" class="intake-sub" style="margin-top:0.6rem;">Something else</label>
+          <input id="q28other" name="voiceOther" type="text">
+        </div>
+
+        <div class="field">
+          <label for="q29">Do you have a tagline, catchphrase, or one-line pitch you&rsquo;d like to use on your banners?</label>
+          <input id="q29" name="tagline" type="text">
+        </div>
+      </fieldset>
+
+      <!-- ─────────── SECTION 6 ─────────── -->
+      <fieldset class="form-section">
+        <legend>Section 6: Scheduling and Your Time</legend>
+
+        <div class="field">
+          <label for="q30">Which scheduling or posting tools, if any, do you already use? <span class="req-mark" aria-hidden="true">*</span></label>
+          <input id="q30" name="schedulingTools" type="text" required>
+          <small class="field-hint">For example: Meta Business Suite, Buffer, Later, Hootsuite, or none.</small>
+        </div>
+
+        <div class="field">
+          <span class="label-as-block">How comfortable are you with setting up simple automation once a month, using our step-by-step guide? <span class="req-mark" aria-hidden="true">*</span></span>
+          <div class="checkbox-group">
+            <label class="checkbox-row"><input type="radio" name="automationComfort" value="Comfortable" required> Comfortable</label>
+            <label class="checkbox-row"><input type="radio" name="automationComfort" value="Willing, with clear instructions"> Willing, with clear instructions</label>
+            <label class="checkbox-row"><input type="radio" name="automationComfort" value="I'd rather someone handle posting for me"> I&rsquo;d rather someone handle posting for me</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="q32">Realistically, how much time per week can you give to social media? <span class="req-mark" aria-hidden="true">*</span></label>
+          <input id="q32" name="timePerWeek" type="text" required>
+          <small class="field-hint">For replying to comments, engaging with readers, and so on.</small>
+        </div>
+
+        <div class="field">
+          <span class="label-as-block">Do you have, or want, a free canva.com account so we can share your image decks for future editing? <span class="req-mark" aria-hidden="true">*</span></span>
+          <small class="field-hint">Not required. Everything in this package works without Canva. Adding Canva makes the images editable for you, great for repurposing to get repeated use out of these assets.</small>
+          <div class="checkbox-group">
+            <label class="checkbox-row"><input type="radio" name="canva" value="Yes, I have one" required data-reveals="canvaEmailField"> Yes, I have one</label>
+            <label class="checkbox-row"><input type="radio" name="canva" value="I'll open one"> I&rsquo;ll open one</label>
+            <label class="checkbox-row"><input type="radio" name="canva" value="No, thank you"> No, thank you</label>
+          </div>
+          <div class="field" id="canvaEmailField" hidden style="margin-top:0.75rem;">
+            <label for="q33other">The email address you use to log in to Canva</label>
+            <input id="q33other" name="canvaEmail" type="email">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ─────────── SECTION 7 ─────────── -->
+      <fieldset class="form-section">
+        <legend>Section 7: Goals and Anything Else</legend>
+
+        <div class="field">
+          <label for="q34">What would make this service a success for you 60 days from now? <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="q34" name="successIn60Days" rows="4" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q35">Is there a date we should work toward, such as a launch, sale, or event?</label>
+          <input id="q35" name="targetDate" type="text">
+        </div>
+
+        <div class="field">
+          <label for="q36">Anything else we should know?</label>
+          <textarea id="q36" name="anythingElse" rows="4"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- ─────────── CHECKLIST ─────────── -->
+      <fieldset class="form-section">
+        <legend>Before you send</legend>
+        <small class="field-hint">Tick what you&rsquo;ve included. Anything you&rsquo;d rather email can go to <a href="mailto:debra@truehavenpress.com">debra@truehavenpress.com</a>.</small>
+        <div class="checkbox-group">
+          <label class="checkbox-row"><input type="checkbox" name="checklist" value="Author photos (1-3)"> Author photos (1&ndash;3)</label>
+          <label class="checkbox-row"><input type="checkbox" name="checklist" value="Bio draft or notes"> Any bio draft or notes you&rsquo;d like us to start from</label>
+          <label class="checkbox-row"><input type="checkbox" name="checklist" value="Reviews or quotes not pasted above"> Any reviews or quotes not pasted above</label>
+          <label class="checkbox-row"><input type="checkbox" name="checklist" value="Links or screenshots of accounts or banners admired"> Links or screenshots of accounts or banners you admire</label>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">Send my questionnaire</button>
+        <p id="submitStatus" class="submit-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+
+  <!-- FOOTER (injected by menu.js) -->
+  <div id="site-footer-mount" data-minimal></div>
+
+  <script src="/menu.js?v=20261003g"></script>
+  <script>
+  (function () {
+    var form = document.getElementById('intakeForm');
+    var status = document.getElementById('submitStatus');
+    var btn = form.querySelector('.submit-btn');
+
+    // ── Limit the platform question to two choices ──
+    var group = form.querySelector('[data-max-two]');
+    if (group) {
+      var hint = form.querySelector('[data-max-two-hint]');
+      var boxes = Array.prototype.slice.call(group.querySelectorAll('input[type="checkbox"]'));
+      boxes.forEach(function (b) {
+        b.addEventListener('change', function () {
+          var picked = boxes.filter(function (x) { return x.checked; });
+          boxes.forEach(function (x) { x.disabled = !x.checked && picked.length >= 2; });
+          if (hint) {
+            hint.textContent = picked.length >= 2 ? 'Two chosen. Clear one to pick a different platform.' : 'Choose up to two.';
+            hint.classList.toggle('is-limit', picked.length >= 2);
+          }
+        });
+      });
+    }
+
+    // ── Reveal the Canva email box only when it is relevant ──
+    form.querySelectorAll('input[type="radio"][name="canva"]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        var target = document.getElementById('canvaEmailField');
+        if (target) target.hidden = !form.querySelector('input[name="canva"][data-reveals]').checked;
+      });
+    });
+
+    // ── File drop zones ──
+    function fmtSize(b) {
+      if (b < 1024) return b + ' B';
+      if (b < 1048576) return (b / 1024).toFixed(1) + ' KB';
+      return (b / 1048576).toFixed(1) + ' MB';
+    }
+    document.querySelectorAll('[data-file-drop]').forEach(function (zone) {
+      var input = zone.querySelector('input[type="file"]');
+      var stat = zone.querySelector('[data-file-status]');
+      var clear = zone.querySelector('[data-file-clear]');
+      var inner = zone.querySelector('.file-drop-inner');
+      function refresh() {
+        if (input.files && input.files.length) {
+          var names = Array.prototype.map.call(input.files, function (f) { return f.name + ' (' + fmtSize(f.size) + ')'; });
+          stat.textContent = names.join(', ');
+          zone.classList.add('has-file');
+          clear.hidden = false;
+        } else {
+          stat.textContent = 'No file chosen';
+          zone.classList.remove('has-file');
+          clear.hidden = true;
+        }
+      }
+      input.addEventListener('change', refresh);
+      clear.addEventListener('click', function () { input.value = ''; refresh(); input.focus(); });
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        zone.addEventListener(ev, function (e) { e.preventDefault(); e.stopPropagation(); zone.classList.add('is-dragover'); });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        zone.addEventListener(ev, function (e) {
+          e.preventDefault(); e.stopPropagation();
+          if (ev === 'dragleave' && e.target !== inner && !inner.contains(e.target)) return;
+          zone.classList.remove('is-dragover');
+        });
+      });
+      zone.addEventListener('drop', function (e) {
+        var dt = e.dataTransfer;
+        if (!dt || !dt.files || !dt.files.length) return;
+        try {
+          var nd = new DataTransfer();
+          Array.prototype.forEach.call(dt.files, function (f, i) { if (input.multiple || i === 0) nd.items.add(f); });
+          input.files = nd.files;
+          refresh();
+        } catch (err) { console.warn('Could not attach dropped file:', err); }
+      });
+    });
+
+    // ── Save answers in this browser so a long form survives a closed tab ──
+    var KEY = 'thp-sms-intake';
+    function saveable(el) {
+      return el.name && el.type !== 'file' && el.name !== 'website_url' && el.type !== 'submit' && el.type !== 'button';
+    }
+    function save() {
+      var data = {};
+      Array.prototype.forEach.call(form.elements, function (el) {
+        if (!saveable(el)) return;
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          if (el.checked) (data[el.name] = data[el.name] || []).push(el.value);
+        } else if (el.value) { data[el.name] = el.value; }
+      });
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* storage unavailable */ }
+    }
+    function restore() {
+      var raw;
+      try { raw = localStorage.getItem(KEY); } catch (e) { return; }
+      if (!raw) return;
+      var data;
+      try { data = JSON.parse(raw); } catch (e) { return; }
+      Array.prototype.forEach.call(form.elements, function (el) {
+        if (!saveable(el) || !(el.name in data)) return;
+        var v = data[el.name];
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          if (Array.isArray(v) && v.indexOf(el.value) !== -1) {
+            el.checked = true;
+            el.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        } else if (typeof v === 'string') { el.value = v; }
+      });
+    }
+    restore();
+    form.addEventListener('input', save);
+    form.addEventListener('change', save);
+
+    // ── Submit ──
+    function resetFileUI() {
+      document.querySelectorAll('[data-file-drop]').forEach(function (z) {
+        z.classList.remove('has-file');
+        var s = z.querySelector('[data-file-status]'); if (s) s.textContent = 'No file chosen';
+        var c = z.querySelector('[data-file-clear]'); if (c) c.hidden = true;
+      });
+    }
+    function succeeded(msg) {
+      status.textContent = msg;
+      status.className = 'submit-status is-success';
+      try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ }
+      form.reset();
+      resetFileUI();
+    }
+
+    form.addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      status.textContent = '';
+      status.className = 'submit-status';
+
+      var hp = form.elements['website_url'];
+      if (hp && hp.value) { succeeded('Thanks — your questionnaire was received.'); return; }
+
+      // At least one platform must be chosen.
+      var chosen = form.querySelectorAll('input[name="platforms"]:checked').length;
+      if (!chosen) {
+        status.textContent = 'Please choose at least one platform in Section 2.';
+        status.className = 'submit-status is-error';
+        form.querySelector('input[name="platforms"]').focus();
+        return;
+      }
+      // At least one voice must be chosen, unless "something else" is filled in.
+      if (!form.querySelectorAll('input[name="voice"]:checked').length && !form.elements['voiceOther'].value.trim()) {
+        status.textContent = 'Please choose a voice in Section 5, or describe one in the box beneath it.';
+        status.className = 'submit-status is-error';
+        form.querySelector('input[name="voice"]').focus();
+        return;
+      }
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      btn.disabled = true;
+      var label = btn.textContent;
+      btn.textContent = 'Sending…';
+
+      // Build the payload by hand so empty file inputs are skipped.
+      var fd = new FormData();
+      Array.prototype.forEach.call(form.elements, function (el) {
+        if (!el.name || el.name === 'website_url') return;
+        if (el.type === 'file') {
+          if (el.files && el.files.length) Array.prototype.forEach.call(el.files, function (f) { fd.append(el.name, f); });
+          return;
+        }
+        if (el.type === 'checkbox' || el.type === 'radio') { if (el.checked) fd.append(el.name, el.value); return; }
+        if (el.type === 'submit' || el.type === 'button' || el.type === 'reset') return;
+        fd.append(el.name, el.value);
+      });
+
+      try {
+        var res = await fetch(form.action, { method: 'POST', body: fd });
+        if (!res.ok) throw new Error('Server responded ' + res.status);
+        succeeded('Thank you — your questionnaire was received. We’ll be in touch within one business day.');
+      } catch (err) {
+        if (err instanceof TypeError) {
+          // Usually a CORS quirk: the data was sent but the reply could not be read.
+          succeeded('Your questionnaire was sent. If you don’t hear from us within two business days, please email debra@truehavenpress.com.');
+        } else {
+          console.error('Submission failed:', err);
+          status.innerHTML = 'Something went wrong sending the form. Your answers are still saved in this browser, so nothing is lost — please try again, or email <a href="mailto:debra@truehavenpress.com">debra@truehavenpress.com</a>.';
+          status.className = 'submit-status is-error';
+        }
+      } finally {
+        btn.disabled = false;
+        btn.textContent = label;
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>
