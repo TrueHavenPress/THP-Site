@@ -1,0 +1,11 @@
+# Files qikSites should neither serve nor write back. Same format as .gitignore:
+# one path per line, # comments, * globbing, ! to re-include.
+
+# Editing instructions and setup notes for the people (and Claude) who maintain the site
+claude.md
+SETUP.md
+.claude/
+
+# Working files
+_scratch/
+faq-content.md

@@ -19,10 +19,13 @@ before making large changes.
 ## Repo facts
 
 - **Stack:** vanilla HTML / CSS / a little JavaScript. Static, no build step.
-- **Deploys:** GitHub Pages from `main` → truehavenpress.com (CNAME).
+- **Hosting:** qikSites, synced from `main` (qikSites portal → Site → GitHub sync).
+  Whatever is on `main` is served as-is at the same path; there is no build step.
+  The site moved off GitHub Pages in October 2026. The domain is set up in Cloudflare
+  and the qikSites portal, not in this repo.
 - **Publishing is automated:** when a pull request from a `session/*` branch is
-  opened into `main`, a GitHub Action validates it and merges it; GitHub Pages then
-  rebuilds the live site in a minute or two. **You open the PR — the Action does the
+  opened into `main`, a GitHub Action validates it and merges it; qikSites then
+  picks up `main` and the live site updates in a minute or two. **You open the PR — the Action does the
   merge.** Never push directly to `main`.
 - **Brand:** a small literary press. Warm, literary, unfussy tone.
 
@@ -76,6 +79,11 @@ Do **not** show them the PR link or any GitHub URLs.
 a minute or two, then refresh and you'll see them."* The Action validates and merges
 on its own; you do not merge it yourself.
 
+About a minute later, check once that it went through (`gh pr view --json state`
+should say `MERGED`). If it didn't, the change is still saved: tell them in plain words
+that it's waiting on Aaron, and that nothing is lost. Don't leave them believing it's
+live when it isn't.
+
 ## Multiple people, one site
 
 More than one collaborator (Debra, London, others Aaron adds) may be editing the site
@@ -97,16 +105,18 @@ This is safe by design, as long as you always follow step 1 above:
 ## Guardrails
 
 - **Off-limits to the editor — operational safety, not ownership (the site is THP's):**
-  - `CNAME` and any DNS/domain config — a wrong value silently takes the whole site
-    offline, and it isn't a content edit. Domain changes go through Aaron directly.
+  - DNS, domain and hosting settings (Cloudflare, the qikSites portal). None of these
+    live in this repo; a wrong value can take the whole site offline, and it isn't a
+    content edit. Domain and hosting changes go through Aaron directly.
   - `.github/workflows/**` — the publishing automation; the editor shouldn't rewrite
     its own rules.
 
   If they ask for one of these, don't refuse coldly — explain it's handled directly
   (not through self-service) and to reach out to Aaron. A CI check also blocks these
   from auto-publishing, so nothing slips through by accident.
-- **This repo is public on GitHub** — required for GitHub Pages to serve it, and not
-  something to change. That means everything ever committed here is visible to anyone
+- **This repo is public on GitHub**, and qikSites publicly serves every file on `main`
+  except what `.qikignore` lists (plus `.git`, `.github`, `README` and the like). Add
+  any new notes or working files that aren't site pages to `.qikignore`. That means everything ever committed here is visible to anyone
   on the internet, forever (removing it later doesn't erase it from history). Ordinary
   site content is fine — that's the point. But never commit secrets (API keys,
   passwords), or anyone's private personal information that isn't already meant to be
@@ -156,7 +166,7 @@ ones you can handle yourselves:
   `winget install ...`); they may see a Windows permission pop-up — tell them to click Yes —
   then retry.
 - **A publish was blocked for touching a protected file:** editing a legal page is fine,
-  but `CNAME` or the automation isn't — tell them that specific part needs Aaron, and that
+  but the automation isn't — tell them that specific part needs Aaron, and that
   anything else in the change can still go through.
 - **A publish fails because someone else's change landed on `main` first:** merge the
   latest `main` into the branch and retry (see "Multiple people, one site" above); only
@@ -182,14 +192,32 @@ Two rules that never bend:
 `launch.json` is a legacy preview config (python http.server on :8765). Harmless — you
 can use it or just run your own preview server as above.
 
-## Stylesheet and script caching (Cloudflare)
+## Hosting, DNS and caching
 
-truehavenpress.com is served through Cloudflare, which caches `styles.css`, `menu.js`,
-and `qikfilter.js` for about 4 hours regardless of GitHub's shorter setting. Every page
-therefore links them with a version tag, e.g. `styles.css?v=20260907`. **Whenever you
-change any of those three files, bump the tag on every page** (same date-style value in
-all `*.html` and `insights/*.html`) in the same change set, or the edit will not reach
-visitors until Cloudflare's cache expires. HTML pages are not cached by Cloudflare.
+DNS for truehavenpress.com is in THP's Cloudflare account, in front of qikSites:
+
+- `truehavenpress.com` is a **proxied (orange cloud)** CNAME to `qikhost.qiksites.io`.
+  Visitors reach THP's Cloudflare first, then qikSites (which runs on its own
+  Cloudflare). **Keep it proxied:** the bestseller dashboard at `/bsc` is a Cloudflare
+  Worker behind Cloudflare Access (THP-BSC-temp repo) and only works on a proxied
+  hostname. This repo never contains anything under `/bsc`.
+- `www.truehavenpress.com` is a proxied placeholder (`192.0.2.1`) whose only job is a
+  Redirect Rule: `https://www.truehavenpress.com/*` → `https://truehavenpress.com/${1}`,
+  301, query string kept. Don't point `www` at qikSites with a CNAME; that gave error
+  1014. Test redirect changes in a private window, and as a 302 first: browsers
+  remember a 301, including a broken one.
+- Forms post to n8n (`doxdev.app.n8n.cloud`), not through this domain, and are never
+  cached.
+
+Caching happens in three places: the visitor's browser, THP's Cloudflare (static files
+such as CSS, JS and images; HTML pages are not cached by default), and qikSites. So
+every page links `styles.css`, `menu.js` and `qikfilter.js` with a version tag, e.g.
+`styles.css?v=20260907`. **Whenever you change any of those three files, bump the tag
+on every page** (same date-style value in all `*.html` and `insights/*.html`) in the
+same change set, or visitors keep the old file for hours. A replaced image keeps its
+old copy too unless it gets a new file name. If an edit is live on `main` but not
+showing, check in a private window first; if it's still stale there, a cache purge in
+Cloudflare is Aaron's to do.
 
 ## The 404 page suggests near-miss pages
 
@@ -202,3 +230,33 @@ a missing `.html`, or a typo — it offers the right page instead of a dead end.
 set.** A missing entry only costs a suggestion (nothing breaks), but a *stale*
 entry points visitors at a page that no longer exists. Add an alias whenever a
 menu label differs from the file name.
+
+## qikEdit and qik tags
+
+qikSites also has a visual editor, qikEdit, that edits regions marked with HTML
+comments such as `<!-- qik-portfolio -->` … `<!-- qik-portfolio-end -->` (the book list
+in `books.html`). Publishing from qikEdit commits straight to `main`, which is one more
+reason step 1 always starts from a fresh `main`. When editing a page by hand:
+
+- Keep every `<!-- qik… -->` comment exactly as it is. A deleted or altered one silently
+  removes that region from qikEdit.
+- Change only what the request needs. Don't re-indent or reformat whole files: qikEdit
+  writes back only the regions it changed, and a reformatted file turns the next
+  qikEdit save into a conflict.
+
+`QIKEDIT_DESIGN_GUIDE.md` is qikSites' reference for the tags; read it before adding
+new editable regions.
+
+## Forms post to one shared n8n webhook
+
+New forms post `multipart/form-data` to `https://doxdev.app.n8n.cloud/webhook/thp-form`
+(n8n workflow "THP - Website Forms (generic)"). Copy the pattern in
+`social-media-starter-intake.html`: a hidden `formName` input naming the form, the
+`website_url` honeypot, and the submit script that skips empty file inputs (n8n
+rejects zero-byte file parts). Each submission lands in Google Drive under
+"THP Forms - <formName>" as `answers.txt` plus any uploads, and the folder is shared
+with Debra and London, which emails them the link. Field names become the headings in
+`answers.txt` (`successIn60Days` → "Success In 60 Days"), so use readable camelCase
+names. No n8n change is needed for a new form; a different recipient list per form is
+set in the workflow's "Prepare Submission" step. The manuscript form
+(`submit-manuscript.html`) still uses its own older webhook.
