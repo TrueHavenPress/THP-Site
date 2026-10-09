@@ -8,10 +8,9 @@
 #   the site by talking to Claude Code. When she "publishes", the skill opens a
 #   pull request from a `session/...` branch into `main`. This workflow turns
 #   that PR into a live change automatically:
-#     1. Guardrail — if the PR touches a protected file (these workflows, or a
-#        CNAME file), it is NOT auto-merged; it's flagged for Aaron.
-#        CNAME is no longer used (the domain is set in Cloudflare and qikSites);
-#        it stays on the list so one can't be re-added without review.
+#     1. Guardrail — if the PR touches a protected file (these workflows), it is
+#        NOT auto-merged; it's flagged for Aaron. The domain itself is set in
+#        Cloudflare and qikSites, not in this repo.
 #        These are operational-safety fences, not ownership — the site is THP's.
 #     2. Sanity — changed HTML files must be non-empty and not truncated.
 #     3. Publish — if both pass, squash-merge to main. qikSites syncs from main
@@ -69,7 +68,7 @@ jobs:
           # Canonical list mirrors `doNotTouch` in truehavenpress-marketplace/client.config.json.
           # Keep the two in sync if either changes. Legal pages are intentionally
           # NOT here — they're ordinary content the owner edits freely.
-          protected='^(CNAME$|\.github/workflows/)'
+          protected='^\.github/workflows/'
           if grep -E "$protected" changed.txt; then
             echo "blocked=true" >> "$GITHUB_OUTPUT"
           else
@@ -80,7 +79,7 @@ jobs:
         if: steps.guardrail.outputs.blocked == 'true'
         run: |
           gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body \
-            "🚧 This change touches a protected file (the domain config or the site automation). It will **not** auto-publish — Aaron needs to review it. Nothing is lost: your edit is safely saved and waiting."
+            "🚧 This change touches a protected file (the site's publishing automation). It will **not** auto-publish — Aaron needs to review it. Nothing is lost: your edit is safely saved and waiting."
           echo "::error::Protected file modified — refusing to auto-publish."
           exit 1
 
