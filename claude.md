@@ -186,28 +186,30 @@ can use it or just run your own preview server as above.
 
 ## Hosting, DNS and caching
 
-DNS for truehavenpress.com is in THP's Cloudflare account, but **the site itself does
-not pass through that account**:
+DNS for truehavenpress.com is in THP's Cloudflare account, in front of qikSites:
 
-- `truehavenpress.com` is a **DNS-only (grey cloud)** CNAME to `qikhost.qiksites.io`.
-  Visitors go straight to qikSites, which runs on its own Cloudflare. THP's Cloudflare
-  cache settings, Cache Rules and "Purge cache" have **no effect** on the site; page
-  and file caching is qikSites'. Never switch this record to proxied (orange): two
-  Cloudflare accounts can't chain, and the whole site would show error 1014.
+- `truehavenpress.com` is a **proxied (orange cloud)** CNAME to `qikhost.qiksites.io`.
+  Visitors reach THP's Cloudflare first, then qikSites (which runs on its own
+  Cloudflare). **Keep it proxied:** the bestseller dashboard at `/bsc` is a Cloudflare
+  Worker behind Cloudflare Access (THP-BSC-temp repo) and only works on a proxied
+  hostname. This repo never contains anything under `/bsc`.
 - `www.truehavenpress.com` is a proxied placeholder (`192.0.2.1`) whose only job is a
   Redirect Rule: `https://www.truehavenpress.com/*` → `https://truehavenpress.com/${1}`,
-  301, query string kept. Test redirect changes in a private window, and as a 302
-  first: browsers remember a 301, including a broken one.
-- Forms post to n8n (`doxdev.app.n8n.cloud`), not through Cloudflare, and are never
+  301, query string kept. Don't point `www` at qikSites with a CNAME; that gave error
+  1014. Test redirect changes in a private window, and as a 302 first: browsers
+  remember a 301, including a broken one.
+- Forms post to n8n (`doxdev.app.n8n.cloud`), not through this domain, and are never
   cached.
 
-Browsers and qikSites still cache `styles.css`, `menu.js` and `qikfilter.js`, so every
-page links them with a version tag, e.g. `styles.css?v=20260907`. **Whenever you
-change any of those three files, bump the tag on every page** (same date-style value in
-all `*.html` and `insights/*.html`) in the same change set, or returning visitors keep
-the old file. If an edit is live on `main` but not showing, check in a private window
-before assuming anything is wrong; if it's still stale there, the qikSites cache needs
-clearing, which is Aaron's to do.
+Caching happens in three places: the visitor's browser, THP's Cloudflare (static files
+such as CSS, JS and images; HTML pages are not cached by default), and qikSites. So
+every page links `styles.css`, `menu.js` and `qikfilter.js` with a version tag, e.g.
+`styles.css?v=20260907`. **Whenever you change any of those three files, bump the tag
+on every page** (same date-style value in all `*.html` and `insights/*.html`) in the
+same change set, or visitors keep the old file for hours. A replaced image keeps its
+old copy too unless it gets a new file name. If an edit is live on `main` but not
+showing, check in a private window first; if it's still stale there, a cache purge in
+Cloudflare is Aaron's to do.
 
 ## The 404 page suggests near-miss pages
 
