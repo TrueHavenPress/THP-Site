@@ -19,10 +19,12 @@ before making large changes.
 ## Repo facts
 
 - **Stack:** vanilla HTML / CSS / a little JavaScript. Static, no build step.
-- **Deploys:** GitHub Pages from `main` → truehavenpress.com (CNAME).
+- **Hosting:** qikSites, synced from `main` (qikSites portal → Site → GitHub sync).
+  Whatever is on `main` is served as-is at the same path; there is no build step.
+  The site moved off GitHub Pages in October 2026; the `CNAME` file is a leftover.
 - **Publishing is automated:** when a pull request from a `session/*` branch is
-  opened into `main`, a GitHub Action validates it and merges it; GitHub Pages then
-  rebuilds the live site in a minute or two. **You open the PR — the Action does the
+  opened into `main`, a GitHub Action validates it and merges it; qikSites then
+  picks up `main` and the live site updates in a minute or two. **You open the PR — the Action does the
   merge.** Never push directly to `main`.
 - **Brand:** a small literary press. Warm, literary, unfussy tone.
 
@@ -105,8 +107,8 @@ This is safe by design, as long as you always follow step 1 above:
   If they ask for one of these, don't refuse coldly — explain it's handled directly
   (not through self-service) and to reach out to Aaron. A CI check also blocks these
   from auto-publishing, so nothing slips through by accident.
-- **This repo is public on GitHub** — required for GitHub Pages to serve it, and not
-  something to change. That means everything ever committed here is visible to anyone
+- **This repo is public on GitHub**, and qikSites publicly serves every file on `main`
+  (only `.git`, `.github`, `README` and the like are skipped). That means everything ever committed here is visible to anyone
   on the internet, forever (removing it later doesn't erase it from history). Ordinary
   site content is fine — that's the point. But never commit secrets (API keys,
   passwords), or anyone's private personal information that isn't already meant to be
@@ -182,14 +184,30 @@ Two rules that never bend:
 `launch.json` is a legacy preview config (python http.server on :8765). Harmless — you
 can use it or just run your own preview server as above.
 
-## Stylesheet and script caching (Cloudflare)
+## Hosting, DNS and caching
 
-truehavenpress.com is served through Cloudflare, which caches `styles.css`, `menu.js`,
-and `qikfilter.js` for about 4 hours regardless of GitHub's shorter setting. Every page
-therefore links them with a version tag, e.g. `styles.css?v=20260907`. **Whenever you
+DNS for truehavenpress.com is in THP's Cloudflare account, but **the site itself does
+not pass through that account**:
+
+- `truehavenpress.com` is a **DNS-only (grey cloud)** CNAME to `qikhost.qiksites.io`.
+  Visitors go straight to qikSites, which runs on its own Cloudflare. THP's Cloudflare
+  cache settings, Cache Rules and "Purge cache" have **no effect** on the site; page
+  and file caching is qikSites'. Never switch this record to proxied (orange): two
+  Cloudflare accounts can't chain, and the whole site would show error 1014.
+- `www.truehavenpress.com` is a proxied placeholder (`192.0.2.1`) whose only job is a
+  Redirect Rule: `https://www.truehavenpress.com/*` → `https://truehavenpress.com/${1}`,
+  301, query string kept. Test redirect changes in a private window, and as a 302
+  first: browsers remember a 301, including a broken one.
+- Forms post to n8n (`doxdev.app.n8n.cloud`), not through Cloudflare, and are never
+  cached.
+
+Browsers and qikSites still cache `styles.css`, `menu.js` and `qikfilter.js`, so every
+page links them with a version tag, e.g. `styles.css?v=20260907`. **Whenever you
 change any of those three files, bump the tag on every page** (same date-style value in
-all `*.html` and `insights/*.html`) in the same change set, or the edit will not reach
-visitors until Cloudflare's cache expires. HTML pages are not cached by Cloudflare.
+all `*.html` and `insights/*.html`) in the same change set, or returning visitors keep
+the old file. If an edit is live on `main` but not showing, check in a private window
+before assuming anything is wrong; if it's still stale there, the qikSites cache needs
+clearing, which is Aaron's to do.
 
 ## The 404 page suggests near-miss pages
 
