@@ -108,7 +108,8 @@ This is safe by design, as long as you always follow step 1 above:
   (not through self-service) and to reach out to Aaron. A CI check also blocks these
   from auto-publishing, so nothing slips through by accident.
 - **This repo is public on GitHub**, and qikSites publicly serves every file on `main`
-  (only `.git`, `.github`, `README` and the like are skipped). That means everything ever committed here is visible to anyone
+  except what `.qikignore` lists (plus `.git`, `.github`, `README` and the like). Add
+  any new notes or working files that aren't site pages to `.qikignore`. That means everything ever committed here is visible to anyone
   on the internet, forever (removing it later doesn't erase it from history). Ordinary
   site content is fine — that's the point. But never commit secrets (API keys,
   passwords), or anyone's private personal information that isn't already meant to be
