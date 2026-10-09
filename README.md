@@ -15,7 +15,7 @@ You don't need to open this folder, click around the website's files, or know wh
 3. Claude will give you a **preview link** so you can see the change in your browser before it goes anywhere.
 4. Look at the preview. Ask for tweaks. Walk away and come back if you need to — preview links last as long as you need.
 5. When you're happy, tell Claude to publish.
-6. The site updates a few minutes later. (Aaron has a quick verification step in there — you don't have to do anything during that wait.)
+6. The site updates a few minutes later. (An automatic check runs first to make sure nothing is broken — you don't have to do anything during that wait.)
 
 A typical change is under a minute of conversation, then a few minutes of waiting for the live site to refresh.
 
@@ -55,15 +55,16 @@ Every change is recorded. Wrong colors, broken links, missing photos, a paragrap
 
 The only thing to be careful about is publishing something you're not quite ready for. The preview step exists to make that easy to avoid: look at it first, fix anything that's off, then say go.
 
-## Things Claude won't touch without you asking
+## What's yours to change
 
-A few things stay off-limits unless you ask for them specifically:
+Everything on the site — every page, including the **privacy policy** and **terms and conditions**. Claude just checks with you once before deleting a page or rewriting a big section.
 
-- The **privacy policy** and **terms and conditions** pages — legal copy, edited only on request.
-- The **domain configuration** (the part that points `truehavenpress.com` at this site) — Aaron's job.
-- The **automated parts** behind the scenes — same.
+Two things are handled by Aaron instead, because they aren't content and a wrong setting could take the site offline:
 
-If you genuinely want to update any of those, just say so plainly and Claude will confirm once before doing it.
+- The **domain and hosting setup** (what makes `truehavenpress.com` show this site).
+- The **automated publishing** behind the scenes.
+
+If you ask for one of those, Claude will explain and point you to Aaron.
 
 ## Who to talk to
 

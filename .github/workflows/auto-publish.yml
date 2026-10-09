@@ -8,13 +8,17 @@
 #   the site by talking to Claude Code. When she "publishes", the skill opens a
 #   pull request from a `session/...` branch into `main`. This workflow turns
 #   that PR into a live change automatically:
-#     1. Guardrail — if the PR touches a protected file (the CNAME/domain config
-#        or these workflows), it is NOT auto-merged; it's flagged for Aaron.
+#     1. Guardrail — if the PR touches a protected file (these workflows, or a
+#        CNAME file), it is NOT auto-merged; it's flagged for Aaron.
+#        CNAME is no longer used (the domain is set in Cloudflare and qikSites);
+#        it stays on the list so one can't be re-added without review.
 #        These are operational-safety fences, not ownership — the site is THP's.
 #     2. Sanity — changed HTML files must be non-empty and not truncated.
-#     3. Publish — if both pass, squash-merge to main. GitHub Pages (classic,
-#        "deploy from branch") then rebuilds truehavenpress.com within a minute
-#        or two. No deploy step is needed here.
+#     3. Publish — if both pass, squash-merge to main. qikSites syncs from main
+#        and updates truehavenpress.com within a minute or two. No deploy step
+#        is needed here. If the merge itself fails (usually another change to
+#        the same lines landed first), the PR gets a plain-language comment and
+#        stays open for Aaron; nothing is lost.
 #
 #   Only `session/*` branches are auto-handled. Aaron's own PRs are left alone.
 #
@@ -108,6 +112,11 @@ jobs:
 
       - name: Publish (squash-merge to main)
         run: |
-          gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
+          if ! gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --squash --delete-branch; then
+            gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body \
+              "⏸️ This change couldn't publish automatically, usually because another change to the same part of the site went live first. Your edit is saved here; Aaron will combine the two."
+            echo "::error::Merge failed — left open for Aaron."
+            exit 1
+          fi
           gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body \
             "✅ Published. The live site refreshes in a minute or two — give truehavenpress.com a refresh shortly."

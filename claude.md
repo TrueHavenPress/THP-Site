@@ -21,7 +21,8 @@ before making large changes.
 - **Stack:** vanilla HTML / CSS / a little JavaScript. Static, no build step.
 - **Hosting:** qikSites, synced from `main` (qikSites portal → Site → GitHub sync).
   Whatever is on `main` is served as-is at the same path; there is no build step.
-  The site moved off GitHub Pages in October 2026; the `CNAME` file is a leftover.
+  The site moved off GitHub Pages in October 2026. The domain is set up in Cloudflare
+  and the qikSites portal, not in this repo.
 - **Publishing is automated:** when a pull request from a `session/*` branch is
   opened into `main`, a GitHub Action validates it and merges it; qikSites then
   picks up `main` and the live site updates in a minute or two. **You open the PR — the Action does the
@@ -78,6 +79,11 @@ Do **not** show them the PR link or any GitHub URLs.
 a minute or two, then refresh and you'll see them."* The Action validates and merges
 on its own; you do not merge it yourself.
 
+About a minute later, check once that it went through (`gh pr view --json state`
+should say `MERGED`). If it didn't, the change is still saved: tell them in plain words
+that it's waiting on Aaron, and that nothing is lost. Don't leave them believing it's
+live when it isn't.
+
 ## Multiple people, one site
 
 More than one collaborator (Debra, London, others Aaron adds) may be editing the site
@@ -99,8 +105,9 @@ This is safe by design, as long as you always follow step 1 above:
 ## Guardrails
 
 - **Off-limits to the editor — operational safety, not ownership (the site is THP's):**
-  - `CNAME` and any DNS/domain config — a wrong value silently takes the whole site
-    offline, and it isn't a content edit. Domain changes go through Aaron directly.
+  - DNS, domain and hosting settings (Cloudflare, the qikSites portal). None of these
+    live in this repo; a wrong value can take the whole site offline, and it isn't a
+    content edit. Domain and hosting changes go through Aaron directly.
   - `.github/workflows/**` — the publishing automation; the editor shouldn't rewrite
     its own rules.
 
@@ -159,7 +166,7 @@ ones you can handle yourselves:
   `winget install ...`); they may see a Windows permission pop-up — tell them to click Yes —
   then retry.
 - **A publish was blocked for touching a protected file:** editing a legal page is fine,
-  but `CNAME` or the automation isn't — tell them that specific part needs Aaron, and that
+  but the automation isn't — tell them that specific part needs Aaron, and that
   anything else in the change can still go through.
 - **A publish fails because someone else's change landed on `main` first:** merge the
   latest `main` into the branch and retry (see "Multiple people, one site" above); only
@@ -223,6 +230,22 @@ a missing `.html`, or a typo — it offers the right page instead of a dead end.
 set.** A missing entry only costs a suggestion (nothing breaks), but a *stale*
 entry points visitors at a page that no longer exists. Add an alias whenever a
 menu label differs from the file name.
+
+## qikEdit and qik tags
+
+qikSites also has a visual editor, qikEdit, that edits regions marked with HTML
+comments such as `<!-- qik-portfolio -->` … `<!-- qik-portfolio-end -->` (the book list
+in `books.html`). Publishing from qikEdit commits straight to `main`, which is one more
+reason step 1 always starts from a fresh `main`. When editing a page by hand:
+
+- Keep every `<!-- qik… -->` comment exactly as it is. A deleted or altered one silently
+  removes that region from qikEdit.
+- Change only what the request needs. Don't re-indent or reformat whole files: qikEdit
+  writes back only the regions it changed, and a reformatted file turns the next
+  qikEdit save into a conflict.
+
+`QIKEDIT_DESIGN_GUIDE.md` is qikSites' reference for the tags; read it before adding
+new editable regions.
 
 ## Forms post to one shared n8n webhook
 
