@@ -4,6 +4,15 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 <script>(function(w, d, t, u, o) {w[u] = w[u] || [], o.ts = (new Date).getTime();var n = d.createElement(t);n.src = "https://bat.bing.net/bat.js?ti=" + o.ti + ("uetq" != u ? "&q=" + u : ""),n.async = 1, n.onload = n.onreadystatechange = function() {var s = this.readyState;s && "loaded" !== s && "complete" !== s ||(o.q = w[u], w[u] = new UET(o), w[u].push("pageLoad"),n.onload = n.onreadystatechange = null)};var i = d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n, i);})(window, document, "script", "uetq", {ti: "343278560",enableAutoSpaTracking: true});</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18393134229"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18393134229');
+</script>
 <meta name='robots' content='max-image-preview:large' />
 
 <title>Submit Your Manuscript – True Haven Press</title>
@@ -553,6 +562,8 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
       if (!res.ok) {
         throw new Error('Server responded ' + res.status);
       }
+      // Google Ads conversion: a real submission reached the server.
+      if (typeof gtag === 'function') { gtag('event', 'submit_lead_form'); }
       status.textContent = 'Thanks — your submission was received. We\'ll review it and get back to you soon.';
       status.classList.add('is-success');
       form.reset();
@@ -569,6 +580,7 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
       // Treat this as a probable success but warn the user honestly.
       if (err instanceof TypeError) {
         console.warn('Network/CORS error — submission was sent but response was unreadable:', err);
+        if (typeof gtag === 'function') { gtag('event', 'submit_lead_form'); }
         status.textContent = 'Your submission was sent. If you don\'t hear from us within 2 business days, please email managingeditor@truehavenpress.com.';
         status.classList.add('is-success');
         form.reset();
