@@ -308,6 +308,11 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
             <label class="checkbox-row">
               <input type="checkbox" name="editingTypes" value="Editing Already Completed"> Editing Already Completed
             </label>
+            <!-- Shown only when "Which best describes you?" is the matching value.
+                 Starts hidden inline so it never flashes before the script runs. -->
+            <label class="checkbox-row" data-show-when-describes="Business Owner Writing Lead Magnet" style="display:none">
+              <input type="checkbox" name="editingTypes" value="Ghostwriting from my business materials (business owners)"> Ghostwriting from my business materials (business owners)
+            </label>
           </div>
         </div>
 
@@ -431,6 +436,26 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
     field.addEventListener('input', refresh);
     refresh();
   });
+
+  // ── Conditional options that depend on "Which best describes you?" ──
+  // A row declares the value it belongs to; it is shown only for that value.
+  // Hiding also clears the answer, so an option the author can no longer see
+  // is never submitted because they ticked it before changing their mind.
+  const describesField = document.getElementById('f-fiction');
+  const conditionalRows = document.querySelectorAll('[data-show-when-describes]');
+  if (describesField && conditionalRows.length) {
+    const syncConditionalRows = function () {
+      conditionalRows.forEach(function (row) {
+        const show = row.getAttribute('data-show-when-describes') === describesField.value;
+        row.style.display = show ? '' : 'none';
+        if (!show) {
+          row.querySelectorAll('input').forEach(function (input) { input.checked = false; });
+        }
+      });
+    };
+    describesField.addEventListener('change', syncConditionalRows);
+    syncConditionalRows();
+  }
 
   // ── File drop zones: drag-and-drop, filename display, clear button ──
   function fmtSize(bytes) {
