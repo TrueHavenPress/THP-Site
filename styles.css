@@ -21,6 +21,7 @@
   --color-accent-dark:  #5a3527;
   --color-primary-dark: #5a3527;
   --color-tertiary:     #cbb299;
+  --color-hero-brown:   #4c3024;
   --color-contrast:     #4b5236;
   --color-bg:           #ffffff;
   --color-bg-alt:       #f6f3ee;
@@ -3062,3 +3063,158 @@ body.faq-page .faq-answer a:hover {
 .services-card-stretch::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .services-card-stretch:hover { color: var(--color-accent); text-decoration: none; }
 .services-card-stretch:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 3px; }
+
+/* ============================================================
+   Two-part hero — Home, Publishing Services Overview, About
+   Left: brown text block. Right: illustration with a navy
+   resources strip laid over its lower edge.
+   ============================================================ */
+.thp-hero {
+  display: flex;
+  background: var(--color-hero-brown);
+}
+
+.thp-hero-text {
+  /* Pinned rather than a grow ratio — an explicit basis holds the split
+     exactly, instead of leaving it to each item's automatic minimum. */
+  flex: 0 0 55%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  padding: 64px clamp(24px, 5vw, 72px);
+  color: #ffffff;
+
+  /* Shared measure for every line in the column. Each child is capped at
+     this and centered with auto side margins, so the block sits centred in
+     the brown panel while the text itself stays left-aligned.
+     600px is the narrowest that still keeps the headline on four lines;
+     below it the hero grows taller and crops the illustration further. */
+  --hero-measure: 600px;
+}
+
+/* Each line takes the full column before the measure caps it, so all four
+   resolve to the same width and the auto margins centre them as one block.
+   Without the explicit width, an auto margin cancels the flex stretch and
+   every line would centre on its own text instead. */
+.thp-hero-text > * {
+  width: 100%;
+}
+
+.thp-hero-eyebrow {
+  margin: 0 auto;
+  max-width: var(--hero-measure);
+  color: var(--color-tertiary);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+}
+
+.thp-hero-title {
+  margin: 0 auto;
+  max-width: var(--hero-measure);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(38px, 4.6vw, 58px);
+  line-height: 1.12;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.thp-hero-title span { display: block; }
+
+.thp-hero-text p:not(.thp-hero-eyebrow) {
+  margin: 0 auto;
+  max-width: var(--hero-measure);
+  font-size: 19px;
+  line-height: 1.6;
+  color: #f6efe9;
+}
+
+.thp-hero-art {
+  flex: 0 0 45%;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Absolute so the strip below can sit over the image rather than beside it. */
+.thp-hero-art img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+}
+
+.thp-hero-resources {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 20px;
+  background: rgba(24, 36, 112, 0.82);
+}
+
+.thp-hero-resources-label {
+  margin: 0;
+  text-align: center;
+  color: var(--color-tertiary);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.thp-hero-resources-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.thp-hero-resources-links a {
+  padding: 8px 14px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.thp-hero-resources-links a:hover,
+.thp-hero-resources-links a:focus {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.thp-hero-resources-links a:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Phones: stack the parts and drop the strip below the image, where it
+   needs a solid background because there is no longer art behind it. */
+@media (max-width: 760px) {
+  .thp-hero { flex-direction: column; }
+  .thp-hero-text,
+  .thp-hero-art { flex: 0 0 auto; }
+
+  .thp-hero-art img {
+    position: static;
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  .thp-hero-resources {
+    position: static;
+    background: var(--color-secondary);
+  }
+}
