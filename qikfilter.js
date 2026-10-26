@@ -20,6 +20,11 @@
  *                                               (index 0 = date, index 1 = by author)
  *   data-qikfilter-toggle="field:All|Opt1|…" — genre filter buttons
  *   data-qikfilter-author-field="author"     — data-* key for author (default: "author")
+ *   data-qikfilter-spread="3"                — in the date view, keep at least this
+ *                                               many items between two by the same
+ *                                               author (omit or 0 to leave order alone)
+ *   data-qikfilter-spread-only="Name|Name"   — limit the spacing to these authors;
+ *                                               omit to apply it to every author
  */
 (function () {
   'use strict';
@@ -56,6 +61,36 @@
     var db = Date.parse(b.data.date || '');
     if (!isNaN(da) && !isNaN(db)) return dir === 'asc' ? da - db : db - da;
     return 0;
+  }
+
+  // Keep one author's books from bunching up in the date view. Walks the
+  // already-sorted list and takes the next item whose author has not appeared
+  // in the last `gap` slots, so the order stays as close to the sort as the
+  // spacing allows. When only same-author items are left it places them
+  // anyway, rather than dropping any.
+  function spreadByField(items, gap, field, only) {
+    if (!gap || gap < 1) return items;
+    var scoped = only && only.length;
+    function applies(value) {
+      return !scoped || only.indexOf(value) !== -1;
+    }
+    var queue = items.slice();
+    var out = [];
+    while (queue.length) {
+      var pick = 0;
+      for (var i = 0; i < queue.length; i++) {
+        var value = (queue[i].data[field] || '').toLowerCase();
+        var tooClose = false;
+        if (applies(value)) {
+          for (var k = Math.max(0, out.length - gap); k < out.length; k++) {
+            if ((out[k].data[field] || '').toLowerCase() === value) { tooClose = true; break; }
+          }
+        }
+        if (!tooClose) { pick = i; break; }
+      }
+      out.push(queue.splice(pick, 1)[0]);
+    }
+    return out;
   }
 
   function compareByAuthorLastName(a, b) {
@@ -116,6 +151,8 @@
     var viewLabels     = (container.getAttribute('data-qikfilter-view-toggle') || '').split('|').map(function (s) { return s.trim(); }).filter(Boolean);
     var toggleConfig   = parseToggleAttr(container.getAttribute('data-qikfilter-toggle'));
     var authorField    = container.getAttribute('data-qikfilter-author-field') || 'author';
+    var spreadGap      = parseInt(container.getAttribute('data-qikfilter-spread'), 10) || 0;
+    var spreadOnly     = (container.getAttribute('data-qikfilter-spread-only') || '').split('|').map(function (s) { return s.trim().toLowerCase(); }).filter(Boolean);
 
     // Collect original book card elements
     var allItems = [];
@@ -338,7 +375,9 @@
         renderByAuthor(visible.slice().sort(compareByAuthorLastName));
       } else {
         // Date view (default): sort by date descending, flat list
-        renderFlat(visible.slice().sort(function (a, b) { return compareByDate(a, b, sortDir); }));
+        renderFlat(spreadByField(
+          visible.slice().sort(function (a, b) { return compareByDate(a, b, sortDir); }),
+          spreadGap, authorField, spreadOnly));
       }
     }
 
