@@ -48,11 +48,28 @@
    Posts to the form's Mailchimp action URL (when set) and
    redirects to the page's data-thank-you URL on completion.
    Falls back to a straight redirect if no action is set.
+
+   The forms carry novalidate so the browser never submits them the
+   old way and leaves this handler in charge. That also turns off the
+   automatic check on the required fields, so we ask for it here: an
+   incomplete form stops, points at the first field that needs filling
+   in, and never reaches the thank-you page.
    ============================================================ */
 (function () {
   document.querySelectorAll('form.lead-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+        if (typeof form.reportValidity === 'function') {
+          form.reportValidity();
+        } else {
+          var firstBad = form.querySelector(':invalid');
+          if (firstBad && firstBad.focus) { firstBad.focus(); }
+        }
+        return;
+      }
+
       var action = form.getAttribute('action');
       var dest = form.getAttribute('data-thank-you');
       var go = function () { if (dest) window.location.href = dest; };
@@ -151,6 +168,27 @@
   ].join('\n');
 
   existing.outerHTML = FOOTER_HTML;
+})();
+
+/* ============================================================
+   On the homepage only, every link that would take a visitor
+   somewhere else opens in a new tab, so the homepage itself stays
+   open behind them. The links written into the page already say so;
+   this covers the footer, which is built above and shared by every
+   page. Phone and email links are left alone — handing those to a
+   blank tab helps nobody.
+   ============================================================ */
+(function () {
+  var path = window.location.pathname.replace(/index\.html$/, '');
+  if (path !== '/' && path !== '') { return; }
+
+  document.querySelectorAll('footer a[href]').forEach(function (a) {
+    var href = a.getAttribute('href') || '';
+    if (/^(tel:|mailto:|#)/i.test(href) || a.target) { return; }
+    if (a.pathname === window.location.pathname && a.origin === window.location.origin) { return; }
+    a.target = '_blank';
+    a.rel = a.rel ? a.rel + ' noopener' : 'noopener';
+  });
 })();
 
 /* ============================================================
