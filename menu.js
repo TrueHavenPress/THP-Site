@@ -160,6 +160,7 @@
     '          <li><a href="/faq.html">FAQ</a></li>',
     '          <li><a href="/privacy-policy.html">Privacy Policy</a></li>',
     '          <li><a href="/terms-and-conditions.html">Terms &amp; Conditions</a></li>',
+    '          <li><a href="/ai-use-policy.html">AI Use Policy</a></li>',
     '        </ul>',
     '      </div>',
     '    </div>',
