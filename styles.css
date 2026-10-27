@@ -181,6 +181,7 @@ a:hover {
   margin: 0 auto;
   padding: 0 1.5rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -216,6 +217,14 @@ a:hover {
 .main-navigation a:hover {
   color: var(--color-accent);
   text-decoration: none;
+}
+
+/* The menu items wrap within their own band as the screen narrows,
+   while the logo holds its place at the left and stays centered
+   against however many lines the menu takes. */
+.main-navigation {
+  flex: 1 1 420px;
+  min-width: 0;
 }
 
 /* ============================================================
@@ -988,6 +997,13 @@ a:hover {
     flex-direction: column;
     gap: 0.75rem;
     text-align: center;
+  }
+
+  /* Stacked now, so the nav takes a full row of its own and the phone
+     and button share the row below it, stacking only if they must. */
+  .main-navigation {
+    flex: 0 0 auto;
+    width: 100%;
   }
 
   .main-navigation > ul {
@@ -3217,4 +3233,679 @@ body.faq-page .faq-answer a:hover {
     position: static;
     background: var(--color-secondary);
   }
+}
+
+/* ============================================================
+   Homepage body — the twelve bands between the hero and the footer.
+   Only the homepage carries these classes.
+   ============================================================ */
+:root {
+  /* Brown-paper grain, drawn as an SVG filter so no image file is needed. */
+  --thp-paper:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.9' numOctaves='4' seed='7'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.33  0 0 0 0 0.2  0 0 0 0.35 0'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>"),
+    radial-gradient(ellipse at 20% 15%, rgba(255, 246, 225, 0.45), rgba(255, 246, 225, 0) 60%),
+    radial-gradient(ellipse at 85% 90%, rgba(120, 85, 50, 0.22), rgba(120, 85, 50, 0) 55%);
+  --thp-ink:    #1f2647;
+  --thp-muted:  #4a4f63;
+  --thp-rust:   #9b4535;
+}
+
+.thp-band { background: var(--color-bg-alt); }
+.thp-band--leather { background-color: #e6dfd1; background-image: var(--thp-paper); }
+.thp-band--parchment { background-color: var(--color-bg-alt); }
+.thp-band--plain { background-color: var(--color-bg-alt); }
+
+.thp-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 72px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.thp-wrap--tight { padding: 40px 24px; }
+.thp-wrap--split { flex-direction: row; flex-wrap: wrap; gap: 28px; }
+
+/* ── Section heading, with its gradient rule and star ───────── */
+.thp-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.thp-heading h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(30px, 3.4vw, 42px);
+  line-height: 1.1;
+  color: var(--thp-ink);
+  text-transform: uppercase;
+}
+
+.thp-kicker {
+  margin: 0 0 8px;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  color: var(--color-primary);
+}
+
+/* The rule runs a little past the heading. The overhang is capped to the
+   room actually left in the band, so a heading that fills the width can't
+   push the rule off the side of the page. */
+.thp-rule {
+  display: flex;
+  align-items: center;
+  width: calc(100% + var(--thp-rule-overhang, 48px));
+  max-width: 100vw;
+  margin-top: -4px;
+}
+
+@media (max-width: 980px) {
+  .thp-heading { --thp-rule-overhang: 0px; }
+}
+
+.thp-rule i {
+  flex: 1 1 auto;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--thp-ink), var(--color-tertiary));
+}
+
+.thp-rule svg { flex: 0 0 auto; margin-left: -2px; }
+
+.thp-band-lede {
+  margin: -16px 0 0;
+  max-width: 760px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--thp-muted);
+}
+
+/* ── Shared card and button shapes ──────────────────────────── */
+.thp-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 22px 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  border-left: 6px solid var(--thp-rust);
+  box-shadow: 0 8px 22px rgba(24, 36, 112, 0.18);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--thp-muted);
+}
+
+.thp-card h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+}
+
+.thp-card p { margin: 0; font-size: 16px; line-height: 1.6; }
+
+.thp-btn {
+  align-self: center;
+  padding: 14px 30px;
+  border-radius: 50px;
+  background: var(--thp-ink);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.thp-btn:hover, .thp-btn:focus { background: var(--color-secondary); color: #ffffff; }
+.thp-btn--outline { border: 2px solid var(--color-tertiary); }
+
+.thp-pill {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 12px 22px;
+  border-radius: 50px;
+  background: var(--color-tertiary);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.thp-pill:hover, .thp-pill:focus { background: #ffffff; }
+
+.thp-arrow-link {
+  margin-top: auto;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+/* ── 1. Retailer marquee ────────────────────────────────────── */
+.thp-retailers {
+  background: #ffffff;
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+  padding: 30px 0;
+}
+
+/* The duration is set so the logos drift at the same pace whatever the
+   list length: roughly 31 pixels a second. Change the logo count and
+   this needs changing with it. */
+.thp-retailers-track {
+  display: flex;
+  width: max-content;
+  animation: thp-marquee 104s linear infinite;
+}
+
+.thp-retailers-run {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  margin: 0;
+  padding: 0 24px;
+  list-style: none;
+}
+
+.thp-retailers-run img { display: block; width: 200px; height: 60px; object-fit: contain; }
+
+/* Shifting by exactly one run of three lands a duplicate where the first
+   one began, so the restart is invisible. Two runs always trail off on a
+   monitor wider than a single run; three never do. */
+@keyframes thp-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.3333%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thp-retailers-track { animation: none; }
+}
+
+/* ── 2. New Releases ────────────────────────────────────────── */
+/* A shelf that drifts the opposite way to the retailer bar above it. */
+.thp-releases { overflow: hidden; }
+
+/* Same idea as the logo bar: the duration keeps the pace steady at
+   roughly 28 pixels a second as the number of covers changes. */
+.thp-releases-track {
+  display: flex;
+  width: max-content;
+  animation: thp-marquee-reverse 80s linear infinite;
+}
+
+/* Hovering or tabbing to a cover holds the shelf still, so the covers
+   stay easy to click. */
+.thp-releases:hover .thp-releases-track,
+.thp-releases:focus-within .thp-releases-track { animation-play-state: paused; }
+
+.thp-releases-run {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0;
+  padding: 0 12px;
+  list-style: none;
+}
+
+@keyframes thp-marquee-reverse {
+  from { transform: translateX(-33.3333%); }
+  to   { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thp-releases-track { animation: none; }
+}
+
+.thp-release {
+  display: block;
+  flex: 0 0 auto;
+  color: var(--thp-ink);
+  text-decoration: none;
+}
+
+/* Covers are all 500 tall but vary a little in width, so the frame
+   fixes the height and lets the width follow each cover's own shape.
+   Nothing is cropped, and the row still lines up top and bottom. */
+.thp-release img {
+  width: auto;
+  height: 255px;
+  max-width: 100%;
+  object-fit: contain;
+  box-shadow: -4px 0 0 rgba(0, 0, 0, 0.18) inset, 6px 10px 18px rgba(31, 38, 71, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.thp-release:hover img, .thp-release:focus-visible img {
+  transform: translateY(-4px);
+  box-shadow: -4px 0 0 rgba(0, 0, 0, 0.18) inset, 8px 14px 24px rgba(31, 38, 71, 0.38);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thp-release img { transition: none; }
+  .thp-release:hover img, .thp-release:focus-visible img { transform: none; }
+}
+
+/* ── 3. Who we publish ──────────────────────────────────────── */
+.thp-audience {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.thp-audience-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 34px;
+  border-radius: 6px;
+  color: #ffffff;
+}
+
+.thp-audience-card h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.thp-audience-card p { margin: 0; font-size: 16px; line-height: 1.6; }
+
+.thp-audience-card--navy  { background: var(--color-secondary); }
+.thp-audience-card--olive { background: var(--color-contrast); }
+.thp-audience-card--brown { background: var(--color-hero-brown); }
+.thp-audience-card .thp-pill { align-self: center; }
+.thp-audience-card--navy  .thp-pill { color: var(--color-secondary); }
+.thp-audience-card--olive .thp-pill { color: var(--color-contrast); }
+.thp-audience-card--brown .thp-pill { color: var(--color-hero-brown); }
+
+.thp-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  text-align: center;
+}
+
+.thp-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 18px;
+  border-radius: 6px;
+  background: rgba(246, 243, 238, 0.88);
+  font-size: 14px;
+  color: var(--thp-ink);
+}
+
+.thp-stat-figure {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+/* ── 4. What we evaluate ────────────────────────────────────── */
+.thp-evaluate {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.thp-evaluate strong,
+.thp-steps strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--thp-rust);
+}
+
+.thp-steps strong { color: var(--thp-ink); }
+
+@media (max-width: 760px) {
+  .thp-evaluate { grid-template-columns: 1fr; }
+}
+
+/* ── 5. How it works ────────────────────────────────────────── */
+/* The four steps run across the band; the reassurance note and the
+   submit button always sit beneath them, centered. */
+.thp-process {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.thp-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 1020px) {
+  .thp-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .thp-steps { grid-template-columns: 1fr; }
+}
+
+.thp-step-number {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--thp-rust);
+}
+
+.thp-process-aside {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.thp-note {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 30px;
+  border-radius: 16px;
+  border-left: 6px solid var(--thp-rust);
+  background: var(--color-contrast);
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(24, 36, 112, 0.18);
+}
+
+.thp-note h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.thp-note p { margin: 0; font-size: 16px; line-height: 1.6; }
+
+/* ── 6. Everything it takes ─────────────────────────────────── */
+.thp-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.thp-services .thp-card { gap: 12px; height: 100%; }
+
+/* ── 7. What we don't do ────────────────────────────────────── */
+.thp-nope {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 820px;
+}
+
+.thp-nope li { display: flex; align-items: flex-start; gap: 14px; }
+.thp-nope svg { flex: 0 0 auto; }
+.thp-nope span { font-size: 17px; line-height: 1.5; color: var(--thp-ink); }
+
+/* ── 8. Before You Sign form ────────────────────────────────── */
+.thp-guide {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 32px;
+  border-radius: 6px;
+  background: var(--color-hero-brown);
+  color: #ffffff;
+}
+
+.thp-guide-eyebrow {
+  margin: 0;
+  color: var(--color-tertiary);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+}
+
+.thp-guide h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.thp-guide-sub { margin: 0; font-size: 16px; line-height: 1.5; color: #d9dcec; }
+
+/* The shared .lead-form rules colour labels navy for the light funnel pages;
+   on this brown panel they need to be light. */
+.thp-guide label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.thp-guide input,
+.thp-guide select {
+  font: inherit;
+  font-weight: 400;
+  padding: 12px 14px;
+  border: 1px solid var(--color-tertiary);
+  border-radius: 6px;
+  background: var(--color-bg-alt);
+  color: var(--thp-ink);
+}
+
+.thp-guide-submit { border: none; cursor: pointer; min-height: 48px; margin-top: 6px; }
+
+/* Tan, to match the pills in the "Who we publish" cards: the label
+   takes the brown of the box behind it, and hover lightens the tan,
+   exactly as those pills do. */
+.thp-guide-submit,
+.thp-biz .thp-btn { background: var(--color-tertiary); color: var(--color-hero-brown); }
+
+.thp-guide-submit:hover, .thp-guide-submit:focus,
+.thp-biz .thp-btn:hover, .thp-biz .thp-btn:focus {
+  background: #ffffff;
+  color: var(--color-hero-brown);
+}
+
+/* ── 9. Testimonials ────────────────────────────────────────── */
+.thp-quotes { display: flex; flex-wrap: wrap; gap: 22px; }
+
+.thp-quote {
+  flex: 1 1 560px;
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+  padding: 34px;
+  border-radius: 6px;
+  background: rgba(246, 243, 238, 0.92);
+}
+
+.thp-quote--reverse { flex-direction: row-reverse; }
+
+/* Fixing the height and letting the width follow shows the whole cover,
+   with nothing trimmed off the top or bottom. */
+.thp-quote-cover {
+  flex: 0 0 auto;
+  width: auto;
+  height: 180px;
+  max-width: 100%;
+  object-fit: contain;
+  box-shadow: 0 6px 14px rgba(24, 36, 112, 0.25);
+}
+
+.thp-quote-body { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+
+.thp-quote blockquote {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1.45;
+  color: var(--thp-ink);
+}
+
+.thp-quote figcaption { font-size: 15px; color: var(--thp-muted); }
+.thp-quote figcaption strong { color: var(--thp-ink); }
+
+.thp-quotes-more { display: flex; justify-content: center; }
+
+.thp-quotes-more .thp-card {
+  align-items: center;
+  gap: 14px;
+  max-width: 640px;
+  padding: 26px 28px;
+  text-align: center;
+}
+
+.thp-quotes-more p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1.45;
+  color: var(--thp-ink);
+}
+
+/* ── 10. Business owner band ────────────────────────────────── */
+.thp-biz {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 40px clamp(24px, 4vw, 48px);
+  border-radius: 6px;
+  background: var(--color-hero-brown);
+  color: #ffffff;
+}
+
+.thp-biz-text { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+
+.thp-biz-text h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(26px, 3vw, 36px);
+  color: #ffffff;
+}
+
+.thp-biz-text p { margin: 0; font-size: 17px; line-height: 1.6; color: #f6efe9; }
+.thp-biz .thp-btn { align-self: center; }
+
+/* ── 11. Latest Insights ────────────────────────────────────── */
+.thp-insights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.thp-insight {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  border-radius: 6px;
+  background-color: #e6dfd1;
+  background-image: var(--thp-paper);
+  color: var(--thp-ink);
+  text-decoration: none;
+}
+
+.thp-insight img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--color-bg-alt);
+}
+
+.thp-insight-tag {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+}
+
+.thp-insight-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.thp-insight:hover .thp-insight-title { text-decoration: underline; }
+.thp-insights-more { align-self: center; margin-top: 0; }
+
+/* ── 12. Founder ────────────────────────────────────────────── */
+.thp-founder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  padding: 48px clamp(24px, 4vw, 56px);
+  border-radius: 6px;
+  background: var(--color-contrast);
+  color: #ffffff;
+}
+
+.thp-founder-photo {
+  flex: 0 0 180px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #2a3785;
+}
+
+.thp-founder-text { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+
+.thp-founder-text h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 38px);
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.thp-founder-text p { margin: 0; font-size: 17px; line-height: 1.7; color: #e9e4f2; }
+
+@media (max-width: 760px) {
+  .thp-wrap { padding: 48px 20px; }
+  .thp-quote, .thp-quote--reverse { flex-direction: column; align-items: flex-start; }
+  .thp-founder { justify-content: center; text-align: center; }
+  .thp-founder-text { align-items: center; }
 }
