@@ -285,6 +285,28 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
 
       <fieldset class="form-section">
         <div class="field">
+          <span class="label-as-block editing-question" id="ai-tools-question">Did you use any AI tools? (check any that apply) <span class="req-mark" aria-hidden="true">*</span></span>
+          <div class="checkbox-group" data-ai-use-group role="group" aria-labelledby="ai-tools-question">
+            <!-- "No" stands alone: ticking it clears the rest, and ticking
+                 any of the rest clears it. -->
+            <label class="checkbox-row">
+              <input type="checkbox" name="aiToolsUsed" value="No" data-ai-use-exclusive> No
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" name="aiToolsUsed" value="Yes, for brainstorming, outlining, or research"> Yes, for brainstorming, outlining, or research
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" name="aiToolsUsed" value="Yes, to draft some of the text"> Yes, to draft some of the text
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" name="aiToolsUsed" value="Yes, to edit or polish my own writing"> Yes, to edit or polish my own writing
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <div class="field">
           <span class="label-as-block editing-question">What kind of editing do you need?</span>
           <div class="checkbox-group">
             <label class="checkbox-row">
@@ -455,6 +477,39 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
     };
     describesField.addEventListener('change', syncConditionalRows);
     syncConditionalRows();
+  }
+
+  // ── AI use: one box must be ticked, and "No" is exclusive, so it and
+  //    a "Yes" can never be ticked together. ─────────────────────────
+  const aiGroup = document.querySelector('[data-ai-use-group]');
+  if (aiGroup) {
+    const aiBoxes = Array.prototype.slice.call(aiGroup.querySelectorAll('input[type="checkbox"]'));
+
+    aiBoxes.forEach(function (box) {
+      box.addEventListener('change', function () {
+        if (!box.checked) { return; }
+        if (box.hasAttribute('data-ai-use-exclusive')) {
+          aiBoxes.forEach(function (other) {
+            if (other !== box) { other.checked = false; }
+          });
+        } else {
+          aiBoxes.forEach(function (other) {
+            if (other.hasAttribute('data-ai-use-exclusive')) { other.checked = false; }
+          });
+        }
+      });
+    });
+
+    const syncAiUse = function () {
+      // The browser only enforces `required` on the box carrying it, so the
+      // group is held together with a custom message on the first one.
+      const anyChecked = aiBoxes.some(function (b) { return b.checked; });
+      aiBoxes[0].setCustomValidity(
+        anyChecked ? '' : 'Please choose at least one answer.');
+    };
+
+    aiBoxes.forEach(function (b) { b.addEventListener('change', syncAiUse); });
+    syncAiUse();
   }
 
   // ── File drop zones: drag-and-drop, filename display, clear button ──
