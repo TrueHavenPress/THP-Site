@@ -10,6 +10,10 @@
  *      typing that author's name into the search bar — stays on-page,
  *      visitor clears the search to return to the full list.
  *
+ * House rule, applied in both 2 and 3: whenever one author's books are
+ * shown on their own, they run earliest publication to latest, left to
+ * right, so a series reads in order. The mixed list stays newest first.
+ *
  * Container attributes:
  *   data-qikfilter                           — activates the component
  *   data-qikfilter-search="title,author"     — fields to search
@@ -91,6 +95,31 @@
       out.push(queue.splice(pick, 1)[0]);
     }
     return out;
+  }
+
+  // House rule: wherever a single author's books stand on their own — an
+  // author's own section, or the grid filtered down to just them — they
+  // read earliest publication to latest, left to right, so a series runs
+  // in reading order. Undated books trail the rest.
+  function compareByDateAscending(a, b) {
+    var da = a.data.date || '';
+    var db = b.data.date || '';
+    if (!da && !db) return 0;
+    if (!da) return 1;
+    if (!db) return -1;
+    if (da < db) return -1;
+    if (da > db) return 1;
+    return 0;
+  }
+
+  function isSingleAuthor(items, field) {
+    if (items.length < 2) return false;
+    var first = (items[0].data[field] || '').toLowerCase();
+    if (!first) return false;
+    for (var i = 1; i < items.length; i++) {
+      if ((items[i].data[field] || '').toLowerCase() !== first) return false;
+    }
+    return true;
   }
 
   function compareByAuthorLastName(a, b) {
@@ -373,6 +402,10 @@
       if (viewMode === 1) {
         // By Author: sort by last name A→Z, render with author section headers
         renderByAuthor(visible.slice().sort(compareByAuthorLastName));
+      } else if (isSingleAuthor(visible, authorField)) {
+        // One author's collection: earliest to latest. Spacing authors
+        // apart means nothing here, so it is skipped.
+        renderFlat(visible.slice().sort(compareByDateAscending));
       } else {
         // Date view (default): sort by date descending, flat list
         renderFlat(spreadByField(
@@ -411,8 +444,8 @@
         header.appendChild(label);
         container.insertBefore(header, noResults);
 
-        // Books under this author
-        groupMap[authorName].forEach(function (item) {
+        // Books under this author, earliest publication first
+        groupMap[authorName].sort(compareByDateAscending).forEach(function (item) {
           item.el.style.display = '';
           container.insertBefore(item.el, noResults);
         });
