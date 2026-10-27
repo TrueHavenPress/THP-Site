@@ -1,0 +1,50 @@
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="/media/logo.png" alt="True Haven Press">
+      </a>
+      <nav class="main-navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="has-dropdown">
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Publishing Services <span class="dropdown-caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="dropdown-menu">
+              <li><a href="services.html">Overview</a></li>
+              <li><a href="editing.html">Editing &amp; Proofreading</a></li>
+              <li><a href="marketing.html">Marketing Services</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Between the Lines <span class="dropdown-caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="dropdown-menu">
+              <li><a href="insights.html">Insights</a></li>
+              <li><a href="before-you-sign.html">Before You Sign</a></li>
+              <li><a href="business-owners.html">Business Owners</a></li>
+            </ul>
+          </li>
+          <li><a href="books.html">Bookstore</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="hero-inner">
+        <p class="hero-tagline">True Haven Press</p>
+        <h1>Terms &amp; Conditions</h1>
+      </div>
+    </section>
+
+    <!-- CONTENT SECTION -->
+    <section class="legal-section">
+      <div class="container legal-content">
+

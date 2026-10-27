@@ -1114,6 +1114,11 @@ body.about-page .wp-block-paragraph {
 .legal-content ul li {
   margin: 0.25em 0;
 }
+/* A single line that states the rule a policy turns on, set apart from
+   the paragraphs around it. */
+.legal-content p.legal-rule {
+  text-align: center;
+}
 
 /* Match the top breathing room between page hero and content with equivalent
    bottom space before the footer band. */
@@ -2224,9 +2229,12 @@ body.guide-on-the-way .footer-cta-buttons a[href*="tidycal"] {
   margin: 0;
   padding: 0;
 }
+/* Tightened from 0.9rem so the five links stand exactly as tall as the
+   brand column beside them. Adding or removing a link needs this
+   revisited. */
 .full-footer-links li {
   border-bottom: 1px solid rgba(255,255,255,0.18);
-  padding: 0.9rem 0;
+  padding: 0.42rem 0;
   line-height: 1.65;
 }
 .full-footer-links li:first-child { padding-top: 0; }
