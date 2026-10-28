@@ -252,8 +252,8 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
         </div>
 
         <div class="field">
-          <label for="f-fiction">Which best describes you?</label>
-          <select id="f-fiction" name="fictionOrNonfiction">
+          <label for="f-fiction">Which best describes you? <span class="req-mark" aria-hidden="true">*</span></label>
+          <select id="f-fiction" name="fictionOrNonfiction" required>
             <option value="">— Select —</option>
             <option value="Fiction Author">Fiction Author</option>
             <option value="Nonfiction Author">Nonfiction Author</option>
@@ -262,19 +262,19 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
         </div>
 
         <div class="field">
-          <label for="f-genre">Genre or Topic Area?</label>
-          <input id="f-genre" name="genre" type="text" placeholder="e.g. Thriller, Memoir, Self-help">
+          <label for="f-genre">Genre or Topic Area? <span class="req-mark" aria-hidden="true">*</span></label>
+          <input id="f-genre" name="genre" type="text" required placeholder="e.g. Thriller, Memoir, Self-help">
         </div>
 
         <div class="field">
-          <label for="f-about">What is your book about?</label>
-          <textarea id="f-about" name="bookAbout" rows="5" maxlength="750"></textarea>
+          <label for="f-about">What is your book about? <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="f-about" name="bookAbout" rows="5" maxlength="750" required></textarea>
           <small class="field-hint"><span data-char-count-for="f-about">750</span> characters remaining.</small>
         </div>
 
         <div class="field">
-          <label for="f-doctype">Document type you'll be submitting?</label>
-          <select id="f-doctype" name="documentType">
+          <label for="f-doctype">Document type you'll be submitting? <span class="req-mark" aria-hidden="true">*</span></label>
+          <select id="f-doctype" name="documentType" required>
             <option value="">— Select —</option>
             <option value="Word doc">Word doc</option>
             <option value="PDF">PDF</option>
@@ -307,8 +307,8 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
 
       <fieldset class="form-section">
         <div class="field">
-          <span class="label-as-block editing-question">What kind of editing do you need?</span>
-          <div class="checkbox-group">
+          <span class="label-as-block editing-question">What kind of editing do you need? <span class="req-mark" aria-hidden="true">*</span></span>
+          <div class="checkbox-group" data-required-group>
             <label class="checkbox-row">
               <input type="checkbox" name="editingTypes" value="Developmental Editing w/ Critique Report"> Developmental Editing w/ Critique Report
             </label>
@@ -471,7 +471,12 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
         const show = row.getAttribute('data-show-when-describes') === describesField.value;
         row.style.display = show ? '' : 'none';
         if (!show) {
-          row.querySelectorAll('input').forEach(function (input) { input.checked = false; });
+          row.querySelectorAll('input').forEach(function (input) {
+            if (!input.checked) return;
+            input.checked = false;
+            // Let any group validity listener know the answer went away.
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          });
         }
       });
     };
@@ -511,6 +516,21 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
     aiBoxes.forEach(function (b) { b.addEventListener('change', syncAiUse); });
     syncAiUse();
   }
+
+  // ── Checkbox groups that need at least one answer ──
+  // Same trick as above: the browser only enforces `required` on the box that
+  // carries it, so the group is held together by a custom message on the first
+  // box, which is always visible even when later rows are conditionally hidden.
+  document.querySelectorAll('[data-required-group]').forEach(function (group) {
+    const boxes = Array.prototype.slice.call(group.querySelectorAll('input[type="checkbox"]'));
+    if (!boxes.length) return;
+    const sync = function () {
+      const anyChecked = boxes.some(function (b) { return b.checked; });
+      boxes[0].setCustomValidity(anyChecked ? '' : 'Please choose at least one answer.');
+    };
+    boxes.forEach(function (b) { b.addEventListener('change', sync); });
+    sync();
+  });
 
   // ── File drop zones: drag-and-drop, filename display, clear button ──
   function fmtSize(bytes) {
