@@ -219,6 +219,24 @@ a:hover {
   text-decoration: none;
 }
 
+/* The Submit Manuscript button is just the last menu item, so it wraps
+   along with the rest instead of pinning the menu into one rigid row. */
+.main-navigation .nav-cta > a {
+  display: inline-block;
+  padding: 9px 18px;
+  border-radius: 50px;
+  background: var(--color-secondary);
+  color: #ffffff;
+  font-weight: 700;
+  white-space: nowrap;
+}
+/* Hover deepens to the darker blue the page headers already fade into. */
+.main-navigation .nav-cta > a:hover,
+.main-navigation .nav-cta > a:focus {
+  background: #0d1340;
+  color: #ffffff;
+}
+
 /* The menu items wrap within their own band as the screen narrows,
    while the logo holds its place at the left and stays centered
    against however many lines the menu takes. */
@@ -3224,6 +3242,36 @@ body.faq-page .faq-answer a:hover {
   outline-offset: 2px;
 }
 
+/* Side-by-side hero only. Here the strip is laid over the illustration and
+   has to hold its own against the drawing, so it goes solid and the links
+   become real buttons. Once the hero stacks (below), the strip sits on
+   plain space under the image and keeps its original lighter treatment. */
+@media (min-width: 761px) {
+  .thp-hero-resources {
+    gap: 10px;
+    padding: 22px 20px;
+    background: var(--color-secondary);
+    box-shadow: 0 -12px 26px rgba(24, 36, 112, 0.38);
+  }
+
+  .thp-hero-resources-label {
+    color: #ffffff;
+    font-size: 16px;
+  }
+
+  .thp-hero-resources-links a {
+    background: #ffffff;
+    color: var(--color-secondary);
+    font-size: 14px;
+  }
+
+  .thp-hero-resources-links a:hover,
+  .thp-hero-resources-links a:focus {
+    background: var(--color-bg-alt);
+    color: var(--color-secondary);
+  }
+}
+
 /* Phones: stack the parts and drop the strip below the image, where it
    needs a solid background because there is no longer art behind it. */
 @media (max-width: 760px) {
@@ -3365,7 +3413,7 @@ body.faq-page .faq-answer a:hover {
   align-self: center;
   padding: 14px 30px;
   border-radius: 50px;
-  background: var(--thp-ink);
+  background: var(--color-secondary);
   color: #ffffff;
   font-weight: 800;
   font-size: 15px;
@@ -3373,7 +3421,9 @@ body.faq-page .faq-answer a:hover {
   text-decoration: none;
 }
 
-.thp-btn:hover, .thp-btn:focus { background: var(--color-secondary); color: #ffffff; }
+/* Same pair as the Submit Manuscript button in the menu: the brighter
+   blue at rest, deepening on hover. */
+.thp-btn:hover, .thp-btn:focus { background: #0d1340; color: #ffffff; }
 .thp-btn--outline { border: 2px solid var(--color-tertiary); }
 
 .thp-pill {
