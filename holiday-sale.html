@@ -228,7 +228,7 @@
           <li>All materials presented for your approval.</li>
         </ul>
         <p class="hol-qual">Title must be in author&rsquo;s KDP account. Category, keywords, and book description can be updated on Amazon and IngramSpark, both included.</p>
-        <a class="hol-pick" href="https://www.paypal.com/ncp/payment/ASX69B7KQA2H8" target="_blank" rel="noopener">BUY NOW</a>
+        <a class="hol-pick" href="https://www.paypal.com/ncp/payment/ASX69B7KQA2H8" target="_blank" rel="noopener" data-value="199">BUY NOW</a>
       </div>
 
       <!-- ── Bestseller campaign ── -->
@@ -240,11 +240,11 @@
           <li>A fully managed 72-hour promotion built to drive a concentrated surge of downloads and push your title up the rankings.</li>
           <li>Positioned for bestseller status in up to 10 categories and bestseller lists.</li>
           <li>Your eBook put in front of more than 500,000 active readers, which typically yields 1,000 to 3,000 downloads.</li>
-          <li>A provenance kit of ranking screenshots, the bestseller badge applied to your covers on Amazon, and 4 to 6 marketing images showing off the badge.</li>
+          <li>A provenance kit of ranking screenshots, and the bestseller badge applied to your covers on Amazon.</li>
           <li>Become a #1 bestselling author, guaranteed.</li>
         </ul>
         <p class="hol-qual">Title must be in author&rsquo;s KDP account, eBook must be Select status, or eligible to be enrolled, and have at least 3 free days available for use. Not sure? <a href="https://tidycal.com/truehavenpress/bestseller-campaign-eligibility-check" target="_blank" rel="noopener">Schedule a brief consultation</a>.</p>
-        <a class="hol-pick" href="https://www.paypal.com/ncp/payment/GGA2LVX2TUGXE" target="_blank" rel="noopener">BUY NOW</a>
+        <a class="hol-pick" href="https://www.paypal.com/ncp/payment/GGA2LVX2TUGXE" target="_blank" rel="noopener" data-value="699">BUY NOW</a>
       </div>
 
       <!-- ── Holiday images ── -->
@@ -260,7 +260,7 @@
           <li>Option: tell us which retailer logos to include.</li>
         </ul>
         <p class="hol-qual">However you published, these images can be used on websites, social media, email marketing, and more.</p>
-        <a class="hol-pick" href="https://www.paypal.com/ncp/payment/H7VP32FSUU3LL" target="_blank" rel="noopener">BUY NOW</a>
+        <a class="hol-pick" href="https://www.paypal.com/ncp/payment/H7VP32FSUU3LL" target="_blank" rel="noopener" data-value="99">BUY NOW</a>
       </div>
 
     </div>
@@ -274,7 +274,7 @@
       <div class="hol-bundle-buy">
         <span class="hol-now">$899</span>
         <span class="hol-sep">Regularly $1,397. You save $498.</span>
-        <a class="hol-pick" href="https://www.paypal.com/ncp/payment/RQYYE5FLQ7NTJ" target="_blank" rel="noopener">BUY NOW</a>
+        <a class="hol-pick" href="https://www.paypal.com/ncp/payment/RQYYE5FLQ7NTJ" target="_blank" rel="noopener" data-value="899">BUY NOW</a>
       </div>
     </div>
 
@@ -294,6 +294,24 @@
     <p><a href="/privacy-policy.html">Privacy Policy</a> &middot; <a href="/terms-and-conditions.html">Terms &amp; Conditions</a> &middot; <a href="/marketing.html">All marketing services</a></p>
   </footer>
 
+
+  <!-- Google Ads conversion on a BUY NOW click. The tag itself is loaded in
+       <head>, the same block every other page on the site carries. -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('a, button, input[type="submit"], input[type="image"]');
+      if (!el) return;
+      var label = (el.innerText || el.value || el.alt || '').trim().toUpperCase();
+      if (label.indexOf('BUY NOW') === -1 && !el.hasAttribute('data-value')) return;
+      if (typeof gtag !== 'function') return;
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18393134229/-3W2CIfSibkdEJXpw8JE',
+        'value': Number(el.getAttribute('data-value')) || 1,
+        'currency': 'USD',
+        'transport_type': 'beacon'
+      });
+    }, true);
+  </script>
 
 </body>
 </html>
