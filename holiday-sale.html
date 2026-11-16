@@ -3,6 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '136948336027304');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=136948336027304&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <script>(function(w, d, t, u, o) {w[u] = w[u] || [], o.ts = (new Date).getTime();var n = d.createElement(t);n.src = "https://bat.bing.net/bat.js?ti=" + o.ti + ("uetq" != u ? "&q=" + u : ""),n.async = 1, n.onload = n.onreadystatechange = function() {var s = this.readyState;s && "loaded" !== s && "complete" !== s ||(o.q = w[u], w[u] = new UET(o), w[u].push("pageLoad"),n.onload = n.onreadystatechange = null)};var i = d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n, i);})(window, document, "script", "uetq", {ti: "343278560",enableAutoSpaTracking: true});</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18393134229"></script>
@@ -313,5 +330,26 @@
     }, true);
   </script>
 
+<!-- Meta Pixel: Buy Now click tracking -->
+<script>
+document.addEventListener('click', function (e) {
+  var link = e.target.closest('a[href*="paypal.com/ncp/payment/"]');
+  if (!link || typeof fbq !== 'function') return;
+  var offers = {
+    'ASX69B7KQA2H8': { name: 'Amazon Optimization', value: 199 },
+    'GGA2LVX2TUGXE': { name: '#1 Amazon Bestseller Campaign', value: 699 },
+    'H7VP32FSUU3LL': { name: 'Holiday Marketing Images', value: 99 },
+    'RQYYE5FLQ7NTJ': { name: 'Holiday Bundle (all three)', value: 899 }
+  };
+  var id = link.href.split('/').pop().split('?')[0];
+  var offer = offers[id] || { name: 'Holiday Sale offer', value: 0 };
+  fbq('track', 'InitiateCheckout', {
+    content_name: offer.name,
+    value: offer.value,
+    currency: 'USD'
+  });
+});
+</script>
+<!-- End Buy Now click tracking -->
 </body>
 </html>
