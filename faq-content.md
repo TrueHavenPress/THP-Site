@@ -92,7 +92,9 @@ You will never receive a quote from us with a deadline attached. If we are a goo
 
 **Yes, all of them. You retain 100% of your rights: print, eBook, audio, translation, film, and television. We take no rights stake as a condition of publishing, hold nothing for a term of years, and you never need our permission or involvement to license your work elsewhere.**
 
-One point deserves separating clearly, because vetting checklists routinely blur it. True Haven Press holds the ISBN, which is *not* a rights instrument. An ISBN identifies the publisher of record—it is how our imprint appears on your sales listings and how the book is recognized as part of our catalog. Being the owner of the ISBNs assigned to your book versions gives us no claim on your work, no share of your sales, and no say in what you do with the book. Your rights live in your contract, and your contract leaves every one of them with you.
+One point deserves separating clearly, because vetting checklists routinely blur it. By default, True Haven Press holds the ISBN, which is *not* a rights instrument. An ISBN identifies the publisher of record—it is how our imprint appears on your sales listings and how the book is recognized as part of our catalog. Being the owner of the ISBNs assigned to your book versions gives us no claim on your work, no share of your sales, and no say in what you do with the book. Your rights live in your contract, and your contract leaves every one of them with you.
+
+Prefer to publish under your own imprint? You can. Authors who supply their own ISBNs publish under their own brand as publisher of record, and True Haven Press is credited on the copyright page as the provider of editing, design, and publishing services. Many of our repeat clients, especially business owners, publish this way. The price is the same either way, and 100% of your rights and royalties stay with you on both paths. Because Amazon KDP and IngramSpark don’t allow an ISBN to be changed on a live listing, this is a choice best made before your book is published.
 
 ### How do royalties work, and how do I get paid?
 
@@ -112,9 +114,9 @@ Another deceptive practice we see from vanity presses is including X number of b
 
 ### What happens if we part ways before the book is finished?
 
-**Anything you have paid for is yours. Completed work and purchased assets—edited files, cover and interior design, anything already delivered—belong to you, and you leave with them. What does not transfer is our branding. The True Haven Press imprint and the ISBN remain our property, so you would publish without an imprint or with whoever finishes the project with you.**
+**Anything you have paid for is yours. Completed work and purchased assets—edited files, cover and interior design, anything already delivered—belong to you, and you leave with them. What does not transfer is our branding. When your book carries our imprint, the imprint and the ISBN remain our property, so you would publish without an imprint or with whoever finishes the project with you.**
 
-Stated plainly, because it is better heard now than discovered later: the imprint and the ISBN travel together and both stay with us. The edition you go on to publish will need a new ISBN of its own. That is a small administrative step and a modest cost, not a lost book, and it is the only practical consequence of parting ways.
+That never locks you in. You can move your book to your own ISBN whenever you choose. The one practical step is that Amazon KDP and IngramSpark don’t allow an ISBN to be changed on a live listing, so the old listing comes down and the book is republished as a new listing under your ISBN. If you published under your own ISBNs from the start, nothing changes at all.
 
 There is no clause in our agreement that makes leaving expensive, and nothing we hold back to make it difficult. We would rather part cleanly than keep an author who wants out, so upon request, we will update copyright pages and covers to remove ISBNs and imprint materials so you won’t have to pay someone else to do that, can work forward with what you’ve already purchased.
 
