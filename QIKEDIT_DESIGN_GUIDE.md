@@ -9,11 +9,12 @@ This document provides a complete guide for building websites that are compatibl
 3. [qik Tag Types](#qik-tag-types)
 4. [Special Section Tags](#special-section-tags)
 5. [qikForms Integration](#qikforms-integration)
-6. [Best Practices](#best-practices)
-7. [Example Implementations](#example-implementations)
-8. [Using this guide with an IDE or AI agent](#using-this-guide-with-an-ide-or-ai-agent)
-9. [Setting the site up as a Git repository](#setting-the-site-up-as-a-git-repository)
-10. [Summary](#summary)
+6. [Regions a qikWorker writes](#regions-a-qikworker-writes)
+7. [Best Practices](#best-practices)
+8. [Example Implementations](#example-implementations)
+9. [Using this guide with an IDE or AI agent](#using-this-guide-with-an-ide-or-ai-agent)
+10. [Setting the site up as a Git repository](#setting-the-site-up-as-a-git-repository)
+11. [Summary](#summary)
 
 ---
 
@@ -1560,6 +1561,42 @@ const config = {
 
 ---
 
+## Regions a qikWorker writes
+
+A **qikWorker** is a small app the agency attaches to a site in the portal (the site's Workers tab). It keeps its own records and settings, and it can write them into a page: "Now downloading: The Little Mermaid", this week's opening hours in every footer, the beers on tap as a list of cards. It writes through ordinary qik tags, so a page needs nothing new. It only needs a region where the value belongs.
+
+Workers write into two kinds of region, both named:
+
+```html
+<!-- A text region: the worker writes plain text. -->
+<h2><!-- qik-text now-downloading --><!-- qik-end --></h2>
+
+<!-- A WYSIWYG region: the worker writes the HTML its manifest's template gives. -->
+<div class="promo"><!-- qik footer-promo --><p>Promo text</p><!-- qik-end --></div>
+
+<!-- A list of records: the page holds the container and its layout,
+     the worker writes one card per record inside it. -->
+<section class="tap-grid"><!-- qik tap-list --><p>Fresh pours coming soon.</p><!-- qik-end --></section>
+```
+
+What a site builder needs to know:
+
+- **The name is the address.** The worker's manifest names the region (`now-downloading`) and the page (`index.html`), or every page that has it. Keep the name stable. Renaming or deleting the region breaks the binding (the Workers tab shows it as **Broken**), and the worker never recreates a region.
+- **Same name, same value.** Every region with that name on a bound page gets the value. For one value in every footer, use the same name in each page's footer.
+- **Fixed words go on one side.** If the page says `Now downloading: <!-- qik-text now-downloading -->…`, the worker's template should be just the value. If the template includes the label, keep it out of the page. Otherwise the label shows twice.
+- **Only between the markers.** The worker replaces what's between the opening tag and `<!-- qik-end -->`, nothing else. Put classes and structure on the surrounding element, as with any qik region.
+- **Managed in qikEdit.** A region a worker writes shows as **Managed by** the worker and can't be edited in qikEdit; it's changed through the worker. Anything you write in it by hand is replaced on the worker's next update.
+- **An empty region is fine.** Until the worker has a value (or any records), it leaves the region as it is, so you can leave placeholder text there.
+- **Lists go in a `qik` region.** For a list of records, style the container (`.tap-grid`, a CSS grid) in the page and agree the card markup with whoever writes the worker's template: its classes are yours to style. Records written into the region get IDs from their names if the template asks (`id="hazy-ipa"`), so `/on-tap.html#hazy-ipa` links to one.
+- **Images too.** A worker can swap the photo in a `qik-img` region ("the featured beer's can"). It changes only the `<img>`'s `src` and `alt`, so classes and sizes stay; it removes `srcset` and `sizes`, so give a worker-managed image a plain `<img>`, not a `<picture>`.
+- **History stays readable.** A page's version history keeps the page from before a run of worker updates (marked **Worker:** and its name), not one version per update.
+- **Starters name their regions.** The **Tap list** starter writes `<!-- qik tap-list -->` on `on-tap.html`, and `<!-- qik-text tap-headline -->` and `<!-- qik featured-beer -->` on the home page; its cards use the classes `beer`, `beer-style`, `beer-abv` and `beer-none` for you to style. The worker's Bindings section lists each region with a **Copy** button.
+- **Version 1 writes `qik-text`, `qik` and `qik-img` regions only.** Portfolio, gallery, navigation and blog regions aren't written by workers yet.
+
+The manifest that defines a worker is written in the portal, not in the site's files. Its full reference is in the portal's Help (**Worker manifest reference**) and can be downloaded from that Help page or the Workers tab, for you or an AI assistant.
+
+---
+
 ## Best Practices
 
 ### 1. Use Descriptive Names and Descriptions
@@ -1860,9 +1897,9 @@ const audioSources = {
 
 **How it gets into your project:**
 
-When you connect a local folder in the qikSites.js portal (Local Sync page), `QIKEDIT_DESIGN_GUIDE.md` appears as a server-side file in the sync list. Pull it to your project folder with one click — no separate download or setup step.
+When you link a local folder on the site's **Sync** tab in the qikSites.js portal (the *Folder on your computer* card), `QIKEDIT_DESIGN_GUIDE.md` appears as a server-side file in the scan. Pull it to your project folder with one click — no separate download or setup step.
 
-If your site lives in a Git repository instead, commit a copy at the repo root and see [Setting the site up as a Git repository](#setting-the-site-up-as-a-git-repository) for how the two fit together.
+If your site syncs with a Git repository instead, qikSites keeps a copy at the root of the repo for you; see [Setting the site up as a Git repository](#setting-the-site-up-as-a-git-repository) for how the two fit together.
 
 **Why it belongs at the root of your project:**
 
@@ -1875,13 +1912,13 @@ Once pulled, the guide sits at the root of your local project folder. Claude Cod
 
 **Staying current:**
 
-When qikSites.js ships an update that changes the design guide, the file's hash changes. Local Sync will show `QIKEDIT_DESIGN_GUIDE.md` as "modified" the next time you scan, and you can pull the new version with one click. Your local IDE context stays in sync with the installed version automatically.
+When qikSites.js ships an update that changes the design guide, the file's hash changes. Folder sync will show `QIKEDIT_DESIGN_GUIDE.md` as "modified" the next time you scan, and you can pull the new version with one click. A repo synced with GitHub gets the new version in the next commit qikSites makes. Your local IDE context stays in sync with the installed version automatically.
 
 ---
 
 ## Setting the site up as a Git repository
 
-qikSites can treat a **repo branch as the source of truth** for a site. Once connected (Site → GitHub sync in the portal), a push to that branch updates the live site, and publishing from qikEdit commits back to it. That makes the repo the natural home for a qik-tagged site: PRs, review, CI, and your IDE on one side, the visual editor on the other.
+qikSites can treat a **repo branch as the source of truth** for a site. Once connected (on the site's **Sync** tab in the portal), a push to that branch updates the live site, and publishing from qikEdit commits back to it. That makes the repo the natural home for a qik-tagged site: PRs, review, CI, and your IDE on one side, the visual editor on the other.
 
 This section covers what to do differently when a site is built to live in a repo.
 
@@ -1912,7 +1949,7 @@ Write your qik tags in the templates you author, and make sure your build **pres
 
 ### Use `.qikignore` for everything the site shouldn't serve
 
-Commit a `.qikignore` at the sync root. It uses the same format as Local Sync — one path or folder per line, `#` for comments, `*` globbing, and `!` to re-include something:
+Commit a `.qikignore` at the sync root. It uses the same format as folder sync — one path or folder per line, `#` for comments — and repo sync adds `*` globbing and `!` to re-include something:
 
 ```
 # Sources — the built output is what gets served
@@ -1959,15 +1996,13 @@ Files over 25 MB are skipped in both directions regardless.
 Both sides can change independently, and qikSites compares each against the last synced state:
 
 - Edits to **different** files merge without fuss — pull a colleague's repo change while your unpublished editor edits sit untouched.
-- Edits to the **same** file from both sides stop sync and raise a conflict. Nothing is overwritten; you choose the repo version or the site version in Site → GitHub sync.
+- Edits to the **same** file from both sides stop sync and raise a conflict. Nothing is overwritten; you choose the repo version or the site version on the site's **Sync** tab.
 
 To avoid conflicts in practice: before a substantial round of work in your IDE, publish or discard anything pending in the editor. Before a substantial round of work in qikEdit, let the latest push land. Content edits belong in qikEdit, structural and template changes belong in the repo — split that way, the two sides rarely touch the same file at the same time.
 
 ### Keeping this guide next to your code
 
-`QIKEDIT_DESIGN_GUIDE.md` is a system file — qikSites injects it into every site's file list and never syncs it, in either direction. Committing a copy at your repo root is still worth doing: Claude Code, Cursor, Copilot and similar tools pick up root-level files as context, so your AI assistant gets the full qik tag vocabulary for free. Sync ignores the committed copy, so it can't shadow the live one or drift into the site.
-
-Refresh that copy from Local Sync (or download it from the portal) whenever you upgrade qikSites.
+`QIKEDIT_DESIGN_GUIDE.md` is a system file — qikSites injects it into every site's file list and never pulls it in as site content. Repo sync keeps a copy at the sync root for you: it's committed alongside your site, so Claude Code, Cursor, Copilot and similar tools pick it up as context and your AI assistant gets the full qik tag vocabulary for free. Editing or deleting that copy in the repo isn't a conflict; qikSites simply writes its own version again on the next commit, and refreshes it when an upgrade changes the guide.
 
 ### Checklist for a repo-backed site
 
@@ -1978,7 +2013,7 @@ Refresh that copy from Local Sync (or download it from the portal) whenever you 
 - [ ] No formatter or auto-commit CI touching the synced path
 - [ ] The synced branch accepts direct pushes
 - [ ] Media is ordinary git objects, not LFS
-- [ ] `QIKEDIT_DESIGN_GUIDE.md` committed at the repo root for IDE context
+- [ ] `QIKEDIT_DESIGN_GUIDE.md` at the repo root for IDE context (qikSites commits it for you)
 
 ---
 
