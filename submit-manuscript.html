@@ -694,28 +694,14 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
         if (c) c.hidden = true;
       });
     } catch (err) {
-      // A TypeError ("Failed to fetch") usually means a CORS or network issue.
-      // The data WAS sent — the response just couldn't be read by the browser.
-      // Treat this as a probable success but warn the user honestly.
-      if (err instanceof TypeError) {
-        console.warn('Network/CORS error — submission was sent but response was unreadable:', err);
-        if (typeof gtag === 'function') { gtag('event', 'submit_lead_form'); }
-        if (typeof gtag === 'function') { gtag('event', 'conversion', {'send_to': 'AW-18393134229/w4TtCNeujaEdEJXpw8JE'}); }
-        status.textContent = 'Your submission was sent. If you don\'t hear from us within 2 business days, please email managingeditor@truehavenpress.com.';
-        status.classList.add('is-success');
-        form.reset();
-        document.querySelectorAll('[data-file-drop]').forEach(function (z) {
-          z.classList.remove('has-file');
-          const s = z.querySelector('[data-file-status]');
-          const c = z.querySelector('[data-file-clear]');
-          if (s) s.textContent = 'No file chosen';
-          if (c) c.hidden = true;
-        });
-      } else {
-        console.error('Submission failed:', err);
-        status.textContent = 'Something went wrong sending your submission. Please email managingeditor@truehavenpress.com or try again in a moment.';
-        status.classList.add('is-error');
-      }
+      // Any failure here (an error reply from the server, a dropped
+      // connection, a blocker extension, an upload that timed out) means we
+      // could NOT confirm the submission arrived. Say so plainly, keep
+      // everything they entered so they can try again, and don't count it
+      // as a conversion.
+      console.error('Submission could not be confirmed:', err);
+      status.textContent = 'We couldn\'t confirm your submission went through. Your answers are still filled in, so please try again in a moment. If it still doesn\'t work, email your manuscript to managingeditor@truehavenpress.com and we\'ll take it from there.';
+      status.classList.add('is-error');
     } finally {
       btn.disabled = false;
       btn.textContent = originalLabel;
