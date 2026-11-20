@@ -244,6 +244,4 @@ Keep in mind while reviewing books we’ve published that each one represents a 
 
 **Yes! Consultations are free and run as long as they need to—typically 30 to 60 minutes for a first conversation, and available again whenever you want while we work together.**
 
-We do not use limited-time offers, we do not follow up with pressure, and we will not flatter you into a decision. If a conversation with us ends in you choosing a different path, that is a good outcome for both of us.
-
 Call 1-800-585-3690, book a consultation, or submit your manuscript when you are ready.
