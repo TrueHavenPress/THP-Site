@@ -2691,7 +2691,7 @@ body.faq-page .faq-item > summary::after {
   line-height: 1;
 }
 body.faq-page .faq-item[open] > summary::after {
-  content: "2"; /* minus */
+  content: "\2212"; /* minus */
 }
 
 /* Reset default h3 margins so the summary row sits cleanly. */
