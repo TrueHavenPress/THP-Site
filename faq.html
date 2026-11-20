@@ -215,7 +215,7 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
       "name": "What does publishing with True Haven Press cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most projects run between $2,500 and $9,500, covering editing through publication and marketing. Editing and marketing services can also be purchased à la carte if you do not need the full path. You receive a detailed, all-inclusive quote in writing with your publishing proposal, before you sign anything. What we quote is what you pay.\n\nWhat moves the number:\n\n- Manuscript length, and what type(s) of editing and how much is needed in each editing round\n- Whether the book needs ghostwriting support to reach completion\n- Interior complexity—images, tables, footnotes, endnotes, indexes\n- Design scope, including cover concepts and any custom illustration\n- Scope of marketing services—not a one-size-fits-all plan, this is customized per book and per budget\n\nFor context, hybrid publishing packages across the industry commonly run from around $5,000 to $25,000, and full-service packages that bundle ghostwriting run considerably higher. We sit deliberately at the bottom of that range and below it. That is a decision based on caring more about publishing great books and helping authors realize their dreams, wanting to make our services more accessible, than wanting to build a profit machine. It is not a statement about the quality of the work. The same editors, designers, and production standards apply at $2,500 as at $9,500."
+        "text": "Most projects run between $2,500 and $9,500, covering editing through publication and marketing. Editing, design, and marketing services can each be purchased à la carte if you do not need the full path. You will receive a detailed, all-inclusive proposal before you sign anything.\n\nWhat moves the number:\n\n- Manuscript length, and what type(s) of editing and how much is needed in each editing round\n- Whether the book needs ghostwriting support to reach completion\n- Interior complexity—images, tables, footnotes, endnotes, indexes\n- Design scope, including cover concepts and any custom illustration\n- Scope of marketing services—not a one-size-fits-all plan, this is customized per book and per budget\n\nFor context, hybrid publishing packages across the industry commonly run from around $5,000 to $25,000, and full-service packages that bundle ghostwriting run considerably higher. We sit deliberately at the bottom of that range and below it. That is a decision based on caring more about publishing great books and helping authors realize their dreams, wanting to make our services more accessible, than wanting to build a profit machine. It is not a statement about the quality of the work. The same editors, designers, and production standards apply at $2,500 as at $9,500."
       }
     },
     {
@@ -324,6 +324,232 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
     }
   ]
 }</script>
+<!-- FAQ page extras (kept here so styles.css and its cache tag stay untouched) -->
+<style id="faq-page-extras">
+/* ---------- Width ----------
+   The page's content column is 720px by default inside a 1080px wide area.
+   The intro paragraph stays at a comfortable reading width but moves to the
+   left edge, and the search and the question browser use the full 1080 so the
+   two columns have room. Everything then shares one left edge. */
+body.faq-page .faq-intro {
+  /* The theme's layout rule centres this with !important, so matching it is
+     the only way to line the paragraph up with the search box below it. */
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+body.faq-page .faq-search,
+body.faq-page .faq-browser {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* ---------- Search box ---------- */
+body.faq-page .faq-search {
+  margin-bottom: 2.25rem;
+}
+body.faq-page .faq-search-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  margin: 0 0 0.55rem;
+}
+body.faq-page .faq-search-field { position: relative; display: block; }
+body.faq-page .faq-search-icon {
+  position: absolute;
+  left: 0.95rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--color-primary);
+  pointer-events: none;
+}
+body.faq-page .faq-search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.85rem 2.9rem 0.85rem 2.75rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--color-dark);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+body.faq-page .faq-search-input::placeholder { color: #6f6a63; }
+body.faq-page .faq-search-input::-webkit-search-cancel-button,
+body.faq-page .faq-search-input::-webkit-search-decoration { display: none; }
+body.faq-page .faq-search-input:focus {
+  border-color: var(--color-primary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+body.faq-page .faq-search-clear {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.9rem;
+  height: 1.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+/* display:flex above would otherwise beat the hidden attribute. */
+body.faq-page .faq-search-clear[hidden] { display: none; }
+body.faq-page .faq-search-clear:hover,
+body.faq-page .faq-search-clear:focus-visible { background: var(--color-border); }
+body.faq-page .faq-search-count {
+  margin: 0.6rem 0 0;
+  min-height: 1.3rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #4a4a4a;
+}
+
+/* ---------- Two-column question browser (assembled by the script) ---------- */
+body.faq-page .faq-browser {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: 2.75rem;
+  align-items: start;
+}
+body.faq-page .faq-browser[hidden] { display: none; }
+body.faq-page .faq-browser-list { min-width: 0; }
+
+body.faq-page .faq-group-label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin: 2.1rem 0 0.55rem;
+  padding: 0 0 0 1rem;
+}
+body.faq-page .faq-group-label:first-child { margin-top: 0; }
+body.faq-page .faq-group-label.is-filtered-out { display: none; }
+
+body.faq-page .faq-q {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.8rem 1rem;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom-color: var(--color-border);
+  border-radius: 7px;
+  cursor: pointer;
+  scroll-margin-top: 110px;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+body.faq-page .faq-q.is-filtered-out { display: none; }
+body.faq-page .faq-q-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-dark);
+}
+body.faq-page .faq-q::after {
+  content: "\203A";
+  flex: 0 0 auto;
+  font-family: var(--font-sans);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--color-primary);
+  opacity: 0.45;
+}
+body.faq-page .faq-q:hover { background: #fff; }
+body.faq-page .faq-q:hover .faq-q-text { color: var(--color-primary); }
+body.faq-page .faq-q:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+body.faq-page .faq-q[aria-selected="true"] {
+  background: #fff;
+  border-color: var(--color-primary);
+  box-shadow: 0 1px 4px rgba(24, 36, 112, 0.09);
+}
+body.faq-page .faq-q[aria-selected="true"] .faq-q-text { color: var(--color-primary); }
+body.faq-page .faq-q[aria-selected="true"]::after { opacity: 1; }
+
+body.faq-page .faq-browser-panels {
+  position: sticky;
+  top: 100px;
+  min-width: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1.8rem 1.9rem;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+body.faq-page .faq-panel[hidden] { display: none; }
+body.faq-page .faq-panel-title {
+  font-family: var(--font-serif);
+  font-size: 1.32rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-primary);
+  margin: 0 0 1.05rem;
+}
+body.faq-page .faq-browser .faq-answer { padding: 0; max-width: none; }
+body.faq-page .faq-browser .faq-answer > :last-child { margin-bottom: 0; }
+body.faq-page .faq-back-to-questions { display: none; }
+
+@media (max-width: 900px) {
+  body.faq-page .faq-browser { grid-template-columns: 1fr; gap: 1.4rem; }
+  body.faq-page .faq-browser-panels {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    scroll-margin-top: 90px;
+    padding: 1.4rem 1.3rem;
+  }
+  body.faq-page .faq-back-to-questions {
+    display: inline-block;
+    margin: 0 0 0.9rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    cursor: pointer;
+  }
+  body.faq-page .faq-group-label { padding-left: 0; }
+  body.faq-page .faq-q { padding-left: 0; padding-right: 0.25rem; }
+}
+
+/* The matching character in styles.css was corrupted at some point, so an open
+   question shows a stray glyph and a "2" where the minus sign belongs. That
+   accordion is still what visitors see if the script below does not run, so the
+   character is corrected here with a CSS escape that cannot be mangled. The typo
+   in styles.css itself is still worth fixing properly. */
+body.faq-page .faq-item[open] > summary::after { content: "\2212"; }
+</style>
 </head>
 
 <body class="faq-page is-block-theme">
@@ -377,6 +603,22 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
 
 <div style="line-height:1.5" class="entry-content alignwide wp-block-post-content has-global-padding is-content-justification-left is-layout-constrained wp-container-core-post-content-is-layout-69d0b17a wp-block-post-content-is-layout-constrained">
 <p class="faq-intro"><!-- qik faq-intro (Introduction paragraph above the questions) -->Publishing decisions deserve straight answers, so these are written plainly and without hedging. If your question is not here, call 1-800-585-3690 or <a href="https://tidycal.com/truehavenpress/free-publishing-consultation" target="_blank" rel="noopener">book a consultation</a> so we can answer it directly.<!-- qik-end --></p>
+
+<!-- FAQ search. Revealed by the script at the foot of the page, so it never
+     appears as a dead control if JavaScript does not run. -->
+<div class="faq-search" id="faqSearch" hidden>
+  <label class="faq-search-label" for="faqSearchInput">Search the questions</label>
+  <div class="faq-search-field">
+    <svg class="faq-search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+      <circle cx="8.5" cy="8.5" r="5.5"></circle>
+      <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke-linecap="round"></line>
+    </svg>
+    <input class="faq-search-input" id="faqSearchInput" type="search" autocomplete="off"
+           placeholder="Try royalties, ISBN, cost, editing&hellip;">
+    <button class="faq-search-clear" id="faqSearchClear" type="button" hidden aria-label="Clear the search">&times;</button>
+  </div>
+  <p class="faq-search-count" id="faqSearchCount" role="status" aria-live="polite"></p>
+</div>
 
 
 
@@ -450,7 +692,7 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
     <summary><h3><!-- qik-text faq-what-does-publishing-cost-question (Question text) -->What does publishing with True Haven Press cost?<!-- qik-end --></h3></summary>
       <div class="faq-answer">
         <!-- qik faq-what-does-publishing-cost-answer (Answer text) -->
-        <p class="faq-lede">Most projects run between $2,500 and $9,500, covering editing through publication and marketing. Editing and marketing services can also be purchased à la carte if you do not need the full path. You receive a detailed, all-inclusive quote in writing with your publishing proposal, before you sign anything. What we quote is what you pay.</p>
+        <p class="faq-lede">Most projects run between $2,500 and $9,500, covering editing through publication and marketing. Editing, design, and marketing services can each be purchased à la carte if you do not need the full path. You will receive a detailed, all-inclusive proposal before you sign anything.</p>
         <p>What moves the number:</p>
         <ul>
           <li>Manuscript length, and what type(s) of editing and how much is needed in each editing round</li>
@@ -819,5 +1061,243 @@ var WPGroHo = {"my_hash":""};
 
 	
 	<script src="/menu.js?v=20261027a"></script>
+
+<script>
+/* FAQ page behaviour.
+
+   The markup above keeps every question as its own collapsible block, which
+   is what a visitor sees if this script does not run, and what qikEdit edits.
+   On load this moves those same elements into a two-column browser: the list
+   of questions on the left, the selected answer in a panel on the right. The
+   search box filters that list. Nothing is copied or regenerated, so each
+   qikEdit region moves intact and still appears exactly once. */
+(function () {
+  var sections = [].slice.call(document.querySelectorAll('.faq-section'));
+  var searchBox = document.getElementById('faqSearch');
+  var input = document.getElementById('faqSearchInput');
+  var clearBtn = document.getElementById('faqSearchClear');
+  var countEl = document.getElementById('faqSearchCount');
+  if (!sections.length || !searchBox || !input || !clearBtn || !countEl) return;
+
+  var host = sections[0].parentNode;
+  var browser = document.createElement('div');
+  browser.className = 'faq-browser';
+
+  var list = document.createElement('div');
+  list.className = 'faq-browser-list';
+  list.setAttribute('role', 'tablist');
+  list.setAttribute('aria-label', 'Questions');
+  list.setAttribute('aria-orientation', 'vertical');
+
+  var panels = document.createElement('div');
+  panels.className = 'faq-browser-panels';
+
+  var back = document.createElement('button');
+  back.type = 'button';
+  back.className = 'faq-back-to-questions';
+  back.textContent = '\u2191 All questions';
+  panels.appendChild(back);
+
+  browser.appendChild(list);
+  browser.appendChild(panels);
+  host.insertBefore(browser, sections[0]);
+
+  var entries = [];
+
+  sections.forEach(function (section) {
+    var heading = section.querySelector('h2');
+    var label = null;
+    if (heading) {
+      heading.classList.add('faq-group-label');
+      list.appendChild(heading);          // moved, not rebuilt: its qik region travels with it
+      label = heading;
+    }
+
+    [].slice.call(section.querySelectorAll('.faq-item')).forEach(function (item) {
+      var h3 = item.querySelector('summary h3');
+      var answer = item.querySelector('.faq-answer');
+      if (!h3 || !answer) return;
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'faq-q';
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', 'false');
+      btn.tabIndex = -1;
+      if (item.id) { btn.id = item.id; item.removeAttribute('id'); }
+
+      // A <button> may only hold phrasing content, so the heading's own child
+      // nodes move across (comments included) and the <h3> wrapper is dropped.
+      var span = document.createElement('span');
+      span.className = 'faq-q-text';
+      while (h3.firstChild) span.appendChild(h3.firstChild);
+      btn.appendChild(span);
+
+      var panel = document.createElement('div');
+      panel.className = 'faq-panel';
+      panel.setAttribute('role', 'tabpanel');
+      panel.hidden = true;
+      panel.id = 'faq-panel-' + (btn.id || entries.length);
+
+      var title = document.createElement('h3');
+      title.className = 'faq-panel-title';
+      title.textContent = span.textContent.trim();
+      panel.appendChild(title);
+      panel.appendChild(answer);
+
+      btn.setAttribute('aria-controls', panel.id);
+      if (btn.id) panel.setAttribute('aria-labelledby', btn.id);
+
+      list.appendChild(btn);
+      panels.appendChild(panel);
+
+      entries.push({
+        btn: btn,
+        panel: panel,
+        label: label,
+        text: (span.textContent + ' ' + answer.textContent).toLowerCase().replace(/\s+/g, ' ')
+      });
+
+      item.parentNode.removeChild(item);
+    });
+
+    section.parentNode.removeChild(section);
+  });
+
+  if (!entries.length) return;
+
+  var current = null;
+  var narrow = window.matchMedia('(max-width: 900px)');
+
+  function visible() {
+    return entries.filter(function (e) { return !e.btn.classList.contains('is-filtered-out'); });
+  }
+
+  function select(entry, opts) {
+    if (!entry) return;
+    opts = opts || {};
+    current = entry;
+    entries.forEach(function (e) {
+      var on = e === entry;
+      e.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      e.btn.tabIndex = on ? 0 : -1;
+      e.panel.hidden = !on;
+    });
+    panels.scrollTop = 0;
+    if (opts.focus) entry.btn.focus();
+    if (opts.remember && entry.btn.id && window.history && history.replaceState) {
+      history.replaceState(null, '', '#' + entry.btn.id);
+    }
+    if (opts.reveal && narrow.matches) {
+      panels.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  entries.forEach(function (entry) {
+    entry.btn.addEventListener('click', function () {
+      select(entry, { remember: true, reveal: true });
+    });
+  });
+
+  // Arrow-key movement between questions, as a tab list should behave.
+  list.addEventListener('keydown', function (e) {
+    var keys = ['ArrowDown', 'ArrowUp', 'Home', 'End'];
+    if (keys.indexOf(e.key) === -1) return;
+    var shown = visible();
+    if (!shown.length) return;
+    var i = shown.indexOf(current);
+    var next;
+    if (e.key === 'Home') next = shown[0];
+    else if (e.key === 'End') next = shown[shown.length - 1];
+    else if (i === -1) next = shown[0];
+    else next = shown[(i + (e.key === 'ArrowDown' ? 1 : shown.length - 1)) % shown.length];
+    e.preventDefault();
+    select(next, { focus: true, remember: true });
+  });
+
+  back.addEventListener('click', function () {
+    searchBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ---- Search ----
+  function restore() {
+    entries.forEach(function (e) { e.btn.classList.remove('is-filtered-out'); });
+    [].slice.call(list.querySelectorAll('.faq-group-label')).forEach(function (l) {
+      l.classList.remove('is-filtered-out');
+    });
+    browser.hidden = false;
+    countEl.textContent = '';
+    clearBtn.hidden = true;
+    if (!current) select(entries[0]);
+  }
+
+  function runSearch(query) {
+    var terms = query.split(/\s+/).filter(Boolean);
+    if (!terms.length) { restore(); return; }
+
+    var hits = 0;
+    entries.forEach(function (e) {
+      var match = terms.every(function (t) { return e.text.indexOf(t) !== -1; });
+      e.btn.classList.toggle('is-filtered-out', !match);
+      if (match) hits++;
+    });
+
+    [].slice.call(list.querySelectorAll('.faq-group-label')).forEach(function (l) {
+      var any = entries.some(function (e) {
+        return e.label === l && !e.btn.classList.contains('is-filtered-out');
+      });
+      l.classList.toggle('is-filtered-out', !any);
+    });
+
+    browser.hidden = hits === 0;
+    clearBtn.hidden = false;
+    countEl.textContent = hits
+      ? hits + (hits === 1 ? ' question matches \u201C' : ' questions match \u201C') + query + '\u201D'
+      : 'No questions match \u201C' + query + '\u201D. Try a different word, or call 1-800-585-3690.';
+
+    // Keep a matching answer on screen rather than a stale one.
+    if (hits && (!current || current.btn.classList.contains('is-filtered-out'))) {
+      select(visible()[0]);
+    }
+  }
+
+  input.addEventListener('input', function () {
+    runSearch(input.value.toLowerCase().trim());
+  });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && input.value) {
+      e.preventDefault();
+      input.value = '';
+      restore();
+    }
+  });
+  clearBtn.addEventListener('click', function () {
+    input.value = '';
+    restore();
+    input.focus();
+  });
+
+  // ---- Opening state, including a link straight to one question ----
+  function fromHash() {
+    var id = (location.hash || '').slice(1);
+    if (!id) return null;
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].btn.id === id) return entries[i];
+    }
+    return null;
+  }
+
+  var initial = fromHash();
+  select(initial || entries[0]);
+  if (initial) initial.btn.scrollIntoView({ block: 'center' });
+
+  window.addEventListener('hashchange', function () {
+    var target = fromHash();
+    if (target) select(target, { reveal: true });
+  });
+
+  searchBox.hidden = false;
+})();
+</script>
 	</body>
 </html>

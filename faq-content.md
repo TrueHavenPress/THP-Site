@@ -70,7 +70,7 @@ For books published in the author’s KDP/IngramSpark accounts, it’s often pos
 
 ### What does publishing with True Haven Press cost?
 
-**Most projects run between $2,500 and $9,500, covering editing through publication and marketing. Editing and marketing services can also be purchased à la carte if you do not need the full path. You receive a detailed, all-inclusive quote in writing with your publishing proposal, before you sign anything. What we quote is what you pay.**
+**Most projects run between $2,500 and $9,500, covering editing through publication and marketing. Editing, design, and marketing services can each be purchased à la carte if you do not need the full path. You will receive a detailed, all-inclusive proposal before you sign anything.**
 
 What moves the number:
 
