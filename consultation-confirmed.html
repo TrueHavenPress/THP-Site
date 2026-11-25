@@ -35,6 +35,12 @@ src="https://www.facebook.com/tr?id=136948336027304&ev=PageView&noscript=1"
   <meta name="description" content="Your free publishing consultation with True Haven Press is confirmed.">
   <link rel="stylesheet" href="/styles.css?v=20261120">
   <link rel="icon" type="image/jpeg" href="/media/true-haven-press-logo2-500-x-500-px-1.jpg">
+  <style>
+    /* Hide the footer's call-to-action band on this page. Someone who has just
+       booked does not need to be asked to book. Done here rather than in
+       menu.js so no other page is affected and no cache tags need bumping. */
+    .full-footer-top{display:none}
+  </style>
 </head>
 <body class="thank-you-page">
 
@@ -114,8 +120,9 @@ src="https://www.facebook.com/tr?id=136948336027304&ev=PageView&noscript=1"
 
   </main>
 
-  <!-- FOOTER (injected by menu.js); data-minimal = only the green band, no submissions-copy top -->
-  <div id="site-footer-mount" data-minimal></div>
+  <!-- FOOTER (injected by menu.js). Note: data-minimal is NOT read by menu.js --
+       it does nothing. The CTA band is hidden by the rule in the head instead. -->
+  <div id="site-footer-mount"></div>
 
   <script src="/menu.js?v=20261027a"></script>
 
