@@ -36,6 +36,9 @@ src="https://www.facebook.com/tr?id=136948336027304&ev=PageView&noscript=1"
   <link rel="stylesheet" href="/styles.css?v=20261120">
   <link rel="icon" type="image/jpeg" href="/media/true-haven-press-logo2-500-x-500-px-1.jpg">
   <style>
+    /* The one-line answer sits first, so it drops h2's usual top margin. */
+    .article-prose .article-deck { margin-top: 0; }
+
     /* Callout box, matching the ones on the marketing page. Kept here rather
        than in styles.css so no other page changes and no cache tags move. */
     .article-prose .article-callout {
@@ -111,14 +114,15 @@ src="https://www.facebook.com/tr?id=136948336027304&ev=PageView&noscript=1"
     <!-- ARTICLE BODY -->
     <article class="article-prose">
       <div class="container">
+        <!-- qik article-deck (The one-line answer under the headline) -->
+        <h2 class="article-deck">Yes, if AI flags the problems and you make the decisions.</h2>
+        <!-- qik-end -->
         <figure class="article-inline-image">
           <!-- qik-img article-image (Article feature image) -->
           <img src="/media/insights/can-ai-lower-book-editing-costs.jpg" alt="">
           <!-- qik-end -->
         </figure>
         <!-- qik article-body (Main article text: headings, paragraphs and lists) -->
-        <p>Yes, if AI flags the problems and you make the decisions.</p>
-
         <p>AI editing tools are everywhere now, and many authors are asking a fair question: if software can catch typos and flag clunky sentences, why pay an editor?</p>
 
         <p>The honest answer is that AI can help you save on editing costs, but only when used the right way. Used as a tool in your own hands, it can help you turn in a cleaner manuscript. Used as a replacement for human judgment, it tends to cost more in the end&mdash;in rework, in a flattened voice, and in readers who can feel that something is missing.</p>
